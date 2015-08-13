@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Integrate Pusher | Introduction</title>
+        <title>Integrate Pusher | Building Real-Time Laravel Apps with Pusher</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.2.0">
@@ -25,6 +25,8 @@
         
     
     
+    <link rel="next" href="../notifications/index.html" />
+    
     
     <link rel="prev" href="../getting-started/laravel-app.html" />
     
@@ -34,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="2.3" data-basepath=".." data-revision="Thu Aug 13 2015 17:23:57 GMT+0100 (BST)">
+    <div class="book" data-level="2.3" data-basepath=".." data-revision="Thu Aug 13 2015 21:42:54 GMT+0100 (BST)">
     
 
 <div class="book-summary">
@@ -161,9 +163,104 @@
             
         </li>
     
-        <li class="chapter " data-level="2.4" data-path="getting-started/trigger-event.html">
+
+            </ul>
             
-            <span><b>2.4.</b> Trigger an Event</span>
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="notifications/index.html">
+            
+                
+                    <a href="../notifications/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        Real-Time Notifications
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="notifications/trigger-event.html">
+            
+                
+                    <a href="../notifications/trigger-event.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        Trigger an Event
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="activity-streams/index.html">
+            
+                
+                    <a href="../activity-streams/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        Activity Streams
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5" data-path="chat/index.html">
+            
+                
+                    <a href="../chat/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                        Chat
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6" data-path="where-next/index.html">
+            
+                
+                    <a href="../where-next/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                        What else can Pusher do?
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.1" data-path="where-next/resources.html">
+            
+                
+                    <a href="../where-next/resources.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.1.</b>
+                        
+                        Resources
+                    </a>
             
             
         </li>
@@ -268,7 +365,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../" >Introduction</a>
+        <a href="../" >Building Real-Time Laravel Apps with Pusher</a>
     </h1>
 </div>
 
@@ -279,7 +376,7 @@
                     <section class="normal" id="section-">
                     
                         <h1 id="integrate-pusher">Integrate Pusher</h1>
-<p>In this section we&apos;re going to show how to firstly store our Pusher credentials in the PHP application. Then we&apos;re going to integrate the Pusher PHP library, followed by the Pusher JavaScript library. As we go through we&apos;ll also take a look at how you can debug your integration which can come in handy if things go wrong. But things never go wrong, right?!</p>
+<p>In this section we&apos;re going to show how to firstly store our Pusher credentials in the PHP application. Then we&apos;re going to integrate the Pusher PHP library, followed by the Pusher JavaScript library. As we go through we&apos;ll also take a look at how you can debug your integration which might come in handy if things go wrong - things never go wrong, right?!</p>
 <h2 id="add-the-pusher-credentials-to-env">Add the Pusher credentials to <code>.env</code></h2>
 <p>When the Laravel application was created a <code>.env</code> file will also have been created in the root of the app.</p>
 <p>Take the Pusher credentials we noted down earlier (<code>app_id</code>, <code>key</code> and <code>secret</code>) - or you may even have a browser tap still open on the Main app in the Pusher dashboard - and add them to the <code>.env</code> file:</p>
@@ -287,12 +384,12 @@
 PUSHER_KEY = <span class="hljs-string">&apos;YOUR_APP_KEY&apos;</span>
 PUSHER_SECRET = <span class="hljs-string">&apos;YOUR_APP_SECRET&apos;</span>
 </code></pre>
-<p>Now to integrate the Pusher PHP library. To do this you have a couple of options. The first is to use a Laravel Pusher wrapper and add a <a href="http://laravel.com/docs/5.1/providers" target="_blank">service provider</a>. The second is to make use of Laravel <a href="http://laravel.com/docs/5.1/events" target="_blank">events</a> and use a Pusher event broadcaster.</p>
-<h2 id="using-a-laravel-pusher-wrapper">Using a Laravel Pusher wrapper</h2>
-<p>There are a few Laravel wrappers for the Pusher PHP library that allow you to integrate with Pusher. The most popular wrapper we know of is <a href="https://github.com/vinkla/pusher" target="_blank">vinkla/pusher</a> by <a href="https://github.com/vinkla" target="_blank">Vincent Klaiber</a>.</p>
+<p>Now to integrate the Pusher PHP library. To do this you have a couple of options. The first is to use a Laravel Pusher Bridge and add a <a href="http://laravel.com/docs/5.1/providers" target="_blank">service provider</a>. The second is to make use of Laravel <a href="http://laravel.com/docs/5.1/events" target="_blank">events</a> and use a Pusher event broadcaster.</p>
+<h2 id="using-a-laravel-pusher-bridge">Using a Laravel Pusher Bridge</h2>
+<p>There are a few Laravel bridges/wrappers for the Pusher PHP library that allow you to integrate with Pusher. The most popular bridge we know of is <a href="https://github.com/vinkla/pusher" target="_blank">vinkla/pusher</a> by <a href="https://github.com/vinkla" target="_blank">Vincent Klaiber</a>.</p>
 <p>Let&apos;s start by installing the package:</p>
-<pre><code>composer install vinkla/pusher
-php artisan vendor:publish
+<pre><code>&#x203A; composer install vinkla/pusher
+  php artisan vendor:publish
 </code></pre><p>Then setting up the the vinkla/pusher vendor configuration in <code>config/pusher.php</code> to use the environment variables:</p>
 <pre><code class="lang-php"><span class="hljs-string">&apos;connections&apos;</span> =&gt; [
 
@@ -331,7 +428,7 @@ get(<span class="hljs-string">&apos;/&apos;</span>, <span class="hljs-function">
 </ol>
 <p>You&apos;ll now see the event appear in the Pusher Debug Console. It&apos;s working!</p>
 <div class="alert alert-warning">
-  <strong>It&apos;s not working!</strong> Oh no, Something has gone wrong. Don&apos;t worry, we&apos;ll work out what&apos;s happening in an upcoming section on <strong>Debugging your server-side integration with Pusher</strong>.
+  <strong>It&apos;s not working!</strong> Oh no, Something has gone wrong. Don&apos;t worry, we&apos;ll work out what&apos;s happening in an upcoming section on <a href="#debugging-your-server-side-integration-with-pusher">Debugging your server-side integration with Pusher</a>.
 </div>
 
 <h2 id="using-laravel-event-broadcasting">Using Laravel Event Broadcasting</h2>
@@ -358,7 +455,7 @@ get(<span class="hljs-string">&apos;/&apos;</span>, <span class="hljs-function">
     }
 }
 </code></pre>
-<p>As with the previous example, we&apos;ll go in to the details of this in the <a href="trigger-event.md">trigger event section</a>.</p>
+<p>As with the previous example, we&apos;ll go in to the details of channels and events in the <a href="trigger-event.md">trigger event section</a>.</p>
 <p>Next, update the contents of the <code>app/Http/routes.php</code> file with the following:</p>
 <pre><code class="lang-php">get(<span class="hljs-string">&apos;/&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
     event(<span class="hljs-keyword">new</span> TestEvent(<span class="hljs-string">&apos;Broadcasting in Laravel using Pusher!&apos;</span>));
@@ -377,13 +474,17 @@ get(<span class="hljs-string">&apos;/&apos;</span>, <span class="hljs-function">
   <strong>It&apos;s not working!</strong> Oh no, Something has gone wrong. Don&apos;t worry, we&apos;ll work out what&apos;s happening in an upcoming section on <strong>Debugging your server-side integration with Pusher</strong>.
 </div>
 
-<h2 id="wrapper-v-event-broadcasting">Wrapper v Event Broadcasting</h2>
-<p>By using the wrapper instead of Event Broadcasting you don&apos;t need to adhere to some of the Event Broadcasting rules and it provides consistency when it comes to accessing the <code>Pusher</code> instance for other pieces of Pusher functionality such as <a href="#">authenticating channel subscriptions</a>, <a href="#">querying application state</a> (such as channels that have active subscriptions) and validating incoming <a href="https://pusher.com/docs/webhooks" target="_blank">Pusher WebHooks</a>.</p>
+<h2 id="bridge-v-event-broadcasting">Bridge v Event Broadcasting</h2>
+<p>By using the bridge instead of Event Broadcasting you don&apos;t need to adhere to some of the Event Broadcasting rules and it provides consistency when it comes to accessing the <code>Pusher</code> instance for other pieces of Pusher functionality such as <a href="#">authenticating channel subscriptions</a>, <a href="#">querying application state</a> (such as channels that have active subscriptions) and validating incoming <a href="https://pusher.com/docs/webhooks" target="_blank">Pusher WebHooks</a>.</p>
 <p>However, by using using event broadcasting you are completely decoupling your back-end functionality from having any reliance on Pusher&apos;s broadcast messaging which means you can quickly switch out the message broadcasting service that you&apos;re using.</p>
 <p>Make the best choice for your app.</p>
 <h2 id="which-one-will-we-use">Which one will we use?</h2>
-<p>To keep things simple, <strong>we&apos;re going to be using the vikla/pusher Laravel Pusher wrapper for the rest of the workshop</strong>.</p>
+<p>To keep things simple, <strong>we&apos;re going to be using the vikla/pusher Laravel Pusher Bridge for the rest of the workshop</strong>.</p>
 <h2 id="debugging-your-server-side-integration-with-pusher">Debugging your server-side integration with Pusher</h2>
+<div class="alert alert-warning">
+  For the moment this section only covers debugging your integration via the Laravel Pusher Bridge.
+</div>
+
 <p>TODO:</p>
 <h2 id="using-the-pusher-javascript-library">Using the Pusher JavaScript library</h2>
 <p>Now that everything is working on the server-side it&apos;s time to turn to the client-side and look at adding the Pusher JavaScript library to the app so that the events that are being triggered can be received.</p>
@@ -431,8 +532,9 @@ var pusher = new Pusher<span class="hljs-params">(<span class="hljs-string">&quo
 <li>Is the subscription to the channel succeeding? <code>Pusher : No callbacks on test-channel for pusher:subscription_succeeded</code></li>
 <li>Is the event being received and does the event name match the one you&apos;re using in your call to <code>bind</code>? <code>Pusher : Event recd : {&quot;event&quot;:&quot;TestEvent&quot;,&quot;data&quot;:{&quot;text&quot;:&quot;Broadcasting in Laravel using Pusher!&quot;},&quot;channel&quot;:&quot;test-channel&quot;}</code></li>
 </ul>
+<p>Still stuck? <strong>Ask the instructor</strong> if you&apos;re in a workshop. If not, take a look at the <a href="https://support.pusher.com" target="_blank">Pusher Support desk</a>. From there you can contact support if required.</p>
 <h2 id="where-next">Where next?</h2>
-<p>Now that we&apos;ve covered the options for integrating the Pusher PHP library into your Laravel back-end let&apos;s dive into a real use case for Pusher - Real-Time Notifications. In doing so we&apos;ll look at <a href="trigger-event.md">triggering events from the server</a> in more detail and how the Pusher JavaScript library is used to receive those events within the web browser.</p>
+<p>Now that we&apos;ve covered the options for integrating the Pusher PHP library into your Laravel back-end let&apos;s dive into a real use case for Pusher - Real-Time Notifications. In doing so we&apos;ll look at building <a href="../notifications">real-time notifications</a> and in doing so looking at Channels and Events in more detail.</p>
 
                     
                     </section>
@@ -443,8 +545,10 @@ var pusher = new Pusher<span class="hljs-params">(<span class="hljs-string">&quo
         </div>
 
         
-        <a href="../getting-started/laravel-app.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Laravel App Setup"><i class="fa fa-angle-left"></i></a>
+        <a href="../getting-started/laravel-app.html" class="navigation navigation-prev " aria-label="Previous page: Laravel App Setup"><i class="fa fa-angle-left"></i></a>
         
+        
+        <a href="../notifications/index.html" class="navigation navigation-next " aria-label="Next page: Real-Time Notifications"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

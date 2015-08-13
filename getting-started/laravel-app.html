@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Laravel App Setup | Introduction</title>
+        <title>Laravel App Setup | Building Real-Time Laravel Apps with Pusher</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.2.0">
@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="2.2" data-basepath=".." data-revision="Thu Aug 13 2015 17:23:57 GMT+0100 (BST)">
+    <div class="book" data-level="2.2" data-basepath=".." data-revision="Thu Aug 13 2015 21:42:54 GMT+0100 (BST)">
     
 
 <div class="book-summary">
@@ -163,9 +163,104 @@
             
         </li>
     
-        <li class="chapter " data-level="2.4" data-path="getting-started/trigger-event.html">
+
+            </ul>
             
-            <span><b>2.4.</b> Trigger an Event</span>
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="notifications/index.html">
+            
+                
+                    <a href="../notifications/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        Real-Time Notifications
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="notifications/trigger-event.html">
+            
+                
+                    <a href="../notifications/trigger-event.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        Trigger an Event
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="activity-streams/index.html">
+            
+                
+                    <a href="../activity-streams/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        Activity Streams
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5" data-path="chat/index.html">
+            
+                
+                    <a href="../chat/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                        Chat
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6" data-path="where-next/index.html">
+            
+                
+                    <a href="../where-next/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                        What else can Pusher do?
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.1" data-path="where-next/resources.html">
+            
+                
+                    <a href="../where-next/resources.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.1.</b>
+                        
+                        Resources
+                    </a>
             
             
         </li>
@@ -270,7 +365,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../" >Introduction</a>
+        <a href="../" >Building Real-Time Laravel Apps with Pusher</a>
     </h1>
 </div>
 
@@ -290,9 +385,9 @@
 <h2 id="create-a-laravel-app">Create a Laravel app</h2>
 <p>Navigate to a directory in which you want your Laravel application to be created. We&apos;re going to create an application called <code>real-time-app</code>.</p>
 <p>If you have the <code>laravel</code> executable on your PATH you can use:</p>
-<pre><code>laravel new real-time-app
+<pre><code>&#x203A; laravel new real-time-app
 </code></pre><p>Otherwise, you can use composer:</p>
-<pre><code>composer create-project laravel/laravel real-time-app --prefer-dist
+<pre><code>&#x203A; composer create-project laravel/laravel real-time-app --prefer-dist
 </code></pre><p>Navigate into the newly created <code>real-time-app</code> directory and open the contents in your favourite editor.</p>
 <div class="alert alert-info">
     Right now our favourite editor is GitHub&apos;s <a href="https://atom.io/" target="_blank">Atom Editor</a>. But that&apos;s probably because we&apos;ve created a pretty sweet real-time code collaboration plugin for it called <a href="https://atom.io/packages/atom-pair" target="_blank">Atom Pair</a>.
@@ -300,7 +395,7 @@
 
 <h2 id="run-the-app">Run the app</h2>
 <p>To make sure everything is working, run the newly created application. From a the <code>real-time-app</code> directory in the terminal or console window run the following:</p>
-<pre><code>php artisan serve
+<pre><code>&#x203A; php artisan serve
 </code></pre><h2 id="where-next">Where next?</h2>
 <p>It&apos;s time to <a href="integrate-pusher.html">integrate Pusher</a> into the Laravel app.</p>
 
