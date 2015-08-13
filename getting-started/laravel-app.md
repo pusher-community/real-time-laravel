@@ -15,13 +15,13 @@ Navigate to a directory in which you want your Laravel application to be created
 If you have the `laravel` executable on your PATH you can use:
 
 ```
-laravel new real-time-app
+› laravel new real-time-app
 ```
 
 Otherwise, you can use composer:
 
 ```
-composer create-project laravel/laravel real-time-app --prefer-dist
+› composer create-project laravel/laravel real-time-app --prefer-dist
 ```
 
 Navigate into the newly created `real-time-app` directory and open the contents in your favourite editor.
@@ -35,7 +35,7 @@ Navigate into the newly created `real-time-app` directory and open the contents 
 To make sure everything is working, run the newly created application. From a the `real-time-app` directory in the terminal or console window run the following:
 
 ```
-php artisan serve
+› php artisan serve
 ```
 
 ## Where next?

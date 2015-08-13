@@ -1,6 +1,6 @@
 # Sign up for Pusher
 
-Signing up for a free Pusher account is as simple as going to [pusher.com](https://pusher.com) and filling out the simple form.
+Please sign up for a free Pusher account via [pusher.com/signup](https://pusher.com/signup).
 
 Once you've done that you'll land within a "Main" application page. For this workshop all you need to do is take a note of the "App Credentials". These are:
 

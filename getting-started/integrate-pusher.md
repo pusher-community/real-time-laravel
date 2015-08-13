@@ -1,6 +1,6 @@
 # Integrate Pusher
 
-In this section we're going to show how to firstly store our Pusher credentials in the PHP application. Then we're going to integrate the Pusher PHP library, followed by the Pusher JavaScript library. As we go through we'll also take a look at how you can debug your integration which can come in handy if things go wrong. But things never go wrong, right?!
+In this section we're going to show how to firstly store our Pusher credentials in the PHP application. Then we're going to integrate the Pusher PHP library, followed by the Pusher JavaScript library. As we go through we'll also take a look at how you can debug your integration which might come in handy if things go wrong - things never go wrong, right?!
 
 ## Add the Pusher credentials to `.env`
 
@@ -14,17 +14,17 @@ PUSHER_KEY = 'YOUR_APP_KEY'
 PUSHER_SECRET = 'YOUR_APP_SECRET'
 ```
 
-Now to integrate the Pusher PHP library. To do this you have a couple of options. The first is to use a Laravel Pusher wrapper and add a [service provider](http://laravel.com/docs/5.1/providers). The second is to make use of Laravel [events](http://laravel.com/docs/5.1/events) and use a Pusher event broadcaster.
+Now to integrate the Pusher PHP library. To do this you have a couple of options. The first is to use a Laravel Pusher Bridge and add a [service provider](http://laravel.com/docs/5.1/providers). The second is to make use of Laravel [events](http://laravel.com/docs/5.1/events) and use a Pusher event broadcaster.
 
-## Using a Laravel Pusher wrapper
+## Using a Laravel Pusher Bridge
 
-There are a few Laravel wrappers for the Pusher PHP library that allow you to integrate with Pusher. The most popular wrapper we know of is [vinkla/pusher](https://github.com/vinkla/pusher) by [Vincent Klaiber](https://github.com/vinkla).
+There are a few Laravel bridges/wrappers for the Pusher PHP library that allow you to integrate with Pusher. The most popular bridge we know of is [vinkla/pusher](https://github.com/vinkla/pusher) by [Vincent Klaiber](https://github.com/vinkla).
 
 Let's start by installing the package:
 
 ```
-composer install vinkla/pusher
-php artisan vendor:publish
+› composer install vinkla/pusher
+  php artisan vendor:publish
 ```
 
 Then setting up the the vinkla/pusher vendor configuration in `config/pusher.php` to use the environment variables:
@@ -77,7 +77,7 @@ Next we want to test that this is working. To do this:
 You'll now see the event appear in the Pusher Debug Console. It's working!
 
 <div class="alert alert-warning">
-  <strong>It's not working!</strong> Oh no, Something has gone wrong. Don't worry, we'll work out what's happening in an upcoming section on <strong>Debugging your server-side integration with Pusher</strong>.
+  <strong>It's not working!</strong> Oh no, Something has gone wrong. Don't worry, we'll work out what's happening in an upcoming section on <a href="#debugging-your-server-side-integration-with-pusher">Debugging your server-side integration with Pusher</a>.
 </div>
 
 ## Using Laravel Event Broadcasting
@@ -109,7 +109,7 @@ class TestEvent implements ShouldBroadcast
 }
 ```
 
-As with the previous example, we'll go in to the details of this in the [trigger event section](./trigger-event.md).
+As with the previous example, we'll go in to the details of channels and events in the [trigger event section](./trigger-event.md).
 
 Next, update the contents of the `app/Http/routes.php` file with the following:
 
@@ -133,9 +133,9 @@ Again, you'll see the event appear in the Pusher Debug Console. It's working!
   <strong>It's not working!</strong> Oh no, Something has gone wrong. Don't worry, we'll work out what's happening in an upcoming section on <strong>Debugging your server-side integration with Pusher</strong>.
 </div>
 
-## Wrapper v Event Broadcasting
+## Bridge v Event Broadcasting
 
-By using the wrapper instead of Event Broadcasting you don't need to adhere to some of the Event Broadcasting rules and it provides consistency when it comes to accessing the `Pusher` instance for other pieces of Pusher functionality such as [authenticating channel subscriptions](#), [querying application state](#) (such as channels that have active subscriptions) and validating incoming [Pusher WebHooks](https://pusher.com/docs/webhooks).
+By using the bridge instead of Event Broadcasting you don't need to adhere to some of the Event Broadcasting rules and it provides consistency when it comes to accessing the `Pusher` instance for other pieces of Pusher functionality such as [authenticating channel subscriptions](#), [querying application state](#) (such as channels that have active subscriptions) and validating incoming [Pusher WebHooks](https://pusher.com/docs/webhooks).
 
 However, by using using event broadcasting you are completely decoupling your back-end functionality from having any reliance on Pusher's broadcast messaging which means you can quickly switch out the message broadcasting service that you're using.
 
@@ -143,9 +143,13 @@ Make the best choice for your app.
 
 ## Which one will we use?
 
-To keep things simple, **we're going to be using the vikla/pusher Laravel Pusher wrapper for the rest of the workshop**.
+To keep things simple, **we're going to be using the vikla/pusher Laravel Pusher Bridge for the rest of the workshop**.
 
 ## Debugging your server-side integration with Pusher
+
+<div class="alert alert-warning">
+  For the moment this section only covers debugging your integration via the Laravel Pusher Bridge.
+</div>
 
 TODO:
 
@@ -207,6 +211,8 @@ From here we can check:
 * Is the subscription to the channel succeeding? `Pusher : No callbacks on test-channel for pusher:subscription_succeeded`
 * Is the event being received and does the event name match the one you're using in your call to `bind`? `Pusher : Event recd : {"event":"TestEvent","data":{"text":"Broadcasting in Laravel using Pusher!"},"channel":"test-channel"}`
 
+Still stuck? **Ask the instructor** if you're in a workshop. If not, take a look at the [Pusher Support desk](https://support.pusher.com). From there you can contact support if required.
+
 ## Where next?
 
-Now that we've covered the options for integrating the Pusher PHP library into your Laravel back-end let's dive into a real use case for Pusher - Real-Time Notifications. In doing so we'll look at [triggering events from the server](./trigger-event.md) in more detail and how the Pusher JavaScript library is used to receive those events within the web browser.
+Now that we've covered the options for integrating the Pusher PHP library into your Laravel back-end let's dive into a real use case for Pusher - Real-Time Notifications. In doing so we'll look at building [real-time notifications](../notifications/) and in doing so looking at Channels and Events in more detail.
