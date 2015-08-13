@@ -1,12 +1,4 @@
-# Trigger an Event
-
-Now that we've integrated Pusher into our Laravel application we want to start sending messages - since this is real-time, when using Pusher we call this "triggering events". 
-
-An event has a name and a data payload (the message) and is triggered on a channel. Channels are used to identify the context of the event. Normally this is data within a system and the event indicates that something has happened to that data.
-
-This maps really well to CRUD (Create, Read, Update and Delete) operations. In this case the channel will either represent a table in a database or a single record or entity and the event will represent a new row or entity has been added to the database, or that an existing entity has been updated or deleted.
-
-## Triggering events via the Laravel Pusher Wrapper
+# Triggering a Notification Event
 
 * Create a route
 * Create a controller and action

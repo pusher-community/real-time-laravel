@@ -1,10 +1,10 @@
 # Integrate Pusher
 
-The first thing we need to do is configure the environment variables with your Pusher application credentials.
+In this section we're going to show how to firstly store our Pusher credentials in the PHP application. Then we're going to integrate the Pusher PHP library, followed by the Pusher JavaScript library. As we go through we'll also take a look at how you can debug your integration which can come in handy if things go wrong. But things never go wrong, right?!
 
 ## Add the Pusher credentials to `.env`
 
-When the application was created a `.env` file will also have been created in the root of the app.
+When the Laravel application was created a `.env` file will also have been created in the root of the app.
 
 Take the Pusher credentials we noted down earlier (`app_id`, `key` and `secret`) - or you may even have a browser tap still open on the Main app in the Pusher dashboard - and add them to the `.env` file:
 
@@ -61,6 +61,8 @@ get('/', function() {
     $pusher->trigger( 'test-channel',
                       'test-event', 
                       array('text' => 'Preparing the Pusher Laracon.eu workshop!'));
+                      
+    return view('welcome');
 });
 ```
 
@@ -70,7 +72,7 @@ Next we want to test that this is working. To do this:
 
 1. Open up the Pusher Debug Console for your Pusher application
 2. Run your Laravel application using `php artisan serve`
-3. In a new browser tab or window navigate to the route we've just defined in the Laravel app, `http://localhost:8000/`
+3. In a new browser tab or window navigate to the route we've just defined in the Laravel app, http://localhost:8000/
 
 You'll now see the event appear in the Pusher Debug Console. It's working!
 
@@ -114,6 +116,8 @@ Next, update the contents of the `app/Http/routes.php` file with the following:
 ```php
 get('/', function() {
     event(new TestEvent('Broadcasting in Laravel using Pusher!'));
+    
+    return view('welcome');
 });
 ```
 
@@ -121,7 +125,7 @@ As before, to test:
 
 1. Open up the Pusher Debug Console for your Pusher application
 2. Ensure your Laravel application is running (`php artisan serve`)
-3. In a new browser tab or window, navigate to the `/` route in the Laravel app (or simply refresh your tab), `http://localhost:8000/`.
+3. In a new browser tab or window, navigate to the `/` route in the Laravel app (or simply refresh your tab), http://localhost:8000/
 
 Again, you'll see the event appear in the Pusher Debug Console. It's working!
 
@@ -137,6 +141,72 @@ However, by using using event broadcasting you are completely decoupling your ba
 
 Make the best choice for your app.
 
+## Which one will we use?
+
+To keep things simple, **we're going to be using the vikla/pusher Laravel Pusher wrapper for the rest of the workshop**.
+
+## Debugging your server-side integration with Pusher
+
+TODO:
+
+## Using the Pusher JavaScript library
+
+Now that everything is working on the server-side it's time to turn to the client-side and look at adding the Pusher JavaScript library to the app so that the events that are being triggered can be received.
+
+Open up `resources/views/welcome` and include the following script:
+
+```html
+<script src="//js.pusher.com/3.0/pusher.min.js"></script>
+<script>
+var pusher = new Pusher("{{env('PUSHER_KEY')}}")
+var channel = pusher.subscribe('test-channel');
+channel.bind('TestEvent', function(data) {
+  alert(data.text);
+});
+</script>
+```
+
+To test this is working:
+
+1. Open up the Pusher Debug Console for your application in a tab or window
+2. Open http://localhost:8000/ in one browser window
+3. Take a look at the Pusher Debug Console. Along with any other log entries you should see a *Connection* and *Subscribe*. Things are looking good.
+4. Open the same URL in a 2nd window
+5. Be *amazed* by an alert box
+
+Okay, you won't be amazed. But this proves that the event is making it's way to the web browser.
+
+*Not seeing the alert? Read on...*
+
+## Debugging your client-side integration with Pusher
+
+The Pusher Debug Console is great for understand how the Pusher JavaScript library is interacting with Pusher.
+
+Here's what to check:
+
+* Are you seeing a `Connection` entry. If not, check you're using the correct Pusher Application Key.
+* Are you seeing a `Subscribed` entry and is the `Channel` the one you expect to see?
+* If the above seem fine then make sure the `Subscribed` entry is occuring *before* the `API Message` entry. If not, then it means the message is being sent before Pusher knows the client is interested in it.
+
+As well as the Pusher Debug Console you can also configure the Pusher JavaScript library so that it will log information, exposing its internal workings, to the browser console. Update your client-side code:
+
+```html
+<script src="//js.pusher.com/3.0/pusher.min.js"></script>
+<script>
+Pusher.log = function(msg) {
+  console.log(msg);
+};
+
+var pusher = new Pusher("{{env('PUSHER_KEY')}}")
+...
+```
+
+From here we can check:
+
+* Does the logging indicate that a connection is being established? `Pusher : State changed : connecting -> connected`
+* Is the subscription to the channel succeeding? `Pusher : No callbacks on test-channel for pusher:subscription_succeeded`
+* Is the event being received and does the event name match the one you're using in your call to `bind`? `Pusher : Event recd : {"event":"TestEvent","data":{"text":"Broadcasting in Laravel using Pusher!"},"channel":"test-channel"}`
+
 ## Where next?
 
-Now that we've covered the options for integrating the Pusher PHP library into your Laravel back-end let's dig into [triggering events](./trigger-event.md) in more detail.
+Now that we've covered the options for integrating the Pusher PHP library into your Laravel back-end let's dive into a real use case for Pusher - Real-Time Notifications. In doing so we'll look at [triggering events from the server](./trigger-event.md) in more detail and how the Pusher JavaScript library is used to receive those events within the web browser.
