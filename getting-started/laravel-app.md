@@ -40,4 +40,4 @@ To make sure everything is working, run the newly created application. From a th
 
 ## Where next?
 
-It's time to [integrate Pusher](./integrate-pusher.md) into the Laravel app.
+Yipee! The app is created and running. Next, let's store the Pusher application credentials we've got in [environment variables](./setting-env-vars.md).

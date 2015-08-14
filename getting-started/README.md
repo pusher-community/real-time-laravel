@@ -1,8 +1,6 @@
 # Getting Started
 
-In order to get started you'll need to [sign up for a free account with Pusher](./sign-up.md), take a note of the credentials for your Pusher app, [create a Laravel application](./laravel-app.md) and [integrate the Pusher library](./integrate-pusher.md) into that application.
-
-For the latter you have a few options and the [Integrate Pusher](./integrate-pusher.md) section covers the options that you have.
+In this section we're going to sign up for a free Pusher account and store Pusher application credentials in the PHP application. Then we're going to integrate the Pusher PHP library, followed by the Pusher JavaScript library. As we go through we'll also take a look at how you can debug your integration which might come in handy if things go wrong - things never go wrong, right?!
 
 ## Where next?
 

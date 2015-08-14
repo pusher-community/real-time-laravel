@@ -2,7 +2,7 @@
 
 Pusher is a hosted services that makes it *super-easy* to add real-time data and functionality to web and mobile applications.
 
-**TODO: Pusher circles**
+![](../assets/img/pusher-circles.png)
 
 Pusher sits as a real-time layer between your servers and your clients. We maintain persistent connections to the clients - over WebSocket if possible and falling back to HTTP-based connectivity - so that as soon as your servers have new data that they want to push to the clients they can do, instantly via Pusher.
 

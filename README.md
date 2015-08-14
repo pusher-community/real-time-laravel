@@ -2,17 +2,19 @@
 
 Pusher is a hosted services that makes it *super-easy* to add real-time data and functionality to web and mobile applications. This is a 2 hour workshop that will show you how to add real-time features to your Laravel apps with Pusher.
 
+<div class="home-logos" style="text-align: center; margin: 2em 0;">
+  <img src="assets/img/laravel-logo-sml.png" />
+  <span style="font-size: 100px;
+    line-height: 100%;
+    display: inline-block;
+    vertical-align: top;
+    margin: 0.2em;">&plus;</span>
+  <img src="assets/img/pusher-logo-dark-sml.png" />
+</div>
+
 It covers:
 
-* [What is Pusher?](introduction/)
-* [Use Cases can you achieve with Pusher](introduction/pusher-use-cases.md)
-* [How to get started](getting-started/)
-* [Signing up for Pusher](getting-started/signup.md)
-* [Creating a basic Laravel app for the workshop](getting-started/laravel-app.md)
-* [Integrating Pusher into your Laravel app - on the server and client](getting-started/integrating-pusher.md)
-* [Building Real-Time Notifications](notifications/)
-* [Building an Activity Stream](activity-streams)
-* [Building Real-Time Chat](chat/)
+{% include "./SUMMARY.md" %}
 
 ## Where next?
 
