@@ -1,0 +1,8 @@
+.page-inner .home-logos img {
+  display: inline-block;
+}
+
+.page-inner img {
+  display: inherit;
+  margin: auto;
+}
