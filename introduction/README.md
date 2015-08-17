@@ -1,6 +1,6 @@
 # What is Pusher?
 
-Pusher is a hosted services that makes it *super-easy* to add real-time data and functionality to web and mobile applications.
+Pusher is a hosted service that makes it *super-easy* to add real-time data and functionality to web and mobile applications.
 
 ![](../assets/img/pusher-circles.png)
 

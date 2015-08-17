@@ -1,6 +1,6 @@
 # Building Real-Time Laravel Apps with Pusher
 
-Pusher is a hosted services that makes it *super-easy* to add real-time data and functionality to web and mobile applications. This is a 2 hour workshop that will show you how to add real-time features to your Laravel apps with Pusher.
+Pusher is a hosted service that makes it *super-easy* to add real-time data and functionality to web and mobile applications. This is a 2 hour workshop that will show you how to add real-time features to your Laravel apps with Pusher.
 
 <div class="home-logos" style="text-align: center; margin: 2em 0;">
   <img src="assets/img/laravel-logo-sml.png" />

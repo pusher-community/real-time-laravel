@@ -6,7 +6,7 @@
     * [Setting Environment Variables](getting-started/setting-env-vars.md)
     * [Laravel Pusher Bridge](getting-started/laravel-pusher-bridge.md)
     * [Pusher Event Broadcaster](getting-started/event-broadcaster.md)
-    * [Debugging Server-Side Integration with Pusher](getting-started/server-debugging.md)
+    * [(WiP) Debugging Server-Side Integration with Pusher](getting-started/server-debugging.md)
     * [Using the Pusher JavaScript library](getting-started/pusher-js-integration.md)
     * [Debugging with the Pusher JavaScript library](getting-started/pusher-js-debugging.md)
 * [(WiP) Real-Time Notifications](notifications/README.md)

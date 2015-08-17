@@ -5,11 +5,11 @@ There are a few Laravel bridges/wrappers for the Pusher PHP library that allow y
 Let's start by installing the package:
 
 ```
-› composer install vinkla/pusher
+› composer require vinkla/pusher
   php artisan vendor:publish
 ```
 
-Then setting up the the vinkla/pusher vendor configuration in `config/pusher.php` to use the environment variables:
+Then set up the the vinkla/pusher vendor configuration in `config/pusher.php` to use the environment variables. Update the `auth_key`, `secret` and `app_id` values of the `main` connection as follows:
 
 ```php
 'connections' => [
@@ -37,7 +37,7 @@ To quickly test this, open `app/Http/routes.php` and replace the contents with:
 
 use Illuminate\Support\Facades\App;
 
-get('/', function() {
+get('/bridge', function() {
     $pusher = App::make('pusher');
 
     $pusher->trigger( 'test-channel',
@@ -48,13 +48,13 @@ get('/', function() {
 });
 ```
 
-We'll cover the details of this in the [trigger event section](./trigger-event.md).
+We'll cover the details of this in a later exercise.
 
 Next we want to test that this is working. To do this:
 
 1. Open up the Pusher Debug Console for your Pusher application
 2. Run your Laravel application using `php artisan serve`
-3. In a new browser tab or window navigate to the route we've just defined in the Laravel app, http://localhost:8000/
+3. In a new browser tab or window navigate to the route we've just defined in the Laravel app, http://localhost:8000/bridge
 
 You'll now see the event appear in the Pusher Debug Console. It's working!
 
