@@ -64,7 +64,7 @@ function notifyInit() {
 }
 
 // Handle the form submission
-function notifySubmit(e) {
+function notifySubmit() {
   var notifyText = $('#notify_text').val();
   if(notifyText.length < 3) {
     return;
