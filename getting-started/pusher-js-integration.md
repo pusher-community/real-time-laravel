@@ -9,7 +9,7 @@ Open up `resources/views/welcome.blade.php` and include the following script:
 <script>
 var pusher = new Pusher("{{env('PUSHER_KEY')}}")
 var channel = pusher.subscribe('test-channel');
-channel.bind('TestEvent', function(data) {
+channel.bind('test-event', function(data) {
   alert(data.text);
 });
 </script>
@@ -18,7 +18,7 @@ channel.bind('TestEvent', function(data) {
 To test this is working:
 
 1. Open up the Pusher Debug Console for your application in a tab or window
-2. Open http://localhost:8000/ in one browser window
+2. Open http://localhost:8000/bridge in one browser window
 3. Take a look at the Pusher Debug Console. Along with any other log entries you should see a *Connection* and *Subscribe*. Things are looking good.
 4. Open the same URL in a 2nd window
 5. Be *amazed* by an alert box
