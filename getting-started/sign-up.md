@@ -8,6 +8,10 @@ Once you've done that you'll land within a "Main" application page. For this wor
 * `key`
 * `secret`
 
+## The Pusher Debug Console
+
+Whilst you're in the Pusher Dashboard take a look around. In particular, take a look at the [Pusher Debug Console](https://pusher.com/docs/debugging#pusher_debug_console) as we'll refer to it through-out the workshop. It's really useful for developing and debugging your integration with Pusher.
+
 ## Where next?
 
-* Now that you've got your "App Credentials" it's time to [create your Laravel app](./laravel-app.md)
+* Now that you've got your "App Credentials" and familiarised yourself with the Pusher Debug Console it's time to [create your Laravel app](./laravel-app.md)
