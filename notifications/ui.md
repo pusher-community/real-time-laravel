@@ -51,6 +51,16 @@ Once you've put those few pieces of code in place you've not got real-time notif
   If you've got a tool like awesome <a href="https://ngrok.com/">ngrok</a> installed you can share the app with anybody else in the world to test out your new real-time functionality.
 </div>
 
+## Extras
+
+A few things to try if you've time.
+
+### Excluding the Triggerer
+
+It's possible to stop the user who triggered the event also receiving the event by Pusher. To do this you need to pass a unique connection identifier called the `socket_id` to the `$pusher->trigger` function call.
+
+You can get the `socket_id` on the client in JavaScript using `pusher.connection.socket_id` and pass it to the back-end `notifications/notify` endpoint in the `POST` data. Then you can use it to exclude that user from getting their own event using `$pusher->trigger($channelName, $eventName,  $eventData, $socketId)`.
+
 ## Where next?
 
 Notifications demonstrates the easiest use case for real-time technology and Pusher. The next most common use case - which is really just an extension of notifications - is activity streams. So, let's look at [adding activity stream functionality to the Laravel app](../activity-streams).
