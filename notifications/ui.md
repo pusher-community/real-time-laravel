@@ -47,6 +47,10 @@ Use the following code outline to implement the notification functionality:
 
 Once you've put those few pieces of code in place you've not got real-time notifications in your app. Open up a http://localhost:8000/notifications in a second browser window - even a different browser altogether - and test out the functionality.
 
-If you've got a tool like awesome [ngrok](https://ngrok.com/) installed you can share the app with anybody else in the world to test out your new real-time functionality.
+<div class="alert alert-info">
+  If you've got a tool like awesome <a href="https://ngrok.com/">ngrok</a> installed you can share the app with anybody else in the world to test out your new real-time functionality.
+</div>
 
 ## Where next?
+
+Notifications demonstrates the easiest use case for real-time technology and Pusher. The next most common use case - which is really just an extension of notifications - is activity streams. So, let's look at [adding activity stream functionality to the Laravel app](../activity-streams).
