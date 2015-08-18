@@ -2,8 +2,6 @@
 
 We clearly don't have time to build a full social network. But we can support a few simple activities in order to demonstrate how events can be used to represent each activity type.
 
-If time, we can also look at ensuring only authenticated users can subscribe to an activities channel.
-
 ## Create the Controller and View
 
 <i class="fa fa-rocket fa-2"></i> Let's start by creating a plain controller:
