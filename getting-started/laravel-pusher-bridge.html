@@ -38,7 +38,7 @@
     <body>
         
         
-    <div class="book" data-level="2.4" data-basepath=".." data-revision="Fri Aug 14 2015 08:51:04 GMT+0100 (BST)">
+    <div class="book" data-level="2.4" data-basepath=".." data-revision="Tue Aug 18 2015 20:53:54 GMT+0100 (BST)">
     
 
 <div class="book-summary">
@@ -254,23 +254,53 @@
                         
                             <b>3.</b>
                         
-                        (WiP) Real-Time Notifications
+                        Real-Time Notifications
                     </a>
             
             
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="3.1" data-path="notifications/trigger-event.html">
+        <li class="chapter " data-level="3.1" data-path="notifications/fundamentals.html">
             
                 
-                    <a href="../notifications/trigger-event.html">
+                    <a href="../notifications/fundamentals.html">
                 
                         <i class="fa fa-check"></i>
                         
                             <b>3.1.</b>
                         
-                        (WiP) Trigger an Event
+                        Fundamentals
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="notifications/trigger.html">
+            
+                
+                    <a href="../notifications/trigger.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        Trigger a Notification Event
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="notifications/ui.html">
+            
+                
+                    <a href="../notifications/ui.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                        Building the Notification UI
                     </a>
             
             
@@ -290,9 +320,30 @@
                         
                             <b>4.</b>
                         
-                        (WiP) Activity Streams
+                        Activity Streams
                     </a>
             
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1" data-path="activity-streams/activities.html">
+            
+                
+                    <a href="../activity-streams/activities.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                        Triggering Activity Events
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
             
         </li>
     
@@ -455,9 +506,9 @@
                         <h1 id="using-a-laravel-pusher-bridge">Using a Laravel Pusher Bridge</h1>
 <p>There are a few Laravel bridges/wrappers for the Pusher PHP library that allow you to integrate with Pusher. The most popular bridge we know of is <a href="https://github.com/vinkla/pusher" target="_blank">vinkla/pusher</a> by <a href="https://github.com/vinkla" target="_blank">Vincent Klaiber</a>.</p>
 <p>Let&apos;s start by installing the package:</p>
-<pre><code>&#x203A; composer install vinkla/pusher
+<pre><code>&#x203A; composer require vinkla/pusher
   php artisan vendor:publish
-</code></pre><p>Then setting up the the vinkla/pusher vendor configuration in <code>config/pusher.php</code> to use the environment variables:</p>
+</code></pre><p>Then set up the the vinkla/pusher vendor configuration in <code>config/pusher.php</code> to use the environment variables. Update the <code>auth_key</code>, <code>secret</code> and <code>app_id</code> values of the <code>main</code> connection as follows:</p>
 <pre><code class="lang-php"><span class="hljs-string">&apos;connections&apos;</span> =&gt; [
 
     <span class="hljs-string">&apos;main&apos;</span> =&gt; [
@@ -476,7 +527,7 @@
 
 <span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Support</span>\<span class="hljs-title">Facades</span>\<span class="hljs-title">App</span>;
 
-get(<span class="hljs-string">&apos;/&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+get(<span class="hljs-string">&apos;/bridge&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
     <span class="hljs-variable">$pusher</span> = App::make(<span class="hljs-string">&apos;pusher&apos;</span>);
 
     <span class="hljs-variable">$pusher</span>-&gt;trigger( <span class="hljs-string">&apos;test-channel&apos;</span>,
@@ -486,12 +537,12 @@ get(<span class="hljs-string">&apos;/&apos;</span>, <span class="hljs-function">
     <span class="hljs-keyword">return</span> view(<span class="hljs-string">&apos;welcome&apos;</span>);
 });
 </code></pre>
-<p>We&apos;ll cover the details of this in the <a href="trigger-event.md">trigger event section</a>.</p>
+<p>We&apos;ll cover the details of this in a later exercise.</p>
 <p>Next we want to test that this is working. To do this:</p>
 <ol>
 <li>Open up the Pusher Debug Console for your Pusher application</li>
 <li>Run your Laravel application using <code>php artisan serve</code></li>
-<li>In a new browser tab or window navigate to the route we&apos;ve just defined in the Laravel app, <a href="http://localhost:8000/" target="_blank">http://localhost:8000/</a></li>
+<li>In a new browser tab or window navigate to the route we&apos;ve just defined in the Laravel app, <a href="http://localhost:8000/bridge" target="_blank">http://localhost:8000/bridge</a></li>
 </ol>
 <p>You&apos;ll now see the event appear in the Pusher Debug Console. It&apos;s working!</p>
 <div class="alert alert-warning">

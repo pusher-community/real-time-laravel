@@ -38,7 +38,7 @@
     <body>
         
         
-    <div class="book" data-level="2.6" data-basepath=".." data-revision="Fri Aug 14 2015 08:51:04 GMT+0100 (BST)">
+    <div class="book" data-level="2.6" data-basepath=".." data-revision="Tue Aug 18 2015 20:53:54 GMT+0100 (BST)">
     
 
 <div class="book-summary">
@@ -254,23 +254,53 @@
                         
                             <b>3.</b>
                         
-                        (WiP) Real-Time Notifications
+                        Real-Time Notifications
                     </a>
             
             
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="3.1" data-path="notifications/trigger-event.html">
+        <li class="chapter " data-level="3.1" data-path="notifications/fundamentals.html">
             
                 
-                    <a href="../notifications/trigger-event.html">
+                    <a href="../notifications/fundamentals.html">
                 
                         <i class="fa fa-check"></i>
                         
                             <b>3.1.</b>
                         
-                        (WiP) Trigger an Event
+                        Fundamentals
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="notifications/trigger.html">
+            
+                
+                    <a href="../notifications/trigger.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        Trigger a Notification Event
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="notifications/ui.html">
+            
+                
+                    <a href="../notifications/ui.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                        Building the Notification UI
                     </a>
             
             
@@ -290,9 +320,30 @@
                         
                             <b>4.</b>
                         
-                        (WiP) Activity Streams
+                        Activity Streams
                     </a>
             
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1" data-path="activity-streams/activities.html">
+            
+                
+                    <a href="../activity-streams/activities.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                        Triggering Activity Events
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
             
         </li>
     
@@ -457,8 +508,42 @@
   For the moment this section only covers debugging your integration via the Laravel Pusher Bridge.
 </div>
 
-<p>TODO:</p>
+<p>The Pusher PHP library provides an abstraction upon the underlying HTTP requests that are made to Pusher in order to do things like trigger events. Sometimes things go wrong or we make mistakes. So it can be really handy to be able to know what&apos;s going on &quot;under the hood&quot; within the Pusher PHP library.</p>
+<p>This section provides a way of logging the Pusher library debug output to the Laravel logs. There may be a better way of doing this, so please speak to the instructor or <a href="https://github.com/pusher-community/real-time-laravel" target="_blank">submit a pull request</a> if you have any ideas. Hopefully things will become a bit easier in the future.</p>
+<h2 id="adding-pusher-logging-via-the-appserviceprovider">Adding Pusher Logging via the AppServiceProvider</h2>
+<p>Open up <code>app/Providers/AppServiceProvider.php</code> and update it to look as follows:</p>
+<pre><code class="lang-php"><span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Support</span>\<span class="hljs-title">Facades</span>\<span class="hljs-title">Log</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LaravelLoggerProxy</span> </span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">log</span><span class="hljs-params">( <span class="hljs-variable">$msg</span> )</span> </span>{
+        Log::info(<span class="hljs-variable">$msg</span>);
+    }
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AppServiceProvider</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ServiceProvider</span>
+</span>{
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">boot</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-variable">$pusher</span> = <span class="hljs-variable">$this</span>-&gt;app-&gt;make(<span class="hljs-string">&apos;pusher&apos;</span>);
+        <span class="hljs-variable">$pusher</span>-&gt;set_logger( <span class="hljs-keyword">new</span> LaravelLoggerProxy() );
+    }
+
+    ...
+</code></pre>
+<p>In the code above we&apos;re using the <code>Log</code> facade, creating a <code>LaravelLoggerProxy</code> that uses the facade and setting an instance of this class as the logger within the <code>AppServiceProvider-boot</code> function.</p>
+<p>Open up <code>storage/logs/laravel.log</code>, delete the contents and save the file. Then load <code>http://localhost:8000/bridge</code> in a browser tab. Take a look at the <code>laravel.log</code> file now (depending no your editor you may need to re-open the file). It will now contain logging similar to the following:</p>
+<pre><code>[2015-08-17 12:45:13] local.INFO: Pusher: -&gt;trigger received string channel &quot;test-channel&quot;. Converting to array.  
+[2015-08-17 12:45:13] local.INFO: Pusher: curl_init( http://api.pusherapp.com:80/apps/134576/events?auth_key=b1273751cc6d9854c1dd&amp;auth_signature=9e90b0d73fcc1c456dd8fec43b2b50f9208581a0962a3a0eb4a318afa26be4ad&amp;auth_timestamp=1439815513&amp;auth_version=1.0&amp;body_md5=e97f1648a58b2628efed547758fb8ddf )  
+[2015-08-17 12:45:13] local.INFO: Pusher: trigger POST: {&quot;name&quot;:&quot;test-event&quot;,&quot;data&quot;:&quot;{\&quot;text\&quot;:\&quot;Preparing the Pusher Laracon.eu workshop!\&quot;}&quot;,&quot;channels&quot;:[&quot;test-channel&quot;]}  
+[2015-08-17 12:45:13] local.INFO: Pusher: exec_curl response: Array
+(
+    [body] =&gt; {}
+    [status] =&gt; 200
+)
+</code></pre><p>This logging shows us the interaction that took place with the Pusher HTTP API and the response.</p>
 <h2 id="where-next">Where next?</h2>
+<p>Now that you&apos;ve set up your logging and you know how to view the log output we&apos;re ready to move to the client and look at <a href="pusher-js-integration.html">integrating the Pusher JS library</a>.</p>
 
                     
                     </section>
