@@ -2,7 +2,7 @@
 
 When the Laravel application was created a `.env` file will also have been created in the root of the app.
 
-Take the Pusher credentials we noted down earlier (`app_id`, `key` and `secret`) - or you may even have a browser tap still open on the Main app in the Pusher dashboard - and add them to the `.env` file:
+<i class="fa fa-rocket fa-2"></i> Take the Pusher credentials we noted down earlier (`app_id`, `key` and `secret`) - or you may even have a browser tap still open on the Main app in the Pusher dashboard - and add them to the `.env` file:
 
 ```php
 PUSHER_APP_ID = 'YOUR_APP_ID'

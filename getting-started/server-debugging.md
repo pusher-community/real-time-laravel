@@ -10,7 +10,7 @@ This section provides a way of logging the Pusher library debug output to the La
 
 ## Adding Pusher Logging via the AppServiceProvider
 
-Open up `app/Providers/AppServiceProvider.php` and update it to look as follows:
+<i class="fa fa-rocket fa-2"></i> Open up `app/Providers/AppServiceProvider.php` and update it to look as follows:
 
 ```php
 use Illuminate\Support\Facades\Log;
@@ -35,7 +35,7 @@ class AppServiceProvider extends ServiceProvider
 
 In the code above we're using the `Log` facade, creating a `LaravelLoggerProxy` that uses the facade and setting an instance of this class as the logger within the `AppServiceProvider-boot` function.
 
-Open up `storage/logs/laravel.log`, delete the contents and save the file. Then load `http://localhost:8000/bridge` in a browser tab. Take a look at the `laravel.log` file now (depending no your editor you may need to re-open the file). It will now contain logging similar to the following:
+<i class="fa fa-rocket fa-2"></i> Open up `storage/logs/laravel.log`, delete the contents and save the file. Then load `http://localhost:8000/bridge` in a browser tab. Take a look at the `laravel.log` file now (depending no your editor you may need to re-open the file). It will now contain logging similar to the following:
 
 ```
 [2015-08-17 12:45:13] local.INFO: Pusher: ->trigger received string channel "test-channel". Converting to array.  

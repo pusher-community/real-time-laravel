@@ -2,14 +2,14 @@
 
 There are a few Laravel bridges/wrappers for the Pusher PHP library that allow you to integrate with Pusher. The most popular bridge we know of is [vinkla/pusher](https://github.com/vinkla/pusher) by [Vincent Klaiber](https://github.com/vinkla).
 
-Let's start by installing the package:
+<i class="fa fa-rocket fa-2"></i> Let's start by installing the package:
 
 ```
 › composer require vinkla/pusher
   php artisan vendor:publish
 ```
 
-Then set up the the vinkla/pusher vendor configuration in `config/pusher.php` to use the environment variables. Update the `auth_key`, `secret` and `app_id` values of the `main` connection as follows:
+<i class="fa fa-rocket fa-2"></i> Then set up the the vinkla/pusher vendor configuration in `config/pusher.php` to use the environment variables. Update the `auth_key`, `secret` and `app_id` values of the `main` connection as follows:
 
 ```php
 'connections' => [
@@ -22,7 +22,7 @@ Then set up the the vinkla/pusher vendor configuration in `config/pusher.php` to
     ],
 ```
 
-Next let's add the vinkla/pusher package service provider to the `providers` array in `config/app.php`:
+<i class="fa fa-rocket fa-2"></i> Next let's add the vinkla/pusher package service provider to the `providers` array in `config/app.php`:
 
 ```php
 Vinkla\Pusher\PusherServiceProvider::class,
@@ -30,7 +30,7 @@ Vinkla\Pusher\PusherServiceProvider::class,
 
 Once that's set up we can get access to a `Pusher` instance directly using the [Service Container](http://laravel.com/docs/5.1/container) or indirectly via [Dependency Injection](http://laravel.com/docs/5.1/controllers#dependency-injection-and-controllers).
 
-To quickly test this, open `app/Http/routes.php` and replace the contents with:
+<i class="fa fa-rocket fa-2"></i> To quickly test this, open `app/Http/routes.php` and replace the contents with:
 
 ```php
 <?php
@@ -50,7 +50,7 @@ get('/bridge', function() {
 
 We'll cover the details of this in a later exercise.
 
-Next we want to test that this is working. To do this:
+<i class="fa fa-rocket fa-2"></i> Next we want to test that this is working. To do this:
 
 1. Open up the Pusher Debug Console for your Pusher application
 2. Run your Laravel application using `php artisan serve`

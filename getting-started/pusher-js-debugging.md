@@ -8,7 +8,9 @@ Here's what to check:
 * Are you seeing a `Subscribed` entry and is the `Channel` the one you expect to see?
 * If the above seem fine then make sure the `Subscribed` entry is occuring *before* the `API Message` entry. If not, then it means the message is being sent before Pusher knows the client is interested in it.
 
-As well as the Pusher Debug Console you can also configure the Pusher JavaScript library so that it will log information, exposing its internal workings, to the browser console. Update your client-side code:
+As well as the Pusher Debug Console you can also configure the Pusher JavaScript library so that it will log information, exposing its internal workings, to the browser console. 
+
+<i class="fa fa-rocket fa-2"></i> Update your client-side code:
 
 ```html
 <script src="//js.pusher.com/3.0/pusher.min.js"></script>
@@ -21,7 +23,7 @@ var pusher = new Pusher("{{env('PUSHER_KEY')}}")
 ...
 ```
 
-From here we can check:
+<i class="fa fa-rocket fa-2"></i> From here we can check:
 
 * Does the logging indicate that a connection is being established? `Pusher : State changed : connecting -> connected`
 * Is the subscription to the channel succeeding? `Pusher : No callbacks on test-channel for pusher:subscription_succeeded`

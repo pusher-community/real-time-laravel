@@ -6,7 +6,9 @@ By using Laravel 5.1 you already have the Pusher library integrated into your ap
   The Pusher Event Broadcaster is configured in <code>config/broadcasting.php</code>. Luckily it's the default broadcaster so we don't actually need to configure anything.
 </div>
 
-Laravel 5.1 comes with an in-built Pusher Event Broadcaster that we're going to use. To use this we need to follow a few conventions. Firstly, we need to define a class that represents our event. For simplicity we'll add this directly to `app/Http/routes.php` for now.
+Laravel 5.1 comes with an in-built Pusher Event Broadcaster that we're going to use. To use this we need to follow a few conventions. 
+
+<i class="fa fa-rocket fa-2"></i> Firstly, we need to define a class that represents our event. For simplicity we'll add this directly to `app/Http/routes.php` for now.
 
 ```php
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
@@ -29,7 +31,7 @@ class TestEvent implements ShouldBroadcast
 
 As with the previous example, we'll go in to the details of channels and events in a later exercise.
 
-Next, update the contents of the `app/Http/routes.php` file with the following:
+<i class="fa fa-rocket fa-2"></i> Next, update the contents of the `app/Http/routes.php` file with the following:
 
 ```php
 get('/broadcast', function() {
@@ -39,7 +41,7 @@ get('/broadcast', function() {
 });
 ```
 
-As before, to test:
+<i class="fa fa-rocket fa-2"></i> As before, to test:
 
 1. Open up the Pusher Debug Console for your Pusher application
 2. Ensure your Laravel application is running (`php artisan serve`)

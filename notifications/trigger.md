@@ -2,13 +2,13 @@
 
 Let's start by creating a `NotificationController` with two actions `getIndex` to show a view that lets a user send a notification and `postNotify` to handle a notification request and trigger the notification event.
 
-Create an empty controller with the following command:
+<i class="fa fa-rocket fa-2"></i> Create an empty controller with the following command:
 
 ```
 › php artisan make:controller NotificationController --plain
 ```
 
-Open up the newly created `app/Http/Controllers/NotificationController.php` and add `getIndex` and `postNotify` actions as follows:
+<i class="fa fa-rocket fa-2"></i> Open up the newly created `app/Http/Controllers/NotificationController.php` and add `getIndex` and `postNotify` actions as follows:
 
 ```php
 class NotificationController extends Controller
@@ -24,13 +24,13 @@ class NotificationController extends Controller
 }
 ```
 
-And ensure the new controller is listed in `app/Http/routes.php`:
+<i class="fa fa-rocket fa-2"></i> And ensure the new controller is listed in `app/Http/routes.php`:
 
 ```php
 Route::controller('notifications', 'NotificationController');
 ```
 
-Navigate to `http://localhost:8000/notifications` and you should see a `View [notification] not found` error. That's fine since we haven't created our view file yet.
+<i class="fa fa-rocket fa-2"></i> Navigate to `http://localhost:8000/notifications` and you should see a `View [notification] not found` error. That's fine since we haven't created our view file yet.
 
 ## Create a view
 
@@ -39,9 +39,9 @@ For our simple app notifications will be manually triggered. To do this we need 
 * Enter some text to be shown in a notification
 * Submit a form indicating the notification should be triggered
 
-Create `resources/views/notification.blade.php` and copy & paste the contents of [SOME template URL](#) into it. It contains a script include of jQuery from a CDN, a CSS include and a basic HTML structure.
+<i class="fa fa-rocket fa-2"></i> Create `resources/views/notification.blade.php` and copy & paste the contents of [SOME template URL](#) into it. It contains a script include of jQuery from a CDN, a CSS include and a basic HTML structure.
 
-Next, add the following `<form>` to the HTML.
+<i class="fa fa-rocket fa-2"></i> Next, add the following `<form>` to the HTML.
 
 ```html
 <form id="notify_form" action="/notifications/notify" method="post">
@@ -54,7 +54,7 @@ This form will be used to capture the user input and eventually make a `POST` AJ
 
 ## Submit the Notification Text
 
-Let's add the AJAX code now.
+<i class="fa fa-rocket fa-2"></i> Let's add the AJAX code now.
 
 ```html
 <script>
@@ -87,13 +87,15 @@ $(notifyInit);
 </script>
 ```
 
-As per the code comments this sets things up so that the `form` submission is handled by JavaScript and makes a `POST` to the server with the notification text. Open http://localhost:8000/notifications, enter some text and hit *enter* to submit the form. You should see `notification submitted` logged to the browser console.
+As per the code comments this sets things up so that the `form` submission is handled by JavaScript and makes a `POST` to the server with the notification text. 
+
+<i class="fa fa-rocket fa-2"></i> Open http://localhost:8000/notifications, enter some text and hit *enter* to submit the form. You should see `notification submitted` logged to the browser console.
 
 ## Trigger the Event via Pusher
 
 In the `postNotify` function of our `NotificationController` we want to get the submitted text, do some basic sanitisation and trigger the event via Pusher.
 
-Over to you to complete the `TODO` items below. You'll also need to import `Illuminate\Support\Facades\App` in order to use the `App` facade to get the `Pusher` instance from the service container
+<i class="fa fa-rocket fa-2"></i> Over to you to complete the `TODO` items below. You'll also need to import `Illuminate\Support\Facades\App` in order to use the `App` facade to get the `Pusher` instance from the service container
 
 ```php
 public function postNotify(Request $request)

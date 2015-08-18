@@ -10,7 +10,7 @@ So, let's create a Laravel app.
 
 ## Create a Laravel app
 
-Navigate to a directory in which you want your Laravel application to be created. We're going to create an application called `real-time-app`.
+<i class="fa fa-rocket fa-2"></i> Navigate to a directory in which you want your Laravel application to be created. We're going to create an application called `real-time-app`.
 
 If you have the `laravel` executable on your PATH you can use:
 
@@ -24,7 +24,7 @@ Otherwise, you can use composer:
 › composer create-project laravel/laravel real-time-app --prefer-dist
 ```
 
-Navigate into the newly created `real-time-app` directory and open the contents in your favourite editor.
+<i class="fa fa-rocket fa-2"></i> Navigate into the newly created `real-time-app` directory and open the contents in your favourite editor.
 
 <div class="alert alert-info">
     Right now our favourite editor is GitHub's <a href="https://atom.io/">Atom Editor</a>. But that's probably because we've created a pretty sweet real-time code collaboration plugin for it called <a href="https://atom.io/packages/atom-pair">Atom Pair</a>.
@@ -32,7 +32,7 @@ Navigate into the newly created `real-time-app` directory and open the contents 
 
 ## Run the app
 
-To make sure everything is working, run the newly created application. From a the `real-time-app` directory in the terminal or console window run the following:
+<i class="fa fa-rocket fa-2"></i> To make sure everything is working, run the newly created application. From a the `real-time-app` directory in the terminal or console window run the following:
 
 ```
 › php artisan serve

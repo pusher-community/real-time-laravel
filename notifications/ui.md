@@ -22,7 +22,7 @@ channel.bind('event-name', function(data) {
 
 The Pusher JavaScript library and the toastr notification library has already been included in the [template](#) we copied earlier. So, all we need to do is subscribe to the `notifications` channel, bind to the `new-notification` event and use the toastr library to show the notification.
 
-Use the following code outline to implement the notification functionality:
+<i class="fa fa-rocket fa-2"></i> Use the following code outline to implement the notification functionality:
 
 ```js
   $(notifyInit);
@@ -45,7 +45,9 @@ Use the following code outline to implement the notification functionality:
   </ol>
 </div>
 
-Once you've put those few pieces of code in place you've not got real-time notifications in your app. Open up a http://localhost:8000/notifications in a second browser window - even a different browser altogether - and test out the functionality.
+Once you've put those few pieces of code in place you've not got real-time notifications in your app. 
+
+<i class="fa fa-rocket fa-2"></i> Open up a http://localhost:8000/notifications in a second browser window - even a different browser altogether - and test out the functionality.
 
 <div class="alert alert-info">
   If you've got a tool like awesome <a href="https://ngrok.com/">ngrok</a> installed you can share the app with anybody else in the world to test out your new real-time functionality.
@@ -59,7 +61,7 @@ A few things to try if you've time.
 
 It's possible to stop the user who triggered the event also receiving the event by Pusher. To do this you need to pass a unique connection identifier called the `socket_id` to the `$pusher->trigger` function call.
 
-You can get the `socket_id` on the client in JavaScript using `pusher.connection.socket_id` and pass it to the back-end `notifications/notify` endpoint in the `POST` data. Then you can use it to exclude that user from getting their own event using `$pusher->trigger($channelName, $eventName,  $eventData, $socketId)`.
+<i class="fa fa-rocket fa-2"></i> You can get the `socket_id` on the client in JavaScript using `pusher.connection.socket_id` and pass it to the back-end `notifications/notify` endpoint in the `POST` data. Then you can use it to exclude that user from getting their own event using `$pusher->trigger($channelName, $eventName,  $eventData, $socketId)`.
 
 ## Where next?
 
