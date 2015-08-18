@@ -38,7 +38,7 @@
     <body>
         
         
-    <div class="book" data-level="3.3" data-basepath=".." data-revision="Tue Aug 18 2015 20:53:54 GMT+0100 (BST)">
+    <div class="book" data-level="3.3" data-basepath=".." data-revision="Tue Aug 18 2015 21:12:55 GMT+0100 (BST)">
     
 
 <div class="book-summary">
@@ -517,7 +517,7 @@ channel.bind(<span class="hljs-string">&apos;event-name&apos;</span>, <span clas
 </code></pre>
 <h2 id="showing-the-notifications">Showing the Notifications</h2>
 <p>The Pusher JavaScript library and the toastr notification library has already been included in the <a href="#">template</a> we copied earlier. So, all we need to do is subscribe to the <code>notifications</code> channel, bind to the <code>new-notification</code> event and use the toastr library to show the notification.</p>
-<p>Use the following code outline to implement the notification functionality:</p>
+<p><i class="fa fa-rocket fa-2"></i> Use the following code outline to implement the notification functionality:</p>
 <pre><code class="lang-js">  $(notifyInit);
 
   <span class="hljs-keyword">var</span> pusher = <span class="hljs-keyword">new</span> Pusher(<span class="hljs-string">&apos;{{env(&quot;PUSHER_KEY&quot;)}}&apos;</span>);
@@ -537,7 +537,8 @@ channel.bind(<span class="hljs-string">&apos;event-name&apos;</span>, <span clas
   </ol>
 </div>
 
-<p>Once you&apos;ve put those few pieces of code in place you&apos;ve not got real-time notifications in your app. Open up a <a href="http://localhost:8000/notifications" target="_blank">http://localhost:8000/notifications</a> in a second browser window - even a different browser altogether - and test out the functionality.</p>
+<p>Once you&apos;ve put those few pieces of code in place you&apos;ve not got real-time notifications in your app. </p>
+<p><i class="fa fa-rocket fa-2"></i> Open up a <a href="http://localhost:8000/notifications" target="_blank">http://localhost:8000/notifications</a> in a second browser window - even a different browser altogether - and test out the functionality.</p>
 <div class="alert alert-info">
   If you&apos;ve got a tool like awesome <a href="https://ngrok.com/" target="_blank">ngrok</a> installed you can share the app with anybody else in the world to test out your new real-time functionality.
 </div>
@@ -546,7 +547,7 @@ channel.bind(<span class="hljs-string">&apos;event-name&apos;</span>, <span clas
 <p>A few things to try if you&apos;ve time.</p>
 <h3 id="excluding-the-triggerer">Excluding the Triggerer</h3>
 <p>It&apos;s possible to stop the user who triggered the event also receiving the event by Pusher. To do this you need to pass a unique connection identifier called the <code>socket_id</code> to the <code>$pusher-&gt;trigger</code> function call.</p>
-<p>You can get the <code>socket_id</code> on the client in JavaScript using <code>pusher.connection.socket_id</code> and pass it to the back-end <code>notifications/notify</code> endpoint in the <code>POST</code> data. Then you can use it to exclude that user from getting their own event using <code>$pusher-&gt;trigger($channelName, $eventName,  $eventData, $socketId)</code>.</p>
+<p><i class="fa fa-rocket fa-2"></i> You can get the <code>socket_id</code> on the client in JavaScript using <code>pusher.connection.socket_id</code> and pass it to the back-end <code>notifications/notify</code> endpoint in the <code>POST</code> data. Then you can use it to exclude that user from getting their own event using <code>$pusher-&gt;trigger($channelName, $eventName,  $eventData, $socketId)</code>.</p>
 <h2 id="where-next">Where next?</h2>
 <p>Notifications demonstrates the easiest use case for real-time technology and Pusher. The next most common use case - which is really just an extension of notifications - is activity streams. So, let&apos;s look at <a href="../activity-streams">adding activity stream functionality to the Laravel app</a>.</p>
 

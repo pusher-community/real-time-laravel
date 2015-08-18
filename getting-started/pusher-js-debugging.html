@@ -38,7 +38,7 @@
     <body>
         
         
-    <div class="book" data-level="2.8" data-basepath=".." data-revision="Tue Aug 18 2015 20:53:54 GMT+0100 (BST)">
+    <div class="book" data-level="2.8" data-basepath=".." data-revision="Tue Aug 18 2015 21:12:55 GMT+0100 (BST)">
     
 
 <div class="book-summary">
@@ -511,7 +511,8 @@
 <li>Are you seeing a <code>Subscribed</code> entry and is the <code>Channel</code> the one you expect to see?</li>
 <li>If the above seem fine then make sure the <code>Subscribed</code> entry is occuring <em>before</em> the <code>API Message</code> entry. If not, then it means the message is being sent before Pusher knows the client is interested in it.</li>
 </ul>
-<p>As well as the Pusher Debug Console you can also configure the Pusher JavaScript library so that it will log information, exposing its internal workings, to the browser console. Update your client-side code:</p>
+<p>As well as the Pusher Debug Console you can also configure the Pusher JavaScript library so that it will log information, exposing its internal workings, to the browser console. </p>
+<p><i class="fa fa-rocket fa-2"></i> Update your client-side code:</p>
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&quot;//js.pusher.com/3.0/pusher.min.js&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-title">script</span>&gt;</span><span class="openscad">
 Pusher.<span class="hljs-built_in">log</span> = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(msg)</span> {</span>
@@ -521,7 +522,7 @@ Pusher.<span class="hljs-built_in">log</span> = <span class="hljs-function"><spa
 var pusher = new Pusher<span class="hljs-params">(<span class="hljs-string">&quot;{{env(&quot;</span>PUSHER_KEY<span class="hljs-string">&quot;)}}&quot;</span>)</span>
 ...
 </span></code></pre>
-<p>From here we can check:</p>
+<p><i class="fa fa-rocket fa-2"></i> From here we can check:</p>
 <ul>
 <li>Does the logging indicate that a connection is being established? <code>Pusher : State changed : connecting -&gt; connected</code></li>
 <li>Is the subscription to the channel succeeding? <code>Pusher : No callbacks on test-channel for pusher:subscription_succeeded</code></li>

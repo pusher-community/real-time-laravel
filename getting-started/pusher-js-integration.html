@@ -38,7 +38,7 @@
     <body>
         
         
-    <div class="book" data-level="2.7" data-basepath=".." data-revision="Tue Aug 18 2015 20:53:54 GMT+0100 (BST)">
+    <div class="book" data-level="2.7" data-basepath=".." data-revision="Tue Aug 18 2015 21:12:55 GMT+0100 (BST)">
     
 
 <div class="book-summary">
@@ -505,7 +505,7 @@
                     
                         <h1 id="using-the-pusher-javascript-library">Using the Pusher JavaScript library</h1>
 <p>Now that everything is working on the server-side it&apos;s time to turn to the client-side and look at adding the Pusher JavaScript library to the app so that the events that are being triggered on the server can be received on the client.</p>
-<p>Open up <code>resources/views/welcome.blade.php</code> and include the following script:</p>
+<p><i class="fa fa-rocket fa-2"></i> Open up <code>resources/views/welcome.blade.php</code> and include the following script:</p>
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&quot;//js.pusher.com/3.0/pusher.min.js&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-title">script</span>&gt;</span><span class="actionscript">
 <span class="hljs-keyword">var</span> pusher = <span class="hljs-keyword">new</span> Pusher(<span class="hljs-string">&quot;{{env(&quot;</span>PUSHER_KEY<span class="hljs-string">&quot;)}}&quot;</span>)
@@ -515,7 +515,7 @@ channel.bind(<span class="hljs-string">&apos;test-event&apos;</span>, <span clas
 });
 </span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
 </code></pre>
-<p>To test this is working:</p>
+<p><i class="fa fa-rocket fa-2"></i> To test this is working:</p>
 <ol>
 <li>Open up the Pusher Debug Console for your application in a tab or window</li>
 <li>Open <a href="http://localhost:8000/bridge" target="_blank">http://localhost:8000/bridge</a> in one browser window</li>

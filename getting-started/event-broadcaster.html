@@ -38,7 +38,7 @@
     <body>
         
         
-    <div class="book" data-level="2.5" data-basepath=".." data-revision="Tue Aug 18 2015 20:53:54 GMT+0100 (BST)">
+    <div class="book" data-level="2.5" data-basepath=".." data-revision="Tue Aug 18 2015 21:12:55 GMT+0100 (BST)">
     
 
 <div class="book-summary">
@@ -509,7 +509,8 @@
   The Pusher Event Broadcaster is configured in <code>config/broadcasting.php</code>. Luckily it&apos;s the default broadcaster so we don&apos;t actually need to configure anything.
 </div>
 
-<p>Laravel 5.1 comes with an in-built Pusher Event Broadcaster that we&apos;re going to use. To use this we need to follow a few conventions. Firstly, we need to define a class that represents our event. For simplicity we&apos;ll add this directly to <code>app/Http/routes.php</code> for now.</p>
+<p>Laravel 5.1 comes with an in-built Pusher Event Broadcaster that we&apos;re going to use. To use this we need to follow a few conventions. </p>
+<p><i class="fa fa-rocket fa-2"></i> Firstly, we need to define a class that represents our event. For simplicity we&apos;ll add this directly to <code>app/Http/routes.php</code> for now.</p>
 <pre><code class="lang-php"><span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Contracts</span>\<span class="hljs-title">Broadcasting</span>\<span class="hljs-title">ShouldBroadcast</span>;
 
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TestEvent</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">ShouldBroadcast</span>
@@ -528,14 +529,14 @@
 }
 </code></pre>
 <p>As with the previous example, we&apos;ll go in to the details of channels and events in a later exercise.</p>
-<p>Next, update the contents of the <code>app/Http/routes.php</code> file with the following:</p>
+<p><i class="fa fa-rocket fa-2"></i> Next, update the contents of the <code>app/Http/routes.php</code> file with the following:</p>
 <pre><code class="lang-php">get(<span class="hljs-string">&apos;/broadcast&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
     event(<span class="hljs-keyword">new</span> TestEvent(<span class="hljs-string">&apos;Broadcasting in Laravel using Pusher!&apos;</span>));
 
     <span class="hljs-keyword">return</span> view(<span class="hljs-string">&apos;welcome&apos;</span>);
 });
 </code></pre>
-<p>As before, to test:</p>
+<p><i class="fa fa-rocket fa-2"></i> As before, to test:</p>
 <ol>
 <li>Open up the Pusher Debug Console for your Pusher application</li>
 <li>Ensure your Laravel application is running (<code>php artisan serve</code>)</li>

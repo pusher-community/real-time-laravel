@@ -38,7 +38,7 @@
     <body>
         
         
-    <div class="book" data-level="2.4" data-basepath=".." data-revision="Tue Aug 18 2015 20:53:54 GMT+0100 (BST)">
+    <div class="book" data-level="2.4" data-basepath=".." data-revision="Tue Aug 18 2015 21:12:55 GMT+0100 (BST)">
     
 
 <div class="book-summary">
@@ -505,10 +505,10 @@
                     
                         <h1 id="using-a-laravel-pusher-bridge">Using a Laravel Pusher Bridge</h1>
 <p>There are a few Laravel bridges/wrappers for the Pusher PHP library that allow you to integrate with Pusher. The most popular bridge we know of is <a href="https://github.com/vinkla/pusher" target="_blank">vinkla/pusher</a> by <a href="https://github.com/vinkla" target="_blank">Vincent Klaiber</a>.</p>
-<p>Let&apos;s start by installing the package:</p>
+<p><i class="fa fa-rocket fa-2"></i> Let&apos;s start by installing the package:</p>
 <pre><code>&#x203A; composer require vinkla/pusher
   php artisan vendor:publish
-</code></pre><p>Then set up the the vinkla/pusher vendor configuration in <code>config/pusher.php</code> to use the environment variables. Update the <code>auth_key</code>, <code>secret</code> and <code>app_id</code> values of the <code>main</code> connection as follows:</p>
+</code></pre><p><i class="fa fa-rocket fa-2"></i> Then set up the the vinkla/pusher vendor configuration in <code>config/pusher.php</code> to use the environment variables. Update the <code>auth_key</code>, <code>secret</code> and <code>app_id</code> values of the <code>main</code> connection as follows:</p>
 <pre><code class="lang-php"><span class="hljs-string">&apos;connections&apos;</span> =&gt; [
 
     <span class="hljs-string">&apos;main&apos;</span> =&gt; [
@@ -518,11 +518,11 @@
         ...
     ],
 </code></pre>
-<p>Next let&apos;s add the vinkla/pusher package service provider to the <code>providers</code> array in <code>config/app.php</code>:</p>
+<p><i class="fa fa-rocket fa-2"></i> Next let&apos;s add the vinkla/pusher package service provider to the <code>providers</code> array in <code>config/app.php</code>:</p>
 <pre><code class="lang-php">Vinkla\Pusher\PusherServiceProvider::class,
 </code></pre>
 <p>Once that&apos;s set up we can get access to a <code>Pusher</code> instance directly using the <a href="http://laravel.com/docs/5.1/container" target="_blank">Service Container</a> or indirectly via <a href="http://laravel.com/docs/5.1/controllers#dependency-injection-and-controllers" target="_blank">Dependency Injection</a>.</p>
-<p>To quickly test this, open <code>app/Http/routes.php</code> and replace the contents with:</p>
+<p><i class="fa fa-rocket fa-2"></i> To quickly test this, open <code>app/Http/routes.php</code> and replace the contents with:</p>
 <pre><code class="lang-php"><span class="hljs-preprocessor">&lt;?php</span>
 
 <span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Support</span>\<span class="hljs-title">Facades</span>\<span class="hljs-title">App</span>;
@@ -538,7 +538,7 @@ get(<span class="hljs-string">&apos;/bridge&apos;</span>, <span class="hljs-func
 });
 </code></pre>
 <p>We&apos;ll cover the details of this in a later exercise.</p>
-<p>Next we want to test that this is working. To do this:</p>
+<p><i class="fa fa-rocket fa-2"></i> Next we want to test that this is working. To do this:</p>
 <ol>
 <li>Open up the Pusher Debug Console for your Pusher application</li>
 <li>Run your Laravel application using <code>php artisan serve</code></li>
