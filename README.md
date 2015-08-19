@@ -18,4 +18,4 @@ It covers:
 
 ## Where next?
 
-Now you know what the workshop covers it makes sense to dive into the introduction section and get [an overview of Pusher](introduction/).
+Now you know what the workshop covers it makes sense to get [an overview of how this workshop has been put together and how you can use it](introduction/).
