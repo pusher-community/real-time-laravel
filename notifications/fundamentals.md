@@ -43,4 +43,4 @@ $pusher->trigger('notifications',
 
 ## Where next?
 
-[Trigger a notification event](./trigger-event.md).
+It's time to [trigger a notification events](./trigger-event.md).

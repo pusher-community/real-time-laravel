@@ -40,6 +40,7 @@ class ActivityController extends Controller
             return redirect('auth/github?redirect=/activities');
         }
         
+        // TODO: provide some useful text
         $activity = [
             'text' => '...',
             'username' => $this->user->getNickname(),

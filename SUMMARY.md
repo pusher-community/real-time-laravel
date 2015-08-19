@@ -18,6 +18,7 @@
 * [Activity Streams](activity-streams/README.md)
   * [Super Simple Social Auth](activity-streams/simple-auth.md)
   * [Triggering Activity Events](activity-streams/activities.md)
-* [(WiP) Chat](chat/README.md)
+* [Chat](chat/README.md)
+  * [Building Authenticated Real-Time Chat](chat/chat.md)
 * [(WiP) What else can Pusher do?](where-next/README.md)
   * [(WiP) Resources](where-next/resources.md)
