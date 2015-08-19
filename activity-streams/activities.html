@@ -38,7 +38,7 @@
     <body>
         
         
-    <div class="book" data-level="4.2" data-basepath=".." data-revision="Wed Aug 19 2015 18:06:26 GMT+0100 (BST)">
+    <div class="book" data-level="4.2" data-basepath=".." data-revision="Wed Aug 19 2015 18:11:36 GMT+0100 (BST)">
     
 
 <div class="book-summary">
@@ -612,7 +612,7 @@
 }
 </code></pre>
 <p>In the code above you&apos;ll notice that the <code>__construct()</code> attempts to grab the user from the <code>Session</code> and in <code>getIndex()</code> the value of <code>$this-&gt;user</code> is checked. If there isn&apos;t a logged in user the app redirects in order for the user to log in. By having a user we can identify who has triggered an activity event. There&apos;s an example in the code above of getting both the <code>username</code> and <code>avatar</code>. This can then be used when we trigger events via Pusher, and ultimately display that information in our user interface.</p>
-<p><i class="fa fa-rocket fa-2"></i> The <code>ActivityController</code> reliease on an <code>activities</code> view so let&apos;s create that. Create a <code>resources/views/activities.blade.php</code> file and copy &amp; paste the contents of <a href="../_laravel_templates/activities.blade.php">activities.blade.php</a> into it (or just copy over the file).</p>
+<p><i class="fa fa-rocket fa-2"></i> The <code>ActivityController</code> reliease on an <code>activities</code> view so let&apos;s create that. Create a <code>resources/views/activities.blade.php</code> file and copy &amp; paste the contents of <a href="../assets/laravel_app/activities.blade.php">activities.blade.php</a> into it (or just copy over the file).</p>
 <p><i class="fa fa-rocket fa-2"></i> Finally, add an entry to your <code>app/Http/routes.php</code>:</p>
 <pre><code class="lang-php">Route::controller(<span class="hljs-string">&apos;activities&apos;</span>, <span class="hljs-string">&apos;ActivityController&apos;</span>);
 </code></pre>
