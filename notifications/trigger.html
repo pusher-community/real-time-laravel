@@ -38,7 +38,7 @@
     <body>
         
         
-    <div class="book" data-level="3.2" data-basepath=".." data-revision="Tue Aug 18 2015 21:12:55 GMT+0100 (BST)">
+    <div class="book" data-level="3.2" data-basepath=".." data-revision="Wed Aug 19 2015 17:02:54 GMT+0100 (BST)">
     
 
 <div class="book-summary">
@@ -77,21 +77,36 @@
                         
                             <b>1.</b>
                         
-                        About Pusher
+                        About this Workshop
                     </a>
             
             
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.1" data-path="introduction/pusher-use-cases.html">
+        <li class="chapter " data-level="1.1" data-path="introduction/what-is-pusher.html">
+            
+                
+                    <a href="../introduction/what-is-pusher.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        What is Pusher?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="introduction/pusher-use-cases.html">
             
                 
                     <a href="../introduction/pusher-use-cases.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>1.1.</b>
+                            <b>1.2.</b>
                         
                         (WiP) Pusher Use Cases
                     </a>
@@ -195,14 +210,29 @@
             
         </li>
     
-        <li class="chapter " data-level="2.6" data-path="getting-started/server-debugging.html">
+        <li class="chapter " data-level="2.6" data-path="getting-started/bridge-v-broadcaster.html">
+            
+                
+                    <a href="../getting-started/bridge-v-broadcaster.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.6.</b>
+                        
+                        Bridge v Broadcaster
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7" data-path="getting-started/server-debugging.html">
             
                 
                     <a href="../getting-started/server-debugging.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>2.6.</b>
+                            <b>2.7.</b>
                         
                         Debugging Server-Side Integration with Pusher
                     </a>
@@ -210,14 +240,14 @@
             
         </li>
     
-        <li class="chapter " data-level="2.7" data-path="getting-started/pusher-js-integration.html">
+        <li class="chapter " data-level="2.8" data-path="getting-started/pusher-js-integration.html">
             
                 
                     <a href="../getting-started/pusher-js-integration.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>2.7.</b>
+                            <b>2.8.</b>
                         
                         Using the Pusher JavaScript library
                     </a>
@@ -225,14 +255,14 @@
             
         </li>
     
-        <li class="chapter " data-level="2.8" data-path="getting-started/pusher-js-debugging.html">
+        <li class="chapter " data-level="2.9" data-path="getting-started/pusher-js-debugging.html">
             
                 
                     <a href="../getting-started/pusher-js-debugging.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>2.8.</b>
+                            <b>2.9.</b>
                         
                         Debugging with the Pusher JavaScript library
                     </a>
@@ -327,14 +357,29 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="4.1" data-path="activity-streams/activities.html">
+        <li class="chapter " data-level="4.1" data-path="activity-streams/simple-auth.html">
+            
+                
+                    <a href="../activity-streams/simple-auth.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                        Super Simple Social Auth
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="activity-streams/activities.html">
             
                 
                     <a href="../activity-streams/activities.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>4.1.</b>
+                            <b>4.2.</b>
                         
                         Triggering Activity Events
                     </a>
@@ -530,16 +575,10 @@
 <li>Enter some text to be shown in a notification</li>
 <li>Submit a form indicating the notification should be triggered</li>
 </ul>
-<p><i class="fa fa-rocket fa-2"></i> Create <code>resources/views/notification.blade.php</code> and copy &amp; paste the contents of <a href="#">SOME template URL</a> into it. It contains a script include of jQuery from a CDN, a CSS include and a basic HTML structure.</p>
-<p><i class="fa fa-rocket fa-2"></i> Next, add the following <code>&lt;form&gt;</code> to the HTML.</p>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">form</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">&quot;notify_form&quot;</span> <span class="hljs-attribute">action</span>=<span class="hljs-value">&quot;/notifications/notify&quot;</span> <span class="hljs-attribute">method</span>=<span class="hljs-value">&quot;post&quot;</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">for</span>=<span class="hljs-value">&quot;notify_text&quot;</span>&gt;</span>What&apos;s the notification?<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;text&quot;</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">&quot;notify_text&quot;</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&quot;notify_text&quot;</span> <span class="hljs-attribute">minlength</span>=<span class="hljs-value">&quot;3&quot;</span> <span class="hljs-attribute">required</span> /&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-title">form</span>&gt;</span>
-</code></pre>
-<p>This form will be used to capture the user input and eventually make a <code>POST</code> AJAX request to our <code>notifications/notify</code> route.</p>
+<p><i class="fa fa-rocket fa-2"></i> Create <code>resources/views/notification.blade.php</code> and copy &amp; paste the contents of this <a href="../_laravel_templates/notification.blade.php" target="_blank">notification.blade.php template</a> into it (or simply copy over the file). It contains a number of <code>&lt;script&gt;</code> and CSS references including the Pusher JavaScript library and jQuery from a CDN, as well as a basic HTML structure for our notifications demo.</p>
+<p><i class="fa fa-rocket fa-2"></i> Next, take a look at the <code>&lt;form id=&quot;notify_form&quot;&gt;</code> in the HTML. It will be used to capture the user input and eventually make a <code>POST</code> AJAX request to our <code>notifications/notify</code> route.</p>
 <h2 id="submit-the-notification-text">Submit the Notification Text</h2>
-<p><i class="fa fa-rocket fa-2"></i> Let&apos;s add the AJAX code now.</p>
+<p><i class="fa fa-rocket fa-2"></i> Let&apos;s add the AJAX code now. Towards the bottom of the template you&apos;ll find an empty <code>&lt;script&gt;</code> tag. Update it with the following content.</p>
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">script</span>&gt;</span><span class="javascript">
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">notifyInit</span>(<span class="hljs-params"></span>) </span>{
   <span class="hljs-comment">// set up form submission handling</span>

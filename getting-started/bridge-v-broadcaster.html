@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>(WiP) Resources | Building Real-Time Laravel Apps with Pusher</title>
+        <title>Bridge v Broadcaster | Building Real-Time Laravel Apps with Pusher</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.2.0">
@@ -27,8 +27,10 @@
         
     
     
+    <link rel="next" href="../getting-started/server-debugging.html" />
     
-    <link rel="prev" href="../where-next/index.html" />
+    
+    <link rel="prev" href="../getting-started/event-broadcaster.html" />
     
 
         
@@ -36,7 +38,7 @@
     <body>
         
         
-    <div class="book" data-level="6.1" data-basepath=".." data-revision="Wed Aug 19 2015 17:02:54 GMT+0100 (BST)">
+    <div class="book" data-level="2.6" data-basepath=".." data-revision="Wed Aug 19 2015 17:02:54 GMT+0100 (BST)">
     
 
 <div class="book-summary">
@@ -208,7 +210,7 @@
             
         </li>
     
-        <li class="chapter " data-level="2.6" data-path="getting-started/bridge-v-broadcaster.html">
+        <li class="chapter active" data-level="2.6" data-path="getting-started/bridge-v-broadcaster.html">
             
                 
                     <a href="../getting-started/bridge-v-broadcaster.html">
@@ -421,7 +423,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter active" data-level="6.1" data-path="where-next/resources.html">
+        <li class="chapter " data-level="6.1" data-path="where-next/resources.html">
             
                 
                     <a href="../where-next/resources.html">
@@ -546,7 +548,14 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="resources">Resources</h1>
+                        <h1 id="bridge-v-event-broadcasting-i-class-fa-fa-graduation-cap-fa-2-i">Bridge v Event Broadcasting <i class="fa fa-graduation-cap fa-2"></i></h1>
+<p>By using the bridge instead of Event Broadcasting you don&apos;t need to adhere to some of the Event Broadcasting rules and it provides consistency when it comes to accessing the <code>Pusher</code> instance for other pieces of Pusher functionality such as <a href="#">authenticating channel subscriptions</a>, <a href="#">querying application state</a> (such as channels that have active subscriptions) and validating incoming <a href="https://pusher.com/docs/webhooks" target="_blank">Pusher WebHooks</a>.</p>
+<p>However, by using using event broadcasting you are completely decoupling your back-end functionality from having any reliance on Pusher&apos;s broadcast messaging which means you can quickly switch out the message broadcasting service that you&apos;re using.</p>
+<p>Make the best choice for your app.</p>
+<h2 id="which-one-will-we-use">Which one will we use?</h2>
+<p>To keep things simple, <strong>we&apos;re going to be using the vikla/pusher Laravel Pusher Bridge for the rest of the workshop</strong>.</p>
+<h2 id="where-next">Where next?</h2>
+<p>Let&apos;s admit it, somethings things don&apos;t work. So, let&apos;s see how you can <a href="server-debugging.html">debug your Pusher server-side integration</a>.</p>
 
                     
                     </section>
@@ -557,8 +566,10 @@
         </div>
 
         
-        <a href="../where-next/index.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: (WiP) What else can Pusher do?"><i class="fa fa-angle-left"></i></a>
+        <a href="../getting-started/event-broadcaster.html" class="navigation navigation-prev " aria-label="Previous page: Pusher Event Broadcaster"><i class="fa fa-angle-left"></i></a>
         
+        
+        <a href="../getting-started/server-debugging.html" class="navigation navigation-next " aria-label="Next page: Debugging Server-Side Integration with Pusher"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

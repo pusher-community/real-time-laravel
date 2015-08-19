@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>(WiP) Resources | Building Real-Time Laravel Apps with Pusher</title>
+        <title>Super Simple Social Auth | Building Real-Time Laravel Apps with Pusher</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.2.0">
@@ -27,8 +27,10 @@
         
     
     
+    <link rel="next" href="../activity-streams/activities.html" />
     
-    <link rel="prev" href="../where-next/index.html" />
+    
+    <link rel="prev" href="../activity-streams/index.html" />
     
 
         
@@ -36,7 +38,7 @@
     <body>
         
         
-    <div class="book" data-level="6.1" data-basepath=".." data-revision="Wed Aug 19 2015 17:02:54 GMT+0100 (BST)">
+    <div class="book" data-level="4.1" data-basepath=".." data-revision="Wed Aug 19 2015 17:02:54 GMT+0100 (BST)">
     
 
 <div class="book-summary">
@@ -355,7 +357,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="4.1" data-path="activity-streams/simple-auth.html">
+        <li class="chapter active" data-level="4.1" data-path="activity-streams/simple-auth.html">
             
                 
                     <a href="../activity-streams/simple-auth.html">
@@ -421,7 +423,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter active" data-level="6.1" data-path="where-next/resources.html">
+        <li class="chapter " data-level="6.1" data-path="where-next/resources.html">
             
                 
                     <a href="../where-next/resources.html">
@@ -546,7 +548,128 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="resources">Resources</h1>
+                        <h1 id="super-simple-social-auth">Super Simple Social Auth</h1>
+<p>To give an activity more context it&apos;s important to know who is triggering that activity. So, we need some form of authentication resulting in an associated logged in user.</p>
+<p>For each component we add to an application we increase its complexity. For that reason we&apos;re going to avoid adding a database dependency. Instead, we&apos;re going to use social login using the <a href="https://github.com/laravel/socialite/" target="_blank">Socialite</a> package and simply store the authenticated user information in the <code>Session</code>. This isn&apos;t a production grade solution, but it helps us get simple authentication added to our application in super-quick time.</p>
+<p><i class="fa fa-rocket fa-2"></i> Since <a href="https://github.com" target="_blank">GitHub</a> is referred to in the Socialite documentation we&apos;re going to use it for our social login. So, you&apos;ll need a GitHub account.</p>
+<h2 id="install-socialite">Install Socialite</h2>
+<p><i class="fa fa-rocket fa-2"></i> Run the following command from a terminal or console:</p>
+<pre><code>composer require laravel/socialite
+</code></pre><p><i class="fa fa-rocket fa-2"></i> Then add the provider to <code>config/app.php</code>:</p>
+<pre><code class="lang-php"><span class="hljs-string">&apos;providers&apos;</span> =&gt; [
+    <span class="hljs-comment">// Other service providers...</span>
+
+    Laravel\Socialite\SocialiteServiceProvider::class,
+],
+</code></pre>
+<p><i class="fa fa-rocket fa-2"></i> Finally, add the Facade:</p>
+<pre><code class="lang-php"><span class="hljs-string">&apos;aliases&apos;</span> =&gt; [
+    <span class="hljs-comment">// Other aliases</span>
+
+    <span class="hljs-string">&apos;Socialite&apos;</span> =&gt; Laravel\Socialite\Facades\Socialite::class,
+],
+</code></pre>
+<div class="alert alert-info">
+  For more detailed instructions see the <a href="http://laravel.com/docs/5.1/authentication#social-authentication" target="_blank">official Laravel Socialite docs</a>
+</div>
+
+<h2 id="get-github-credentials">Get GitHub Credentials</h2>
+<p>In order to use GitHub social login your application needs to be registered with GitHub.</p>
+<h3 id="instructor-lead-workshop-i-class-fa-fa-graduation-cap-fa-2-i">Instructor-lead Workshop <i class="fa fa-graduation-cap fa-2"></i></h3>
+<p><i class="fa fa-rocket fa-2"></i> <strong>If you&apos;re in an instructor-lead workshop they&apos;ll provide you with some credentials that you can use.</strong></p>
+<h3 id="self-taught-workshop">Self Taught Workshop</h3>
+<p><i class="fa fa-rocket fa-2"></i> If you&apos;d like to register your own application or you&apos;re going through this without an instructor then you&apos;ll need to create an application. The steps are:</p>
+<ol>
+<li>Login to <a href="https://github.com" target="_blank">GitHub</a></li>
+<li>Go to your settings (top-right drop-down -&gt; Settings)</li>
+<li>Select <strong>Applications</strong> from the menu</li>
+<li>Select the <strong>Developer applications</strong> tab</li>
+<li>Click <strong>Register new application</strong></li>
+<li>Enter a name, <code>http://localhost:8000</code> as the home page, and <code>http://localhost:8000/auth/github/callback</code> as the <strong>Authorization callback URL</strong>.</li>
+<li>Click <strong>Register application</strong></li>
+</ol>
+<h2 id="store-github-credentials">Store GitHub Credentials</h2>
+<p><strong>Everybody needs to now do the following exercises.</strong></p>
+<p><i class="fa fa-rocket fa-2"></i> Now, open up the <code>.env</code> file in your Laravel application and take the values from the GitHub application settings and put them into the <code>.env</code> file.</p>
+<pre><code>GITHUB_CLIENT_ID=YOUR_CLIENT_ID
+GITHUB_CLIENT_SECRET=YOUR_CLIENT_SECRET
+GITHUB_CALLBACK_URL=http://localhost:8000/auth/github/callback
+</code></pre><p>We now need to tell Socialite about these configuration values. To do that open up <code>config/services.php</code> and add a <code>github</code> entry:</p>
+<pre><code class="lang-php"><span class="hljs-keyword">return</span> [
+    <span class="hljs-comment">// Other service config</span>
+
+    <span class="hljs-string">&apos;github&apos;</span> =&gt; [
+        <span class="hljs-string">&apos;client_id&apos;</span> =&gt; env(<span class="hljs-string">&apos;GITHUB_CLIENT_ID&apos;</span>),
+        <span class="hljs-string">&apos;client_secret&apos;</span> =&gt; env(<span class="hljs-string">&apos;GITHUB_CLIENT_SECRET&apos;</span>),
+        <span class="hljs-string">&apos;redirect&apos;</span> =&gt; env(<span class="hljs-string">&apos;GITHUB_CALLBACK_URL&apos;</span>),
+    ],
+
+];
+</code></pre>
+<h2 id="add-login-functionality">Add Login Functionality</h2>
+<p>After setting up the Socialite provider and Alias we need to set up an <code>AuthController</code> and some routes.</p>
+<p><i class="fa fa-rocket fa-2"></i> Open up <code>app/Http/Controllers/Auth/AuthController.php</code> and replace the contents with the following:</p>
+<pre><code class="lang-php"><span class="hljs-preprocessor">&lt;?php</span>
+<span class="hljs-keyword">namespace</span> <span class="hljs-title">App</span>\<span class="hljs-title">Http</span>\<span class="hljs-title">Controllers</span>\<span class="hljs-title">Auth</span>;
+
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Http</span>\<span class="hljs-title">Request</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Support</span>\<span class="hljs-title">Facades</span>\<span class="hljs-title">Session</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Routing</span>\<span class="hljs-title">Controller</span>;
+
+<span class="hljs-keyword">use</span> <span class="hljs-title">Socialite</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AuthController</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Controller</span>
+</span>{
+    <span class="hljs-comment">/**
+     * Redirect the user to the GitHub authentication page.
+     * Also passes a `redirect` query param that can be used
+     * in the handleProviderCallback to send the user back to
+     * the page they were originally at.
+     *
+     * <span class="hljs-doctag">@param</span> Request $request
+     * <span class="hljs-doctag">@return</span> Response
+     */</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">redirectToProvider</span><span class="hljs-params">(Request <span class="hljs-variable">$request</span>)</span>
+    </span>{
+        <span class="hljs-keyword">return</span> Socialite::driver(<span class="hljs-string">&apos;github&apos;</span>)
+            -&gt;with([<span class="hljs-string">&apos;redirect_uri&apos;</span> =&gt; env(<span class="hljs-string">&apos;GITHUB_CALLBACK_URL&apos;</span> ) . <span class="hljs-string">&apos;?redirect=&apos;</span> . <span class="hljs-variable">$request</span>-&gt;input(<span class="hljs-string">&apos;redirect&apos;</span>)])
+            -&gt;redirect();
+    }
+
+    <span class="hljs-comment">/**
+     * Obtain the user information from GitHub.
+     * If a &quot;redirect&quot; query string is present, redirect
+     * the user back to that page.
+     *
+     * <span class="hljs-doctag">@param</span> Request $request
+     * <span class="hljs-doctag">@return</span> Response
+     */</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">handleProviderCallback</span><span class="hljs-params">(Request <span class="hljs-variable">$request</span>)</span>
+    </span>{
+        <span class="hljs-variable">$user</span> = Socialite::driver(<span class="hljs-string">&apos;github&apos;</span>)-&gt;user();
+
+        Session::put(<span class="hljs-string">&apos;user&apos;</span>, <span class="hljs-variable">$user</span>);
+
+        <span class="hljs-variable">$redirect</span> = <span class="hljs-variable">$request</span>-&gt;input(<span class="hljs-string">&apos;redirect&apos;</span>);
+        <span class="hljs-keyword">if</span>(<span class="hljs-variable">$redirect</span>)
+        {
+            <span class="hljs-keyword">return</span> redirect(<span class="hljs-variable">$redirect</span>);
+        }
+    }
+}
+</code></pre>
+<p>You&apos;ll noticed that <code>redirectToProvider</code> redirects to GitHub social login and <code>handleProviderCallback</code> handles the auth callback from GitHub and adds the user to the <code>Session</code>.</p>
+<p><i class="fa fa-rocket fa-2"></i> To set up our routes simply open up <code>app/Http/Routes.php</code> and add the following so that the <code>AuthController</code> functions are called; <code>/auth/github</code> to redirect to GitHub login and <code>auth/github/callback</code> to handle the GitHub auth callback.</p>
+<pre><code class="lang-php">Route::get(<span class="hljs-string">&apos;auth/github&apos;</span>, <span class="hljs-string">&apos;Auth\AuthController@redirectToProvider&apos;</span>);
+Route::get(<span class="hljs-string">&apos;auth/github/callback&apos;</span>, <span class="hljs-string">&apos;Auth\AuthController@handleProviderCallback&apos;</span>);
+</code></pre>
+<p>And this is simple?! Anyway...</p>
+<h2 id="testing-github-social-auth">Testing GitHub Social Auth</h2>
+<p>We&apos;re finally in a position to test that our GitHub social login is working.</p>
+<p><i class="fa fa-rocket fa-2"></i> Navigate to <code>http://localhost:8000/auth/github</code> and you should be redirected to GitHub to login. Once you allow the application to access your basic information you should be redirected back to <code>http://localhost:8000/auth/github/callback?code=...&amp;redirect=&amp;state=...</code>. It&apos;s a blank page. But it means things are working!</p>
+<p>We now have access to the GitHub user information via <code>Session::get(&apos;user&apos;)</code> and we&apos;ll make use of that shortly.</p>
+<h2 id="where-next">Where next?</h2>
+<p>It&apos;s now time to <a href="activities.html">Trigger Activity Events</a>.</p>
 
                     
                     </section>
@@ -557,8 +680,10 @@
         </div>
 
         
-        <a href="../where-next/index.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: (WiP) What else can Pusher do?"><i class="fa fa-angle-left"></i></a>
+        <a href="../activity-streams/index.html" class="navigation navigation-prev " aria-label="Previous page: Activity Streams"><i class="fa fa-angle-left"></i></a>
         
+        
+        <a href="../activity-streams/activities.html" class="navigation navigation-next " aria-label="Next page: Triggering Activity Events"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
