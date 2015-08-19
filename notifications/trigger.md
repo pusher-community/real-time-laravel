@@ -39,22 +39,13 @@ For our simple app notifications will be manually triggered. To do this we need 
 * Enter some text to be shown in a notification
 * Submit a form indicating the notification should be triggered
 
-<i class="fa fa-rocket fa-2"></i> Create `resources/views/notification.blade.php` and copy & paste the contents of [SOME template URL](#) into it. It contains a script include of jQuery from a CDN, a CSS include and a basic HTML structure.
+<i class="fa fa-rocket fa-2"></i> Create `resources/views/notification.blade.php` and copy & paste the contents of this <a href="../_laravel_templates/notification.blade.php" target="_blank">notification.blade.php template</a> into it (or simply copy over the file). It contains a number of `<script>` and CSS references including the Pusher JavaScript library and jQuery from a CDN, as well as a basic HTML structure for our notifications demo.
 
-<i class="fa fa-rocket fa-2"></i> Next, add the following `<form>` to the HTML.
-
-```html
-<form id="notify_form" action="/notifications/notify" method="post">
-  <label for="notify_text">What's the notification?</label>
-  <input type="text" id="notify_text" name="notify_text" minlength="3" required />
-</form>
-```
-
-This form will be used to capture the user input and eventually make a `POST` AJAX request to our `notifications/notify` route.
+<i class="fa fa-rocket fa-2"></i> Next, take a look at the `<form id="notify_form">` in the HTML. It will be used to capture the user input and eventually make a `POST` AJAX request to our `notifications/notify` route.
 
 ## Submit the Notification Text
 
-<i class="fa fa-rocket fa-2"></i> Let's add the AJAX code now.
+<i class="fa fa-rocket fa-2"></i> Let's add the AJAX code now. Towards the bottom of the template you'll find an empty `<script>` tag. Update it with the following content.
 
 ```html
 <script>
