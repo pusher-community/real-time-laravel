@@ -44,7 +44,7 @@
     <div class="container center-all-container">
         <form id="notify_form" action="/notifications/notify" method="post">
             <input type="text" id="notify_text" name="notify_text"
-                   placeholder="What's the notification?" minlength="3" maxlength="50" required />
+                   placeholder="What's the notification?" minlength="3" maxlength="140" required />
         </form>
     </div>
 </section>

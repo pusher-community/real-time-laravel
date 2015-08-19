@@ -38,7 +38,7 @@
     <body>
         
         
-    <div class="book" data-level="4.2" data-basepath=".." data-revision="Wed Aug 19 2015 17:02:54 GMT+0100 (BST)">
+    <div class="book" data-level="4.2" data-basepath=".." data-revision="Wed Aug 19 2015 18:00:34 GMT+0100 (BST)">
     
 
 <div class="book-summary">
@@ -554,15 +554,21 @@
 <p><i class="fa fa-rocket fa-2"></i> Let&apos;s start by creating a plain controller:</p>
 <pre><code>&#x203A; php artisan make:controller ActivityController --plain
 </code></pre><p><i class="fa fa-rocket fa-2"></i> Update the controller using the code below:</p>
-<pre><code class="lang-php"><span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Support</span>\<span class="hljs-title">Facades</span>\<span class="hljs-title">App</span>;
+<pre><code class="lang-php"><span class="hljs-keyword">namespace</span> <span class="hljs-title">App</span>\<span class="hljs-title">Http</span>\<span class="hljs-title">Controllers</span>;
+
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Http</span>\<span class="hljs-title">Request</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Support</span>\<span class="hljs-title">Facades</span>\<span class="hljs-title">App</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Support</span>\<span class="hljs-title">Facades</span>\<span class="hljs-title">Session</span>;
 
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ActivityController</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Controller</span>
 </span>{
     <span class="hljs-keyword">var</span> <span class="hljs-variable">$pusher</span>;
+    <span class="hljs-keyword">var</span> <span class="hljs-variable">$user</span>;
 
     <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__construct</span><span class="hljs-params">()</span>
     </span>{
         <span class="hljs-variable">$this</span>-&gt;pusher = App::make(<span class="hljs-string">&apos;pusher&apos;</span>);
+        <span class="hljs-variable">$this</span>-&gt;user = Session::get(<span class="hljs-string">&apos;user&apos;</span>);
     }
 
     <span class="hljs-comment">/**
@@ -570,6 +576,18 @@
      */</span>
     <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getIndex</span><span class="hljs-params">()</span>
     </span>{
+        <span class="hljs-keyword">if</span>(!<span class="hljs-variable">$this</span>-&gt;user)
+        {
+            <span class="hljs-keyword">return</span> redirect(<span class="hljs-string">&apos;auth/github?redirect=/activities&apos;</span>);
+        }
+
+        <span class="hljs-variable">$activity</span> = [
+            <span class="hljs-string">&apos;text&apos;</span> =&gt; <span class="hljs-string">&apos;...&apos;</span>,
+            <span class="hljs-string">&apos;username&apos;</span> =&gt; <span class="hljs-variable">$this</span>-&gt;user-&gt;getNickname(),
+            <span class="hljs-string">&apos;avatar&apos;</span> =&gt; <span class="hljs-variable">$this</span>-&gt;user-&gt;getAvatar(),
+            <span class="hljs-string">&apos;id&apos;</span> =&gt; str_random()
+        ];
+
         <span class="hljs-comment">// <span class="hljs-doctag"><span class="hljs-keyword">TODO</span></span>: trigger event</span>
         <span class="hljs-keyword">return</span> view(<span class="hljs-string">&apos;activities&apos;</span>);
     }
@@ -593,7 +611,8 @@
     }
 }
 </code></pre>
-<p><i class="fa fa-rocket fa-2"></i> And create a <code>resources/views/activities.blade.php</code> file and copy &amp; paste the contents of <a href="#">THIS TEMPLATE</a> into it.</p>
+<p>In the code above you&apos;ll notice that the <code>__construct()</code> attempts to grab the user from the <code>Session</code> and in <code>getIndex()</code> the value of <code>$this-&gt;user</code> is checked. If there isn&apos;t a logged in user the app redirects in order for the user to log in. By having a user we can identify who has triggered an activity event. There&apos;s an example in the code above of getting both the <code>username</code> and <code>avatar</code>. This can then be used when we trigger events via Pusher, and ultimately display that information in our user interface.</p>
+<p><i class="fa fa-rocket fa-2"></i> The <code>ActivityController</code> reliease on an <code>activities</code> view so let&apos;s create that. Create a <code>resources/views/activities.blade.php</code> file and copy &amp; paste the contents of <a href="../_laravel_templates/activities.blade.php">activities.blade.php</a> into it (or just copy over the file).</p>
 <p><i class="fa fa-rocket fa-2"></i> Finally, add an entry to your <code>app/Http/routes.php</code>:</p>
 <pre><code class="lang-php">Route::controller(<span class="hljs-string">&apos;activities&apos;</span>, <span class="hljs-string">&apos;ActivityController&apos;</span>);
 </code></pre>
@@ -605,15 +624,20 @@
 <li>A new status update has been posted</li>
 <li>A status update has been &quot;liked&quot;</li>
 </ol>
-<p><i class="fa fa-rocket fa-2"></i> For each event (<code>user-visit</code>, <code>new-status-update</code> and <code>status-update-liked</code>) trigger an event on a <code>activities</code> channel. Each event should contain some <code>text</code> to display about the event and a unique <code>id</code>. Since we&apos;re not going to be using a database let&apos;s just use <code>str_random()</code> to generate a unique ID.</p>
-<pre><code class="lang-php"><span class="hljs-variable">$data</span> = [<span class="hljs-string">&apos;text&apos;</span> =&gt; <span class="hljs-string">&apos;activity text&apos;</span>, `id` =&gt; <span class="hljs-string">&apos;a unique ID&apos;</span>];
+<p><i class="fa fa-rocket fa-2"></i> For each event (<code>user-visit</code>, <code>new-status-update</code> and <code>status-update-liked</code>) trigger an event on a <code>activities</code> channel. Each event should contain some <code>text</code> to display about the event, a <code>username</code> and an <code>avatar</code> to identify who triggered the event, and a unique <code>id</code>. Since we&apos;re not going to be using a database let&apos;s just use <code>str_random()</code> to generate a unique ID.</p>
+<pre><code class="lang-php"><span class="hljs-variable">$activity</span> = [
+    <span class="hljs-string">&apos;text&apos;</span> =&gt; <span class="hljs-string">&apos;...&apos;</span>,
+    <span class="hljs-string">&apos;username&apos;</span> =&gt; <span class="hljs-variable">$this</span>-&gt;user-&gt;getNickname(),
+    <span class="hljs-string">&apos;avatar&apos;</span> =&gt; <span class="hljs-variable">$this</span>-&gt;user-&gt;getAvatar(),
+    <span class="hljs-string">&apos;id&apos;</span> =&gt; str_random()
+];
 </code></pre>
-<p><i class="fa fa-rocket fa-2"></i> For the event that&apos;s triggered in the <code>postLike($id)</code> action also send the ID of the activity that the user liked on a <code>likedActivityId</code> property.</p>
+<p><i class="fa fa-rocket fa-2"></i> For the event that&apos;s triggered in the <code>postLike($id)</code> action also send the ID of the activity that the user liked on a <code>likedActivityId</code> property using the <code>$id</code> value.</p>
 <h2 id="building-the-activitystream-ui">Building the ActivityStream UI</h2>
-<p>The view, defined in <code>resources/views/activities.blade.php</code>, already has some functionality, but you still need to hook up the real-time events.</p>
+<p>The view, defined in <code>resources/views/activities.blade.php</code>, already has some functionality, but you still need to hook up Pusher and the real-time events.</p>
 <h3 id="user-visited">User Visited</h3>
 <p>Whenever the <code>/activities</code> endpoint (<code>getIndex()</code> action) is access a <code>user-visit</code> event is triggered on the <code>activities</code> channel. </p>
-<p><i class="fa fa-rocket fa-2"></i> If you haven&apos;t already done so, navigate to <a href="http://localhost:8000/activites" target="_blank">http://localhost:8000/activites</a> endpoint in the browser and make sure the event is triggered by checking the Pusher Debug Console.</p>
+<p><i class="fa fa-rocket fa-2"></i> If you haven&apos;t already done so, navigate to <a href="http://localhost:8000/activities" target="_blank">http://localhost:8000/activities</a> endpoint in the browser and make sure the event is triggered by checking the Pusher Debug Console.</p>
 <p><i class="fa fa-rocket fa-2"></i> Once you&apos;re sure the event is being triggered you can subscribe to the <code>activites</code> channel on the client and bind to the event. There&apos;s already a <code>addUserVisit</code> that can be used to handle the event and add an activity to the stream UI.</p>
 <h3 id="status-updates">Status Updates</h3>
 <p>Next we should handle the status updates that users can post from the view.</p>
