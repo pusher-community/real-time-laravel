@@ -2,7 +2,7 @@
 
 To give an activity more context it's important to know who is triggering that activity. So, we need some form of authentication resulting in an associated logged in user.
 
-For each component we add to an application we increase its complexity. For that reason we're going to avoid adding a database dependency. Instead, we're going to use social login using the [Socialite](https://github.com/laravel/socialite/) package and simply store the authenticated user information in the `Session`. This isn't a production grade solution, but it helps us get simple authentication added to our application in super-quick time.
+For each component we add to an application we increase its complexity. For that reason we're going to avoid adding a database dependency. Instead, we're going to use social login using the [Socialite](https://github.com/laravel/socialite/) package and simply store the authenticated user information in the `Session`. **This isn't a production grade solution**, but it helps us get simple authentication added to our application in super-quick time.
 
 <i class="fa fa-rocket fa-2"></i> Since [GitHub](https://github.com) is referred to in the Socialite documentation we're going to use it for our social login. So, you'll need a GitHub account.
 
@@ -138,6 +138,7 @@ class AuthController extends Controller
         {
             return redirect($redirect);
         }
+        return 'GitHub auth successful. Now navigate to a demo.';
     }
 }
 ```
@@ -157,7 +158,7 @@ And this is simple?! Anyway...
 
 We're finally in a position to test that our GitHub social login is working.
 
-<i class="fa fa-rocket fa-2"></i> Navigate to `http://localhost:8000/auth/github` and you should be redirected to GitHub to login. Once you allow the application to access your basic information you should be redirected back to `http://localhost:8000/auth/github/callback?code=...&redirect=&state=...`. It's a blank page. But it means things are working!
+<i class="fa fa-rocket fa-2"></i> Navigate to `http://localhost:8000/auth/github` and you should be redirected to GitHub to login. Once you allow the application to access your basic information you should be redirected back to `http://localhost:8000/auth/github/callback?code=...&redirect=&state=...`. If you get the `GitHub auth successful` text it means things are working!
 
 We now have access to the GitHub user information via `Session::get('user')` and we'll make use of that shortly.
 
