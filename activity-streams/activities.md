@@ -13,15 +13,21 @@ We clearly don't have time to build a full social network. But we can support a 
 <i class="fa fa-rocket fa-2"></i> Update the controller using the code below:
 
 ```php
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Session;
 
 class ActivityController extends Controller
 {
     var $pusher;
+    var $user;
 
     public function __construct()
     {
         $this->pusher = App::make('pusher');
+        $this->user = Session::get('user');
     }
 
     /**
@@ -29,6 +35,18 @@ class ActivityController extends Controller
      */
     public function getIndex()
     {
+        if(!$this->user)
+        {
+            return redirect('auth/github?redirect=/activities');
+        }
+        
+        $activity = [
+            'text' => '...',
+            'username' => $this->user->getNickname(),
+            'avatar' => $this->user->getAvatar(),
+            'id' => str_random()
+        ];
+
         // TODO: trigger event
         return view('activities');
     }
@@ -53,7 +71,9 @@ class ActivityController extends Controller
 }
 ```
 
-<i class="fa fa-rocket fa-2"></i> And create a `resources/views/activities.blade.php` file and copy & paste the contents of [THIS TEMPLATE](#) into it.
+In the code above you'll notice that the `__construct()` attempts to grab the user from the `Session` and in `getIndex()` the value of `$this->user` is checked. If there isn't a logged in user the app redirects in order for the user to log in. By having a user we can identify who has triggered an activity event. There's an example in the code above of getting both the `username` and `avatar`. This can then be used when we trigger events via Pusher, and ultimately display that information in our user interface.
+
+<i class="fa fa-rocket fa-2"></i> The `ActivityController` reliease on an `activities` view so let's create that. Create a `resources/views/activities.blade.php` file and copy & paste the contents of [activities.blade.php](../assets/laravel_app/activities.blade.php) into it (or just copy over the file).
 
 <i class="fa fa-rocket fa-2"></i> Finally, add an entry to your `app/Http/routes.php`:
 
@@ -71,23 +91,28 @@ There are three potential types of activity in our `ActivityController`:
 2. A new status update has been posted
 3. A status update has been "liked"
 
-<i class="fa fa-rocket fa-2"></i> For each event (`user-visit`, `new-status-update` and `status-update-liked`) trigger an event on a `activities` channel. Each event should contain some `text` to display about the event and a unique `id`. Since we're not going to be using a database let's just use `str_random()` to generate a unique ID.
+<i class="fa fa-rocket fa-2"></i> For each event (`user-visit`, `new-status-update` and `status-update-liked`) trigger an event on a `activities` channel. Each event should contain some `text` to display about the event, a `username` and an `avatar` to identify who triggered the event, and a unique `id`. Since we're not going to be using a database let's just use `str_random()` to generate a unique ID.
 
 ```php
-$data = ['text' => 'activity text', `id` => 'a unique ID'];
+$activity = [
+    'text' => '...',
+    'username' => $this->user->getNickname(),
+    'avatar' => $this->user->getAvatar(),
+    'id' => str_random()
+];
 ```
 
-<i class="fa fa-rocket fa-2"></i> For the event that's triggered in the `postLike($id)` action also send the ID of the activity that the user liked on a `likedActivityId` property.
+<i class="fa fa-rocket fa-2"></i> For the event that's triggered in the `postLike($id)` action also send the ID of the activity that the user liked on a `likedActivityId` property using the `$id` value.
 
 ## Building the ActivityStream UI
 
-The view, defined in `resources/views/activities.blade.php`, already has some functionality, but you still need to hook up the real-time events.
+The view, defined in `resources/views/activities.blade.php`, already has some functionality, but you still need to hook up Pusher and the real-time events.
 
 ### User Visited
 
 Whenever the `/activities` endpoint (`getIndex()` action) is access a `user-visit` event is triggered on the `activities` channel. 
 
-<i class="fa fa-rocket fa-2"></i> If you haven't already done so, navigate to http://localhost:8000/activites endpoint in the browser and make sure the event is triggered by checking the Pusher Debug Console.
+<i class="fa fa-rocket fa-2"></i> If you haven't already done so, navigate to http://localhost:8000/activities endpoint in the browser and make sure the event is triggered by checking the Pusher Debug Console.
 
 <i class="fa fa-rocket fa-2"></i> Once you're sure the event is being triggered you can subscribe to the `activites` channel on the client and bind to the event. There's already a `addUserVisit` that can be used to handle the event and add an activity to the stream UI.
 
@@ -112,7 +137,7 @@ Finally we want to wire up the incoming `status-update-liked` and update the UI.
 
 <i class="fa fa-rocket fa-2"></i> This one hasn't been implemented for you. Here are the steps to help:
 
-* Bind to the event and create a callback handler
+* Bind to the event and create a callback handler function
 * Use the `addActivity(type, data)` function to add an activity stream element
 * *Stretch Task:* Identify the element for activity that's been liked via the `data.likedActivityId` value and add a "Liked Count" value to the element with the class `.like-count` indicating the number of times that activity has been liked
 
