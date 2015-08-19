@@ -1,4 +1,4 @@
-# Real-Time Fundamentals
+# Real-Time Fundamentals <i class="fa fa-graduation-cap fa-2"></i>
 
 So we're going to build real-time notifications into a Laravel application by creating a controller dedicated to triggering notifications and a UI to allow users to create those notifications. 
 

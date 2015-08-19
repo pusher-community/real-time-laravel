@@ -1,4 +1,4 @@
-## Using Laravel Event Broadcasting
+# Using Laravel Event Broadcasting
 
 By using Laravel 5.1 you already have the Pusher library integrated into your application so there's no installation required. We've already done all the set up we need when we set our environment variables.
 

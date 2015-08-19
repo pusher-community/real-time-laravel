@@ -1,4 +1,4 @@
-# Pusher Use Cases
+# Pusher Use Cases <i class="fa fa-graduation-cap fa-2"></i>
 
 ## Notifications
 

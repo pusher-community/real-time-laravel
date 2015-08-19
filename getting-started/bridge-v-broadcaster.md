@@ -1,4 +1,4 @@
-# Bridge v Event Broadcasting
+# Bridge v Event Broadcasting <i class="fa fa-graduation-cap fa-2"></i>
 
 By using the bridge instead of Event Broadcasting you don't need to adhere to some of the Event Broadcasting rules and it provides consistency when it comes to accessing the `Pusher` instance for other pieces of Pusher functionality such as [authenticating channel subscriptions](#), [querying application state](#) (such as channels that have active subscriptions) and validating incoming [Pusher WebHooks](https://pusher.com/docs/webhooks).
 

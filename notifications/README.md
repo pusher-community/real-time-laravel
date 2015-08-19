@@ -1,4 +1,4 @@
-# Notifications
+# Notifications <i class="fa fa-graduation-cap fa-2"></i>
 
 Notifying a user that something of interest has happened is one of the first and most fundamental use cases for real-time web technology. In this section we'll see how we can easily add notifications to a Laravel app. In doing so we'll go into a bit more detail regarding channels and events.
 
