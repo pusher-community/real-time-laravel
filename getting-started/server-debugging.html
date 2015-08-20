@@ -38,7 +38,7 @@
     <body>
         
         
-    <div class="book" data-level="2.7" data-basepath=".." data-revision="Wed Aug 19 2015 23:00:17 GMT+0100 (BST)">
+    <div class="book" data-level="2.7" data-basepath=".." data-revision="Thu Aug 20 2015 13:03:48 GMT+0100 (BST)">
     
 
 <div class="book-summary">
@@ -108,7 +108,7 @@
                         
                             <b>1.2.</b>
                         
-                        (WiP) Pusher Use Cases
+                        Pusher Use Cases
                     </a>
             
             
@@ -265,6 +265,21 @@
                             <b>2.9.</b>
                         
                         Debugging with the Pusher JavaScript library
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.10" data-path="getting-started/learned.html">
+            
+                
+                    <a href="../getting-started/learned.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.10.</b>
+                        
+                        Getting Started - What we&#39;ve learned
                     </a>
             
             
@@ -571,11 +586,11 @@
                     
                         <h1 id="debugging-your-server-side-integration-with-pusher">Debugging your server-side integration with Pusher</h1>
 <div class="alert alert-warning">
-  For the moment this section only covers debugging your integration via the Laravel Pusher Bridge.
+  For the moment this section only covers debugging your integration via the <a href="https://github.com/vinkla/pusher" target="_blank">Laravel Pusher Bridge</a>.
 </div>
 
-<p>The Pusher PHP library provides an abstraction upon the underlying HTTP requests that are made to Pusher in order to do things like trigger events. Sometimes things go wrong or we make mistakes. So it can be really handy to be able to know what&apos;s going on &quot;under the hood&quot; within the Pusher PHP library.</p>
-<p>This section provides a way of logging the Pusher library debug output to the Laravel logs. There may be a better way of doing this, so please speak to the instructor or <a href="https://github.com/pusher-community/real-time-laravel" target="_blank">submit a pull request</a> if you have any ideas. Hopefully things will become a bit easier in the future.</p>
+<p>The <a href="https://github.com/pusher/pusher-http-php" target="_blank">Pusher PHP library</a> provides an abstraction upon the underlying HTTP requests that are made to Pusher in order to do things like <a href="https://pusher.com/docs/server_api_guide/interact_rest_api#publishing-events" target="_blank">trigger events</a>. Sometimes things go wrong or we make mistakes. So it can be really handy to be able to know what&apos;s going on &quot;under the hood&quot; within the library.</p>
+<p>This section provides a way of logging the Pusher library debug output to the Laravel logs. There may be alternative way of doing this, so please speak to the instructor or <a href="https://github.com/pusher-community/real-time-laravel" target="_blank">submit a pull request</a> if you have any ideas. Hopefully things will become a bit easier in the future.</p>
 <h2 id="adding-pusher-logging-via-the-appserviceprovider">Adding Pusher Logging via the AppServiceProvider</h2>
 <p><i class="fa fa-rocket fa-2"></i> Open up <code>app/Providers/AppServiceProvider.php</code> and update it to look as follows:</p>
 <pre><code class="lang-php"><span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Support</span>\<span class="hljs-title">Facades</span>\<span class="hljs-title">Log</span>;
@@ -608,6 +623,10 @@
     [status] =&gt; 200
 )
 </code></pre><p>This logging shows us the interaction that took place with the Pusher HTTP API and the response.</p>
+<div class="alert alert-info">
+  If - at the end of this whole getting started chapter - you have some spare time, it might be worth taking a look at setting up the <a href="https://github.com/barryvdh/laravel-debugbar" target="_blank">Laravel Debug Bar</a>.
+</div>
+
 <h2 id="where-next">Where next?</h2>
 <p>Now that you&apos;ve set up your logging and you know how to view the log output we&apos;re ready to move to the client and look at <a href="pusher-js-integration.html">integrating the Pusher JS library</a>.</p>
 
@@ -632,17 +651,21 @@
 <script src="../gitbook/app.js"></script>
 
     
+    <script src="../gitbook/plugins/gitbook-plugin-ga/plugin.js"></script>
+    
+
+    
     <script src="../gitbook/plugins/gitbook-plugin-livereload/plugin.js"></script>
     
 
 <script>
 require(["gitbook"], function(gitbook) {
-    var config = {"fontSettings":{"theme":null,"family":"sans","size":2}};
+    var config = {"fontSettings":{"theme":null,"family":"sans","size":2},"ga":{"token":"UA-59859803-7","configuration":"auto"}};
     gitbook.start(config);
 });
 </script>
 
-        
+        <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-59859803-7', 'auto');ga('send', 'pageview');</script>
     </body>
     
 </html>

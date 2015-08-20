@@ -27,7 +27,7 @@
         
     
     
-    <link rel="next" href="../notifications/index.html" />
+    <link rel="next" href="../getting-started/learned.html" />
     
     
     <link rel="prev" href="../getting-started/pusher-js-integration.html" />
@@ -38,7 +38,7 @@
     <body>
         
         
-    <div class="book" data-level="2.9" data-basepath=".." data-revision="Wed Aug 19 2015 23:00:17 GMT+0100 (BST)">
+    <div class="book" data-level="2.9" data-basepath=".." data-revision="Thu Aug 20 2015 13:03:48 GMT+0100 (BST)">
     
 
 <div class="book-summary">
@@ -108,7 +108,7 @@
                         
                             <b>1.2.</b>
                         
-                        (WiP) Pusher Use Cases
+                        Pusher Use Cases
                     </a>
             
             
@@ -265,6 +265,21 @@
                             <b>2.9.</b>
                         
                         Debugging with the Pusher JavaScript library
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.10" data-path="getting-started/learned.html">
+            
+                
+                    <a href="../getting-started/learned.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.10.</b>
+                        
+                        Getting Started - What we&#39;ve learned
                     </a>
             
             
@@ -570,7 +585,8 @@
                     <section class="normal" id="section-">
                     
                         <h1 id="debugging-your-client-side-integration-with-pusher">Debugging your client-side integration with Pusher</h1>
-<p>The Pusher Debug Console is great for understand how the Pusher JavaScript library is interacting with Pusher.</p>
+<p>The <a href="https://pusher.com/docs/debugging#pusher_debug_console" target="_blank">Pusher Debug Console</a> is great for understand how the Pusher JavaScript library is interacting with Pusher.</p>
+<p><img src="../assets/img/pusher-debug-console.png" alt="The Pusher Debug Console"></p>
 <p>Here&apos;s what to check:</p>
 <ul>
 <li>Are you seeing a <code>Connection</code> entry. If not, check you&apos;re using the correct Pusher Application Key.</li>
@@ -578,6 +594,7 @@
 <li>If the above seem fine then make sure the <code>Subscribed</code> entry is occuring <em>before</em> the <code>API Message</code> entry. If not, then it means the message is being sent before Pusher knows the client is interested in it.</li>
 </ul>
 <p>As well as the Pusher Debug Console you can also configure the Pusher JavaScript library so that it will log information, exposing its internal workings, to the browser console. </p>
+<p><img src="../assets/img/pusher-js-logging.png" alt="Pusher JavaScript Logging"></p>
 <p><i class="fa fa-rocket fa-2"></i> Update your client-side code:</p>
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&quot;//js.pusher.com/3.0/pusher.min.js&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-title">script</span>&gt;</span><span class="openscad">
@@ -596,7 +613,7 @@ var pusher = new Pusher<span class="hljs-params">(<span class="hljs-string">&quo
 </ul>
 <h2 id="where-next">Where next?</h2>
 <p>Still stuck? <strong>Ask the instructor</strong> if you&apos;re in a workshop. If not, take a look at the <a href="https://support.pusher.com" target="_blank">Pusher Support desk</a>. From there you can contact support if required.</p>
-<p>If all is well, we can move on to building our first real piece of functionality: <a href="../notifications">Real-Time Notifications</a>.</p>
+<p>Let&apos;s see <a href="learned.html">what we&apos;ve just learned</a>.</p>
 
                     
                     </section>
@@ -610,7 +627,7 @@ var pusher = new Pusher<span class="hljs-params">(<span class="hljs-string">&quo
         <a href="../getting-started/pusher-js-integration.html" class="navigation navigation-prev " aria-label="Previous page: Using the Pusher JavaScript library"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../notifications/index.html" class="navigation navigation-next " aria-label="Next page: Real-Time Notifications"><i class="fa fa-angle-right"></i></a>
+        <a href="../getting-started/learned.html" class="navigation navigation-next " aria-label="Next page: Getting Started - What we&#39;ve learned"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
@@ -619,17 +636,21 @@ var pusher = new Pusher<span class="hljs-params">(<span class="hljs-string">&quo
 <script src="../gitbook/app.js"></script>
 
     
+    <script src="../gitbook/plugins/gitbook-plugin-ga/plugin.js"></script>
+    
+
+    
     <script src="../gitbook/plugins/gitbook-plugin-livereload/plugin.js"></script>
     
 
 <script>
 require(["gitbook"], function(gitbook) {
-    var config = {"fontSettings":{"theme":null,"family":"sans","size":2}};
+    var config = {"fontSettings":{"theme":null,"family":"sans","size":2},"ga":{"token":"UA-59859803-7","configuration":"auto"}};
     gitbook.start(config);
 });
 </script>
 
-        
+        <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-59859803-7', 'auto');ga('send', 'pageview');</script>
     </body>
     
 </html>

@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/pusher-community/real-time-laravel/issues"
   },
-  "homepage": "https://github.com/pusher-community/real-time-laravel"
+  "homepage": "https://github.com/pusher-community/real-time-laravel",
+  "dependencies": {
+    "gitbook-plugin-ga": "^0.2.1"
+  }
 }

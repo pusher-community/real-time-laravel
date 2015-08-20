@@ -38,7 +38,7 @@
     <body>
         
         
-    <div class="book" data-level="2.3" data-basepath=".." data-revision="Wed Aug 19 2015 23:00:17 GMT+0100 (BST)">
+    <div class="book" data-level="2.3" data-basepath=".." data-revision="Thu Aug 20 2015 13:03:48 GMT+0100 (BST)">
     
 
 <div class="book-summary">
@@ -108,7 +108,7 @@
                         
                             <b>1.2.</b>
                         
-                        (WiP) Pusher Use Cases
+                        Pusher Use Cases
                     </a>
             
             
@@ -265,6 +265,21 @@
                             <b>2.9.</b>
                         
                         Debugging with the Pusher JavaScript library
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.10" data-path="getting-started/learned.html">
+            
+                
+                    <a href="../getting-started/learned.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.10.</b>
+                        
+                        Getting Started - What we&#39;ve learned
                     </a>
             
             
@@ -571,10 +586,10 @@
                     
                         <h1 id="add-the-pusher-credentials-to-env">Add the Pusher credentials to <code>.env</code></h1>
 <p>When the Laravel application was created a <code>.env</code> file will also have been created in the root of the app.</p>
-<p><i class="fa fa-rocket fa-2"></i> Take the Pusher credentials we noted down earlier (<code>app_id</code>, <code>key</code> and <code>secret</code>) - or you may even have a browser tap still open on the Main app in the Pusher dashboard - and add them to the <code>.env</code> file:</p>
-<pre><code class="lang-php">PUSHER_APP_ID = <span class="hljs-string">&apos;YOUR_APP_ID&apos;</span>
-PUSHER_KEY = <span class="hljs-string">&apos;YOUR_APP_KEY&apos;</span>
-PUSHER_SECRET = <span class="hljs-string">&apos;YOUR_APP_SECRET&apos;</span>
+<p><i class="fa fa-rocket fa-2"></i> Take the Pusher credentials we noted down earlier (<code>app_id</code>, <code>key</code> and <code>secret</code>) - or you may even have a browser tap still open on the <em>App Keys</em> section of your app in the Pusher dashboard - and add them to the <code>.env</code> file:</p>
+<pre><code class="lang-php">PUSHER_APP_ID=YOUR_APP_ID
+PUSHER_KEY=YOUR_APP_KEY
+PUSHER_SECRET=YOUR_APP_SECRET
 </code></pre>
 <p>Now to integrate the Pusher PHP library. To do this you have a couple of options. The first is to use a Laravel Pusher Bridge and add a <a href="http://laravel.com/docs/5.1/providers" target="_blank">service provider</a>. The second is to make use of Laravel <a href="http://laravel.com/docs/5.1/events" target="_blank">events</a> and use a Pusher event broadcaster.</p>
 <h2 id="where-next">Where next?</h2>
@@ -601,17 +616,21 @@ PUSHER_SECRET = <span class="hljs-string">&apos;YOUR_APP_SECRET&apos;</span>
 <script src="../gitbook/app.js"></script>
 
     
+    <script src="../gitbook/plugins/gitbook-plugin-ga/plugin.js"></script>
+    
+
+    
     <script src="../gitbook/plugins/gitbook-plugin-livereload/plugin.js"></script>
     
 
 <script>
 require(["gitbook"], function(gitbook) {
-    var config = {"fontSettings":{"theme":null,"family":"sans","size":2}};
+    var config = {"fontSettings":{"theme":null,"family":"sans","size":2},"ga":{"token":"UA-59859803-7","configuration":"auto"}};
     gitbook.start(config);
 });
 </script>
 
-        
+        <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-59859803-7', 'auto');ga('send', 'pageview');</script>
     </body>
     
 </html>

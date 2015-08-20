@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Building the Notification UI | Building Real-Time Laravel Apps with Pusher</title>
+        <title>Getting Started - What we&#39;ve learned | Building Real-Time Laravel Apps with Pusher</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.2.0">
@@ -27,10 +27,10 @@
         
     
     
-    <link rel="next" href="../activity-streams/index.html" />
+    <link rel="next" href="../notifications/index.html" />
     
     
-    <link rel="prev" href="../notifications/trigger.html" />
+    <link rel="prev" href="../getting-started/pusher-js-debugging.html" />
     
 
         
@@ -38,7 +38,7 @@
     <body>
         
         
-    <div class="book" data-level="3.3" data-basepath=".." data-revision="Thu Aug 20 2015 13:03:48 GMT+0100 (BST)">
+    <div class="book" data-level="2.10" data-basepath=".." data-revision="Thu Aug 20 2015 13:03:48 GMT+0100 (BST)">
     
 
 <div class="book-summary">
@@ -270,7 +270,7 @@
             
         </li>
     
-        <li class="chapter " data-level="2.10" data-path="getting-started/learned.html">
+        <li class="chapter active" data-level="2.10" data-path="getting-started/learned.html">
             
                 
                     <a href="../getting-started/learned.html">
@@ -336,7 +336,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="3.3" data-path="notifications/ui.html">
+        <li class="chapter " data-level="3.3" data-path="notifications/ui.html">
             
                 
                     <a href="../notifications/ui.html">
@@ -584,53 +584,16 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="adding-notifications-to-the-ui">Adding Notifications to the UI</h1>
-<p>We know that our back-end application is successfully triggering events. Now let&apos;s look at how we can receive those events within our client application. Pusher has WebSocket-powered (with fallback) client libraries for JavaScript, Android and iOS.</p>
-<p>In this section we&apos;re going to use the Pusher JavaScript library to receive the notification from the server and use the <a href="https://github.com/CodeSeven/toastr" target="_blank">toastr</a> library to show the notifications. </p>
-<p>We briefly looked at the Pusher JavaScript library previously, but let&apos;s start by looking at some of the conventions in a bit more detail.</p>
-<h2 id="channels-events">Channels &amp; Events</h2>
-<p>We trigger events on channels from the back-end. On the front-end we <strong>subscribe</strong> to channels and bind to <strong>events</strong> on those channels. Whenever an event occurs on a channel we can define a <code>function</code> to be called to handle that event and any associated event data payload.</p>
-<pre><code class="lang-js"><span class="hljs-keyword">var</span> pusher = <span class="hljs-keyword">new</span> Pusher(<span class="hljs-string">&apos;{{env(&quot;PUSHER_KEY&quot;)}}&apos;</span>);
-<span class="hljs-keyword">var</span> channel = pusher.subscribe(<span class="hljs-string">&apos;channel-name&apos;</span>);
-channel.bind(<span class="hljs-string">&apos;event-name&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>) </span>{
-  <span class="hljs-comment">// do something with the event data</span>
-});
-</code></pre>
-<h2 id="showing-the-notifications">Showing the Notifications</h2>
-<p>The Pusher JavaScript library and the toastr notification library has already been included in the <a href="#">template</a> we copied earlier. So, all we need to do is subscribe to the <code>notifications</code> channel, bind to the <code>new-notification</code> event and use the toastr library to show the notification.</p>
-<p><i class="fa fa-rocket fa-2"></i> Use the following code outline to implement the notification functionality:</p>
-<pre><code class="lang-js">  $(notifyInit);
-
-  <span class="hljs-keyword">var</span> pusher = <span class="hljs-keyword">new</span> Pusher(<span class="hljs-string">&apos;{{env(&quot;PUSHER_KEY&quot;)}}&apos;</span>);
-
-  <span class="hljs-comment">// Subscribe to the channel</span>
-  <span class="hljs-keyword">var</span> channel = pusher.subscribe(<span class="hljs-string">&apos;notifications&apos;</span>);
-
-  <span class="hljs-comment">// Bind to the event and pass in the notification handler</span>
-  channel.bind(<span class="hljs-string">&apos;new-notification&apos;</span>, showNotification);
-<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
-</span></code></pre>
-<div class="alert alert-info">
-  <p>You can test the notification functionality without a back-end in two ways:</p>
-  <ol>
-    <li>Since the <code>showNotification</code> function is global you can test it by opening up the browser console and calling it with <code>showNotification({text:&quot;hello&quot;});</code>.</li>
-    <li>You can use the <a href="https://pusher.com/docs/debugging#event_creator" target="_blank">Event Creator</a> in the Pusher Debug Console to trigger events</li>
-  </ol>
-</div>
-
-<p>Once you&apos;ve put those few pieces of code in place you&apos;ve not got real-time notifications in your app. </p>
-<p><i class="fa fa-rocket fa-2"></i> Open up a <a href="http://localhost:8000/notifications" target="_blank">http://localhost:8000/notifications</a> in a second browser window - even a different browser altogether - and test out the functionality.</p>
-<div class="alert alert-info">
-  If you&apos;ve got a tool like awesome <a href="https://ngrok.com/" target="_blank">ngrok</a> installed you can share the app with anybody else in the world to test out your new real-time functionality.
-</div>
-
-<h2 id="extras">Extras</h2>
-<p>A few things to try if you&apos;ve time.</p>
-<h3 id="excluding-the-triggerer">Excluding the Triggerer</h3>
-<p>It&apos;s possible to stop the user who triggered the event also receiving the event by Pusher. To do this you need to pass a unique connection identifier called the <code>socket_id</code> to the <code>$pusher-&gt;trigger</code> function call.</p>
-<p><i class="fa fa-rocket fa-2"></i> You can get the <code>socket_id</code> on the client in JavaScript using <code>pusher.connection.socket_id</code> and pass it to the back-end <code>notifications/notify</code> endpoint in the <code>POST</code> data. Then you can use it to exclude that user from getting their own event using <code>$pusher-&gt;trigger($channelName, $eventName,  $eventData, $socketId)</code>.</p>
+                        <h1 id="what-we-ve-learned-i-class-fa-fa-graduation-cap-fa-2-i">What we&apos;ve learned <i class="fa fa-graduation-cap fa-2"></i></h1>
+<p>In this section you&apos;ve done a lot. You&apos;ve:</p>
+<ul>
+<li>Signed up for Pusher</li>
+<li>Set up your Laravel app - ready for real-time!</li>
+<li>Learned how to use the Pusher PHP library via a bridge and Event Broadcasting</li>
+<li>Learned how to debug Pusher integration on both the server and client</li>
+</ul>
 <h2 id="where-next">Where next?</h2>
-<p>Notifications demonstrates the easiest use case for real-time technology and Pusher. The next most common use case - which is really just an extension of notifications - is activity streams. So, let&apos;s look at <a href="../activity-streams">adding activity stream functionality to the Laravel app</a>.</p>
+<p>Phew! We can now move on to building our first real piece of functionality: <a href="../notifications">Real-Time Notifications</a>.</p>
 
                     
                     </section>
@@ -641,10 +604,10 @@ channel.bind(<span class="hljs-string">&apos;event-name&apos;</span>, <span clas
         </div>
 
         
-        <a href="../notifications/trigger.html" class="navigation navigation-prev " aria-label="Previous page: Trigger a Notification Event"><i class="fa fa-angle-left"></i></a>
+        <a href="../getting-started/pusher-js-debugging.html" class="navigation navigation-prev " aria-label="Previous page: Debugging with the Pusher JavaScript library"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../activity-streams/index.html" class="navigation navigation-next " aria-label="Next page: Activity Streams"><i class="fa fa-angle-right"></i></a>
+        <a href="../notifications/index.html" class="navigation navigation-next " aria-label="Next page: Real-Time Notifications"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

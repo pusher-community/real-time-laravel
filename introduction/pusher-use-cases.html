@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>(WiP) Pusher Use Cases | Building Real-Time Laravel Apps with Pusher</title>
+        <title>Pusher Use Cases | Building Real-Time Laravel Apps with Pusher</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.2.0">
@@ -38,7 +38,7 @@
     <body>
         
         
-    <div class="book" data-level="1.2" data-basepath=".." data-revision="Wed Aug 19 2015 23:00:17 GMT+0100 (BST)">
+    <div class="book" data-level="1.2" data-basepath=".." data-revision="Thu Aug 20 2015 13:03:48 GMT+0100 (BST)">
     
 
 <div class="book-summary">
@@ -108,7 +108,7 @@
                         
                             <b>1.2.</b>
                         
-                        (WiP) Pusher Use Cases
+                        Pusher Use Cases
                     </a>
             
             
@@ -265,6 +265,21 @@
                             <b>2.9.</b>
                         
                         Debugging with the Pusher JavaScript library
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.10" data-path="getting-started/learned.html">
+            
+                
+                    <a href="../getting-started/learned.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.10.</b>
+                        
+                        Getting Started - What we&#39;ve learned
                     </a>
             
             
@@ -570,18 +585,37 @@
                     <section class="normal" id="section-">
                     
                         <h1 id="pusher-use-cases-i-class-fa-fa-graduation-cap-fa-2-i">Pusher Use Cases <i class="fa fa-graduation-cap fa-2"></i></h1>
-<h2 id="notifications">Notifications</h2>
-<h2 id="signalling">Signalling</h2>
+<p>There are a number of common use case for real-time web technologies, and thus Pusher.</p>
+<p>This section will cover those use cases, but don&apos;t let it confine how <em>you</em> think about using Pusher.</p>
+<h2 id="notifications-signalling">Notifications &amp; Signalling</h2>
+<p><img src="../assets/img/itv-news-may-2014.png" alt=""></p>
+<p>Notifications are the simplest use case. As soon as something relevant to a user occurs let them know about it. We&apos;ve seen a similar thing on Twitter for years, we get notification popups on Facebook and in many other applications.</p>
+<p>Notifications can also be thought as a form of signalling; where there isn&apos;t a representation of the notification in the UI, but it instead triggers a reaction within an application.</p>
 <h2 id="activity-streams">Activity Streams</h2>
-<h2 id="data-visualisations">Data Visualisations</h2>
-<h2 id="live-dashboards">Live Dashboards</h2>
+<p><img src="../assets/img/delighted-app.gif" alt=""></p>
+<p>Activity Streams (feeds) are at the heart of social applications. The Facebook wall, the Twitter wall is effectively an activity stream, Google+ and any other social application. News and sport apps and websites are moving towards view that represents a stream of new and important information.</p>
+<p>The idea behind activity streams is to let you know what&apos;s been happening whilst keeping the user hooked, awaiting the next update in the timeline. And as soon as the next update is available it is streamed in.</p>
+<h2 id="data-visualisations-dashboards">Data Visualisations/Dashboards</h2>
+<p><img src="../assets/img/senate-election-results.png" alt=""></p>
+<p>The first uses of real-time web technologies were to show real-time changes in financial data. Eventually charts and graphs followed. </p>
+<p>Real-time data visualisations help you spot trends in data <em>as it happens</em> and generally keep you in the know about what&apos;s happening <em>right now</em>.</p>
 <h2 id="chat">Chat</h2>
+<video src="../assets/img/pie.mp4" autoplay loop width="100%">
+  Your browser does not support the <code>video</code> element.
+</video>
+
+<p>The other use case for real-time web technology that drove innovation was chat. It continues to be a core use case. In fact, in Mary Meeker&apos;s Internet Trends report for 2015, <a href="http://www.slideshare.net/kleinerperkins/internet-trends-v1/47" target="_blank">6 of the top apps were messaging applications</a>. </p>
+<p>Chat is continuing to grow in popularity and a real beneficial feature to any application.</p>
 <h2 id="collaborative-apps">Collaborative Apps</h2>
+<p><img src="../assets/img/atom-pair.gif" alt=""></p>
+<p>Collaborative applications is probably one of the most progressive uses of real-time technologies right now - innovating in areas that were previously restricted to individuals working alone or where long-winded processes slowed progression. Google Docs and the multi-user collaborative experiences offered by Docs, Sheets and Slides are the go to examples.</p>
+<p>Our own <a href="https://twitter.com/JamiePatel" target="_blank">Jamie Patel</a> recently built <a href="https://atom.io/packages/atom-pair" target="_blank">Atom Pair</a> which allows developers to collaborate within GitHub&apos;s Atom Editor.</p>
 <h2 id="multiplayer-games">Multiplayer Games</h2>
+<p><img src="../assets/img/quizup.png" alt=""></p>
+<p>Multiplayer games can be highly immersive and lots of fun. So it makes sense to use the Internet as the communications platform for multiplayer games. </p>
+<p>Whether it&apos;s trivia games like <a href="https://www.quizup.com/en" target="_blank">QuizUp</a> or more traditional games like Asteroids, Pusher can help with the functionality and infrastructure of these apps.</p>
 <h2 id="where-next">Where next?</h2>
-<ul>
-<li><a href="../getting-started/index.html">Get started with the workshop</a></li>
-</ul>
+<p>Let&apos;s <a href="../getting-started/index.html">get started with the workshop</a>.</p>
 
                     
                     </section>
@@ -604,17 +638,21 @@
 <script src="../gitbook/app.js"></script>
 
     
+    <script src="../gitbook/plugins/gitbook-plugin-ga/plugin.js"></script>
+    
+
+    
     <script src="../gitbook/plugins/gitbook-plugin-livereload/plugin.js"></script>
     
 
 <script>
 require(["gitbook"], function(gitbook) {
-    var config = {"fontSettings":{"theme":null,"family":"sans","size":2}};
+    var config = {"fontSettings":{"theme":null,"family":"sans","size":2},"ga":{"token":"UA-59859803-7","configuration":"auto"}};
     gitbook.start(config);
 });
 </script>
 
-        
+        <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-59859803-7', 'auto');ga('send', 'pageview');</script>
     </body>
     
 </html>
