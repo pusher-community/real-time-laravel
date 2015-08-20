@@ -1,6 +1,9 @@
 # Triggering a Notification Event
 
-Let's start by creating a `NotificationController` with two actions `getIndex` to show a view that lets a user send a notification and `postNotify` to handle a notification request and trigger the notification event.
+Let's start by creating a `NotificationController` with two actions:
+
+1. `getIndex` to show a view that lets a user send a notification
+2. `postNotify` to handle a notification request and trigger the notification event
 
 <i class="fa fa-rocket fa-2"></i> Create an empty controller with the following command:
 
@@ -86,7 +89,7 @@ As per the code comments this sets things up so that the `form` submission is ha
 
 In the `postNotify` function of our `NotificationController` we want to get the submitted text, do some basic sanitisation and trigger the event via Pusher.
 
-<i class="fa fa-rocket fa-2"></i> Over to you to complete the `TODO` items below. You'll also need to import `Illuminate\Support\Facades\App` in order to use the `App` facade to get the `Pusher` instance from the service container
+<i class="fa fa-rocket fa-2"></i> Over to you to complete the `TODO` items below. You'll also need to import `Illuminate\Support\Facades\App` in order to use the `App` facade to get the `Pusher` instance from the service container (see [Laravel Pusher Bridge](../getting-started/laravel-pusher-bridge.html)).
 
 ```php
 public function postNotify(Request $request)
@@ -99,7 +102,7 @@ public function postNotify(Request $request)
 }
 ```
 
-Remember that you can use the Pusher Debug Console to make sure that events are reaching Pusher. If you don't see the events there you can always look at the Laravel logs in `storage/logs/laravel.log`.
+Remember that you can use the Pusher Debug Console to make sure that events are reaching Pusher. If you don't see the events there you can always look at the Laravel logs in `storage/logs/laravel.log` (see [server debugging](server-debugging.html)).
 
 ## Where next?
 

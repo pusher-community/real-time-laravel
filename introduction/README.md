@@ -10,9 +10,11 @@ This workshop requires you to have:
 * a good understanding of PHP
 * a basic understanding of [Laravel](http://laravel.com/)
 * the [components required for a Laravel installation](http://laravel.com/docs/5.1#installation)
-* a basic understanding of [jQuery](http://jquery.com/)
+* a basic understanding of [jQuery](http://jquery.com/)<sup>†</sup>
 * a [GitHub](https://github.com/) account
 * access to the Internet
+
+*<sup>†</sup>jQuery - but it's 2015? jQuery is occasionally and unfairly ridiculed. We've chosen to use jQuery as it's a library that provides some browser fixes and productivity gains, as well as it being something that most developers will at least be familiar with. It's a good foundation to built upon. If there's enough demand for Angular, Ember, React, Vue.JS or frameworkX version in the future we'll certainly consider it. [Let us know](https://twitter.com/pusher).*
 
 ## Online Reference
 

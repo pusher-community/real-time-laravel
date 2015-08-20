@@ -1,6 +1,6 @@
 # Adding Notifications to the UI
 
-We know that our back-end application is successfully triggering events. Now let's look at how we can receive those events within our client application. Pusher has WebSocket-powered (with fallback) client libraries for JavaScript, Android and iOS.
+We know that our back-end application is successfully triggering events. Now let's look at how we can receive those events within our client application. Pusher has WebSocket-powered client libraries for JavaScript, Android and iOS.
 
 In this section we're going to use the Pusher JavaScript library to receive the notification from the server and use the [toastr](https://github.com/CodeSeven/toastr) library to show the notifications. 
 
@@ -8,7 +8,7 @@ We briefly looked at the Pusher JavaScript library previously, but let's start b
 
 ## Channels & Events
 
-We trigger events on channels from the back-end. On the front-end we **subscribe** to channels and bind to **events** on those channels. Whenever an event occurs on a channel we can define a `function` to be called to handle that event and any associated event data payload.
+We trigger events on channels from the back-end. On the front-end we [subscribe](https://pusher.com/docs/client_api_guide/client_public_channels#subscribe) to channels and bind to [events](https://pusher.com/docs/client_api_guide/client_events) on those channels. Whenever an event occurs on a channel we can define a `function` to be called to handle that event and any associated event data payload.
 
 ```js
 var pusher = new Pusher('{{env("PUSHER_KEY")}}');
@@ -20,20 +20,26 @@ channel.bind('event-name', function(data) {
 
 ## Showing the Notifications
 
-The Pusher JavaScript library and the toastr notification library has already been included in the [template](#) we copied earlier. So, all we need to do is subscribe to the `notifications` channel, bind to the `new-notification` event and use the toastr library to show the notification.
+The Pusher JavaScript library and the toastr notification library has already been included in the [template](../assets/laravel_app/notifiation.blade.php) we copied earlier. So, all we need to do is subscribe to the `notifications` channel, bind to the `new-notification` event and use the toastr library to show the notification.
 
 <i class="fa fa-rocket fa-2"></i> Use the following code outline to implement the notification functionality:
 
 ```js
   $(notifyInit);
+  
+  // Use toastr to show the notification
+  function showNotification(data) {
+      // TODO: get the text from the event data
+      
+      // TODO: use the text in the notification
+      //toastr.success(text, null, {"positionClass": "toast-bottom-left"});
+  }
 
   var pusher = new Pusher('{{env("PUSHER_KEY")}}');
 
-  // Subscribe to the channel
-  var channel = pusher.subscribe('notifications');
+  // TODO: Subscribe to the channel
 
-  // Bind to the event and pass in the notification handler
-  channel.bind('new-notification', showNotification);
+  // TODO: Bind to the event and pass in the notification handler
 </script>
 ```
 
@@ -55,7 +61,7 @@ Once you've put those few pieces of code in place you've not got real-time notif
 
 ## Extras
 
-A few things to try if you've time.
+If you get everything else done and you've still some time left. Why not try...
 
 ### Excluding the Triggerer
 
@@ -65,4 +71,4 @@ It's possible to stop the user who triggered the event also receiving the event 
 
 ## Where next?
 
-Notifications demonstrates the easiest use case for real-time technology and Pusher. The next most common use case - which is really just an extension of notifications - is activity streams. So, let's look at [adding activity stream functionality to the Laravel app](../activity-streams).
+Let's have a look a [what we've learned](./learned.md) in this chapter.

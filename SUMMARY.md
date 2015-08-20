@@ -16,6 +16,7 @@
   * [Fundamentals](notifications/fundamentals.md)
   * [Trigger a Notification Event](notifications/trigger.md)
   * [Building the Notification UI](notifications/ui.md)
+  * [Notifications - What we've learned](notifications/learned.md)
 * [Activity Streams](activity-streams/README.md)
   * [Super Simple Social Auth](activity-streams/simple-auth.md)
   * [Triggering Activity Events](activity-streams/activities.md)
