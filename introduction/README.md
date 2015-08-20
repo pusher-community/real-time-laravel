@@ -57,6 +57,20 @@ Warnings will be highlighted in orange:
 
 <div class="alert alert-warning">I'm a warning notice</div>
 
+## A 2 Hour Workshop!?!
+
+Yep, we only have two hours. Here's how we plan to achieve this:
+
+1. Introduction - 10 minutes
+2. Getting Started - 20 minutes
+3. Notifications - 20 minutes
+4. Activity Streams - 30 minutes
+5. Chat - 30 minutes
+
+That's 1 hour and 10 minutes, leaving a whole 10 minutes to spare.
+
+*Fingers crossed!*
+
 ## Where next?
 
 Since the two main technologies in this workshop are Laravel and Pusher, and it's assumed you've a good understanding of Laravel, it's time to [find out about Pusher](./what-is-pusher.md).
