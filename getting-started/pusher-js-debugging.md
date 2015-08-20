@@ -37,4 +37,4 @@ var pusher = new Pusher("{{env('PUSHER_KEY')}}")
 
 Still stuck? **Ask the instructor** if you're in a workshop. If not, take a look at the [Pusher Support desk](https://support.pusher.com). From there you can contact support if required.
 
-If all is well, we can move on to building our first real piece of functionality: [Real-Time Notifications](../notifications/).
+Let's see [what we've just learned](./learned.md).
