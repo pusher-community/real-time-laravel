@@ -50,6 +50,10 @@ In the code above we're using the `Log` facade, creating a `LaravelLoggerProxy` 
 
 This logging shows us the interaction that took place with the Pusher HTTP API and the response.
 
+<div class="alert alert-info">
+  If - at the end of this whole getting started chapter - you have some spare time, it might be worth taking a look at setting up the <a href="https://github.com/barryvdh/laravel-debugbar">Laravel Debug Bar</a>.
+</div>
+
 ## Where next?
 
 Now that you've set up your logging and you know how to view the log output we're ready to move to the client and look at [integrating the Pusher JS library](./pusher-js-integration.md).
