@@ -5,7 +5,7 @@ This is a workshop on how to use Pusher to add awesome real-time features to you
 So, let's create a Laravel app.
 
 <div class="alert alert-info">
-    This workshop has been written using Laravel 5.1. So, it's assumed you have Laravel installed. If not, please following the <a href="http://laravel.com/docs/5.1/installation">official Laravel installation guide</a>.
+    This workshop has been written using Laravel 5.1. So, it's assumed you have Laravel installer or <a href="https://getcomposer.org/"></a> installed. If not, please following the <a href="http://laravel.com/docs/5.1/installation">official Laravel installation guide</a>.
 </div>
 
 ## Create a Laravel app
@@ -32,7 +32,7 @@ Otherwise, you can use composer:
 
 ## Run the app
 
-<i class="fa fa-rocket fa-2"></i> To make sure everything is working, run the newly created application. From a the `real-time-app` directory in the terminal or console window run the following:
+<i class="fa fa-rocket fa-2"></i> To make sure everything is working, run the newly created application. From the `real-time-app` directory in the terminal or console window run the following:
 
 ```
 › php artisan serve

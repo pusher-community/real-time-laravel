@@ -1,6 +1,6 @@
 * [About this Workshop](introduction/README.md)
   * [What is Pusher?](introduction/what-is-pusher.md)
-  * [(WiP) Pusher Use Cases](introduction/pusher-use-cases.md)
+  * [Pusher Use Cases](introduction/pusher-use-cases.md)
 * [Getting Started](getting-started/README.md)
   * [Sign up for Pusher](getting-started/sign-up.md)
   * [Laravel App Setup](getting-started/laravel-app.md)

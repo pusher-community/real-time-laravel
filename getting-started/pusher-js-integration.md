@@ -1,6 +1,6 @@
 # Using the Pusher JavaScript library
 
-Now that everything is working on the server-side it's time to turn to the client-side and look at adding the Pusher JavaScript library to the app so that the events that are being triggered on the server can be received on the client.
+Now that everything is working on the server-side it's time to turn to the client-side and look at adding the [Pusher JavaScript library](https://github.com/pusher/pusher-js) to the app so that the events that are being triggered on the server can be received on the client.
 
 <i class="fa fa-rocket fa-2"></i> Open up `resources/views/welcome.blade.php` and include the following script:
 

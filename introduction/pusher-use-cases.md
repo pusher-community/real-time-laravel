@@ -18,13 +18,15 @@ Notifications can also be thought as a form of signalling; where there isn't a r
 
 Activity Streams (feeds) are at the heart of social applications. The Facebook wall, the Twitter wall is effectively an activity stream, Google+ and any other social application. News and sport apps and websites are moving towards view that represents a stream of new and important information.
 
-The idea behind activity streams is to let you know what's been happening whilst keeping the user hooked, awaiting the next update in the timeline.
+The idea behind activity streams is to let you know what's been happening whilst keeping the user hooked, awaiting the next update in the timeline. And as soon as the next update is available it is streamed in.
 
 ## Data Visualisations/Dashboards
 
 ![](../assets/img/senate-election-results.png)
 
-The first uses of real-time web technologies were to show real-time changes in financial data. Eventually charts followed. Real-time data visualisations help you spot trends in data *as it happens* and generally keep you in the know about what's happening *right now*.
+The first uses of real-time web technologies were to show real-time changes in financial data. Eventually charts and graphs followed. 
+
+Real-time data visualisations help you spot trends in data *as it happens* and generally keep you in the know about what's happening *right now*.
 
 ## Chat
 
@@ -32,13 +34,15 @@ The first uses of real-time web technologies were to show real-time changes in f
   Your browser does not support the <code>video</code> element.
 </video>
 
-The other use case for real-time web technology that drove innovation was chat. It continues to be a core use case. In fact, in Mary Meeker's Internet Trends report for 2015, [6 of the top apps were messaging applications](http://www.slideshare.net/kleinerperkins/internet-trends-v1/47). Chat is continuing to grow in popularity and a real beneficial feature to any application.
+The other use case for real-time web technology that drove innovation was chat. It continues to be a core use case. In fact, in Mary Meeker's Internet Trends report for 2015, [6 of the top apps were messaging applications](http://www.slideshare.net/kleinerperkins/internet-trends-v1/47). 
+
+Chat is continuing to grow in popularity and a real beneficial feature to any application.
 
 ## Collaborative Apps
 
 ![](../assets/img/atom-pair.gif)
 
-Collaborative applications represent the most progressive use of real-time technologies - innovating in areas that were previously restricted to individuals working alone or where long-winded processes slowed progression. Google Docs and the multi-user collaborative experiences offered by Docs, Sheets and Slides are the go to examples.
+Collaborative applications is probably one of the most progressive uses of real-time technologies right now - innovating in areas that were previously restricted to individuals working alone or where long-winded processes slowed progression. Google Docs and the multi-user collaborative experiences offered by Docs, Sheets and Slides are the go to examples.
 
 Our own [Jamie Patel](https://twitter.com/JamiePatel) recently built [Atom Pair](https://atom.io/packages/atom-pair) which allows developers to collaborate within GitHub's Atom Editor.
 
@@ -46,7 +50,9 @@ Our own [Jamie Patel](https://twitter.com/JamiePatel) recently built [Atom Pair]
 
 ![](../assets/img/quizup.png)
 
-Multiplayer games can be highly immersive and lots of fun. So it makes sense to use the Internet as the communications platform for multiplayer games. Whether it's trivia games like [QuizUp](https://www.quizup.com/en) or more traditional games like Asteroids, Pusher can help with the functionality and infrastructure of these apps.
+Multiplayer games can be highly immersive and lots of fun. So it makes sense to use the Internet as the communications platform for multiplayer games. 
+
+Whether it's trivia games like [QuizUp](https://www.quizup.com/en) or more traditional games like Asteroids, Pusher can help with the functionality and infrastructure of these apps.
 
 ## Where next?
 

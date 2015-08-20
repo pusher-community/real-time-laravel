@@ -1,12 +1,12 @@
 # Debugging your server-side integration with Pusher
 
 <div class="alert alert-warning">
-  For the moment this section only covers debugging your integration via the Laravel Pusher Bridge.
+  For the moment this section only covers debugging your integration via the <a href="https://github.com/vinkla/pusher">Laravel Pusher Bridge</a>.
 </div>
 
-The Pusher PHP library provides an abstraction upon the underlying HTTP requests that are made to Pusher in order to do things like trigger events. Sometimes things go wrong or we make mistakes. So it can be really handy to be able to know what's going on "under the hood" within the Pusher PHP library.
+The [Pusher PHP library](https://github.com/pusher/pusher-http-php) provides an abstraction upon the underlying HTTP requests that are made to Pusher in order to do things like [trigger events](https://pusher.com/docs/server_api_guide/interact_rest_api#publishing-events). Sometimes things go wrong or we make mistakes. So it can be really handy to be able to know what's going on "under the hood" within the library.
 
-This section provides a way of logging the Pusher library debug output to the Laravel logs. There may be a better way of doing this, so please speak to the instructor or [submit a pull request](https://github.com/pusher-community/real-time-laravel) if you have any ideas. Hopefully things will become a bit easier in the future.
+This section provides a way of logging the Pusher library debug output to the Laravel logs. There may be alternative way of doing this, so please speak to the instructor or [submit a pull request](https://github.com/pusher-community/real-time-laravel) if you have any ideas. Hopefully things will become a bit easier in the future.
 
 ## Adding Pusher Logging via the AppServiceProvider
 

@@ -4,7 +4,11 @@ Pusher is a hosted service that makes it *super-easy* to add real-time data and 
 
 ![](../assets/img/pusher-circles.png)
 
-Pusher sits as a real-time layer between your servers and your clients. We maintain persistent connections to the clients - over WebSocket if possible and falling back to HTTP-based connectivity - so that as soon as your servers have new data that they want to push to the clients they can do, instantly via Pusher.
+Pusher sits as a real-time layer between your servers and your clients. Pusher maintains persistent connections to the clients - over WebSocket if possible and falling back to HTTP-based connectivity - so that as soon as your servers have new data that they want to push to the clients they can do, instantly via Pusher.
+
+Pusher offers libraries to integrate into all the main runtimes and frameworks. PHP, Ruby, Python, Java, .NET, Go and Node on the server and JavaScript, Objective-C (iOS) and Java (Android) on the client.
+
+Pusher is a highly scalable real-time solution established in 2010 and has lots of awesome customers including GitHub, MailChimp, CodeShip, The Financial Times, UserVoice, Travis CI and QuizUp.
 
 ## Where next?
 

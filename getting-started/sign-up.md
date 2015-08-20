@@ -2,7 +2,7 @@
 
 <i class="fa fa-rocket fa-2"></i> Please sign up for a free Pusher account via [pusher.com/signup](https://pusher.com/signup).
 
-Once you've done that you'll land within a "Main" application page. For this workshop all you need to do is take a note of the "App Credentials". These are:
+Once you've done that you'll land within an "App Keys" page for your application. For this workshop all you need to do is take a note of the "App Credentials". These are:
 
 * `app_id`
 * `key`
@@ -14,4 +14,4 @@ Once you've done that you'll land within a "Main" application page. For this wor
 
 ## Where next?
 
-* Now that you've got your "App Credentials" and familiarised yourself with the Pusher Debug Console it's time to [create your Laravel app](./laravel-app.md)
+Now that you've got your "App Credentials" and familiarised yourself with the Pusher Debug Console it's time to [create your Laravel app](./laravel-app.md)

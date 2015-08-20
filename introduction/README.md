@@ -2,6 +2,18 @@
 
 The Real-Time Laravel with Pusher Workshop aims to be simple to follow and can be undertaken either in a class room environment or on your own as a set of tutorials.
 
+## Prerequisites
+
+This workshop requires you to have:
+
+* [composer](https://getcomposer.org/) installed
+* a good understanding of PHP
+* a basic understanding of [Laravel](http://laravel.com/)
+* the [components required for a Laravel installation](http://laravel.com/docs/5.1#installation)
+* a basic understanding of [jQuery](http://jquery.com/)
+* a [GitHub](https://github.com/) account
+* access to the Internet
+
 ## Online Reference
 
 The workshop can be found online here:
@@ -30,6 +42,10 @@ There are only a few conventions to look out for.
 ### Exercise <i class="fa fa-rocket fa-2"></i>
 
 Anything marked with a <i class="fa fa-rocket fa-2"></i> indicates that this is an exercise that you should do.
+
+### Instructor-lead sections <i class="fa fa-graduation-cap fa-2"></i>
+
+As mentioned earlier, any section that will be instructor lead is flagged with a <i class="fa fa-graduation-cap fa-2"></i> so you don't need to read all the text in that section since the instructor will cover it.
 
 ### Notices
 

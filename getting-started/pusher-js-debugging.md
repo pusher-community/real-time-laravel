@@ -1,6 +1,8 @@
 # Debugging your client-side integration with Pusher
 
-The Pusher Debug Console is great for understand how the Pusher JavaScript library is interacting with Pusher.
+The [Pusher Debug Console](https://pusher.com/docs/debugging#pusher_debug_console) is great for understand how the Pusher JavaScript library is interacting with Pusher.
+
+![The Pusher Debug Console](../assets/img/pusher-debug-console.png)
 
 Here's what to check:
 
@@ -9,6 +11,8 @@ Here's what to check:
 * If the above seem fine then make sure the `Subscribed` entry is occuring *before* the `API Message` entry. If not, then it means the message is being sent before Pusher knows the client is interested in it.
 
 As well as the Pusher Debug Console you can also configure the Pusher JavaScript library so that it will log information, exposing its internal workings, to the browser console. 
+
+![Pusher JavaScript Logging](../assets/img/pusher-js-logging.png)
 
 <i class="fa fa-rocket fa-2"></i> Update your client-side code:
 
