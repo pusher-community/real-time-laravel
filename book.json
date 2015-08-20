@@ -1,5 +1,11 @@
 {
   "styles": {
     "website": "assets/styles/website.css"
-  }
+  },
+  "plugins": ["ga"],
+    "pluginsConfig": {
+        "ga": {
+            "token": "UA-59859803-7"
+        }
+    }
 }
