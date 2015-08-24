@@ -4,7 +4,7 @@ We clearly don't have time to build a full social network. But we can support a 
 
 ## Create the Controller and View
 
-<i class="fa fa-rocket fa-2"></i> Let's start by creating a plain controller:
+<i class="fa fa-rocket fa-2"></i> Let's start by creating a plain controller called `ActivityController`:
 
 ```
 › php artisan make:controller ActivityController --plain
@@ -35,6 +35,7 @@ class ActivityController extends Controller
      */
     public function getIndex()
     {
+        // If there is no user, redirect to GitHub login
         if(!$this->user)
         {
             return redirect('auth/github?redirect=/activities');
@@ -49,6 +50,7 @@ class ActivityController extends Controller
         ];
 
         // TODO: trigger event
+        
         return view('activities');
     }
 
@@ -62,7 +64,7 @@ class ActivityController extends Controller
     }
 
     /**
-     * Like an activity
+     * Like an exiting activity
      * @param $id The ID of the activity that has been liked
      */
     public function postLike($id)
@@ -74,7 +76,7 @@ class ActivityController extends Controller
 
 In the code above you'll notice that the `__construct()` attempts to grab the user from the `Session` and in `getIndex()` the value of `$this->user` is checked. If there isn't a logged in user the app redirects in order for the user to log in. By having a user we can identify who has triggered an activity event. There's an example in the code above of getting both the `username` and `avatar`. This can then be used when we trigger events via Pusher, and ultimately display that information in our user interface.
 
-<i class="fa fa-rocket fa-2"></i> The `ActivityController` reliease on an `activities` view so let's create that. Create a `resources/views/activities.blade.php` file and copy & paste the contents of [activities.blade.php](../assets/laravel_app/activities.blade.php) into it (or just copy over the file).
+<i class="fa fa-rocket fa-2"></i> The `ActivityController` relies on an `activities` view so let's create that. Create a `resources/views/activities.blade.php` file and copy & paste the contents of [activities.blade.php](../assets/laravel_app/activities.blade.php) into it (or just copy over the file).
 
 <i class="fa fa-rocket fa-2"></i> Finally, add an entry to your `app/Http/routes.php`:
 
@@ -104,6 +106,14 @@ $activity = [
 ```
 
 <i class="fa fa-rocket fa-2"></i> For the event that's triggered in the `postLike($id)` action also send the ID of the activity that the user liked on a `likedActivityId` property using the `$id` value.
+
+```php
+$activity = [
+    // Other properties...
+    
+    'likedActivityId' => $id
+];
+```
 
 ## Building the ActivityStream UI
 
