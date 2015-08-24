@@ -38,7 +38,7 @@
     <body>
         
         
-    <div class="book" data-level="4.1" data-basepath=".." data-revision="Thu Aug 20 2015 13:03:48 GMT+0100 (BST)">
+    <div class="book" data-level="4.1" data-basepath=".." data-revision="Mon Aug 24 2015 22:35:42 GMT+0100 (CEST)">
     
 
 <div class="book-summary">
@@ -351,6 +351,21 @@
             
         </li>
     
+        <li class="chapter " data-level="3.4" data-path="notifications/learned.html">
+            
+                
+                    <a href="../notifications/learned.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                        What we&#39;ve learned
+                    </a>
+            
+            
+        </li>
+    
 
             </ul>
             
@@ -402,6 +417,21 @@
             
         </li>
     
+        <li class="chapter " data-level="4.3" data-path="activity-streams/learned.html">
+            
+                
+                    <a href="../activity-streams/learned.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.3.</b>
+                        
+                        What we&#39;ve learned
+                    </a>
+            
+            
+        </li>
+    
 
             </ul>
             
@@ -438,6 +468,21 @@
             
         </li>
     
+        <li class="chapter " data-level="5.2" data-path="chat/learned.html">
+            
+                
+                    <a href="../chat/learned.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.2.</b>
+                        
+                        What we&#39;ve learned
+                    </a>
+            
+            
+        </li>
+    
 
             </ul>
             
@@ -452,7 +497,7 @@
                         
                             <b>6.</b>
                         
-                        (WiP) What else can Pusher do?
+                        What else can Pusher do?
                     </a>
             
             
@@ -468,7 +513,7 @@
                         
                             <b>6.1.</b>
                         
-                        (WiP) Resources
+                        Resources
                     </a>
             
             
@@ -586,7 +631,7 @@
                     
                         <h1 id="super-simple-social-auth">Super Simple Social Auth</h1>
 <p>To give an activity more context it&apos;s important to know who is triggering that activity. So, we need some form of authentication resulting in an associated logged in user.</p>
-<p>For each component we add to an application we increase its complexity. For that reason we&apos;re going to avoid adding a database dependency. Instead, we&apos;re going to use social login using the <a href="https://github.com/laravel/socialite/" target="_blank">Socialite</a> package and simply store the authenticated user information in the <code>Session</code>. <strong>This isn&apos;t a production grade solution</strong>, but it helps us get simple authentication added to our application in super-quick time.</p>
+<p>For each component we add to an application we increase its complexity - something we want to avoid in this workshop. For that reason we&apos;re going to avoid adding a database dependency. Instead, we&apos;re going to use social login using the <a href="https://github.com/laravel/socialite/" target="_blank">Socialite</a> package and simply store the authenticated user information in the <code>Session</code>. <strong>This isn&apos;t a production grade solution</strong>, but it helps us get simple authentication added to our application in super-quick time.</p>
 <p><i class="fa fa-rocket fa-2"></i> Since <a href="https://github.com" target="_blank">GitHub</a> is referred to in the Socialite documentation we&apos;re going to use it for our social login. So, you&apos;ll need a GitHub account.</p>
 <h2 id="install-socialite">Install Socialite</h2>
 <p><i class="fa fa-rocket fa-2"></i> Run the following command from a terminal or console:</p>
@@ -700,10 +745,10 @@ GITHUB_CALLBACK_URL=http://localhost:8000/auth/github/callback
 <pre><code class="lang-php">Route::get(<span class="hljs-string">&apos;auth/github&apos;</span>, <span class="hljs-string">&apos;Auth\AuthController@redirectToProvider&apos;</span>);
 Route::get(<span class="hljs-string">&apos;auth/github/callback&apos;</span>, <span class="hljs-string">&apos;Auth\AuthController@handleProviderCallback&apos;</span>);
 </code></pre>
-<p>And this is simple?! Anyway...</p>
+<p>There are a few steps here. But hopefully you managed to get it done quite quickly!</p>
 <h2 id="testing-github-social-auth">Testing GitHub Social Auth</h2>
 <p>We&apos;re finally in a position to test that our GitHub social login is working.</p>
-<p><i class="fa fa-rocket fa-2"></i> Navigate to <code>http://localhost:8000/auth/github</code> and you should be redirected to GitHub to login. Once you allow the application to access your basic information you should be redirected back to <code>http://localhost:8000/auth/github/callback?code=...&amp;redirect=&amp;state=...</code>. If you get the <code>GitHub auth successful</code> text it means things are working!</p>
+<p><i class="fa fa-rocket fa-2"></i> Navigate to <a href="http://localhost:8000/auth/github" target="_blank">http://localhost:8000/auth/github</a> and you should be redirected to GitHub to login. Once you allow the application to access your basic information you should be redirected back to <code>http://localhost:8000/auth/github/callback?code=...&amp;redirect=&amp;state=...</code>. If you get the <code>GitHub auth successful</code> text it means things are working!</p>
 <p>We now have access to the GitHub user information via <code>Session::get(&apos;user&apos;)</code> and we&apos;ll make use of that shortly.</p>
 <h2 id="where-next">Where next?</h2>
 <p>It&apos;s now time to <a href="activities.html">Trigger Activity Events</a>.</p>

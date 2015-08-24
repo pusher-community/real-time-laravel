@@ -38,7 +38,7 @@
     <body>
         
         
-    <div class="book" data-level="3.2" data-basepath=".." data-revision="Thu Aug 20 2015 13:03:48 GMT+0100 (BST)">
+    <div class="book" data-level="3.2" data-basepath=".." data-revision="Mon Aug 24 2015 22:35:42 GMT+0100 (CEST)">
     
 
 <div class="book-summary">
@@ -351,6 +351,21 @@
             
         </li>
     
+        <li class="chapter " data-level="3.4" data-path="notifications/learned.html">
+            
+                
+                    <a href="../notifications/learned.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                        What we&#39;ve learned
+                    </a>
+            
+            
+        </li>
+    
 
             </ul>
             
@@ -402,6 +417,21 @@
             
         </li>
     
+        <li class="chapter " data-level="4.3" data-path="activity-streams/learned.html">
+            
+                
+                    <a href="../activity-streams/learned.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.3.</b>
+                        
+                        What we&#39;ve learned
+                    </a>
+            
+            
+        </li>
+    
 
             </ul>
             
@@ -438,6 +468,21 @@
             
         </li>
     
+        <li class="chapter " data-level="5.2" data-path="chat/learned.html">
+            
+                
+                    <a href="../chat/learned.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.2.</b>
+                        
+                        What we&#39;ve learned
+                    </a>
+            
+            
+        </li>
+    
 
             </ul>
             
@@ -452,7 +497,7 @@
                         
                             <b>6.</b>
                         
-                        (WiP) What else can Pusher do?
+                        What else can Pusher do?
                     </a>
             
             
@@ -468,7 +513,7 @@
                         
                             <b>6.1.</b>
                         
-                        (WiP) Resources
+                        Resources
                     </a>
             
             
@@ -585,7 +630,11 @@
                     <section class="normal" id="section-">
                     
                         <h1 id="triggering-a-notification-event">Triggering a Notification Event</h1>
-<p>Let&apos;s start by creating a <code>NotificationController</code> with two actions <code>getIndex</code> to show a view that lets a user send a notification and <code>postNotify</code> to handle a notification request and trigger the notification event.</p>
+<p>Let&apos;s start by creating a <code>NotificationController</code> with two actions:</p>
+<ol>
+<li><code>getIndex</code> to show a view that lets a user send a notification</li>
+<li><code>postNotify</code> to handle a notification request and trigger the notification event</li>
+</ol>
 <p><i class="fa fa-rocket fa-2"></i> Create an empty controller with the following command:</p>
 <pre><code>&#x203A; php artisan make:controller NotificationController --plain
 </code></pre><p><i class="fa fa-rocket fa-2"></i> Open up the newly created <code>app/Http/Controllers/NotificationController.php</code> and add <code>getIndex</code> and <code>postNotify</code> actions as follows:</p>
@@ -648,7 +697,7 @@ $(notifyInit);
 <p><i class="fa fa-rocket fa-2"></i> Open <a href="http://localhost:8000/notifications" target="_blank">http://localhost:8000/notifications</a>, enter some text and hit <em>enter</em> to submit the form. You should see <code>notification submitted</code> logged to the browser console.</p>
 <h2 id="trigger-the-event-via-pusher">Trigger the Event via Pusher</h2>
 <p>In the <code>postNotify</code> function of our <code>NotificationController</code> we want to get the submitted text, do some basic sanitisation and trigger the event via Pusher.</p>
-<p><i class="fa fa-rocket fa-2"></i> Over to you to complete the <code>TODO</code> items below. You&apos;ll also need to import <code>Illuminate\Support\Facades\App</code> in order to use the <code>App</code> facade to get the <code>Pusher</code> instance from the service container</p>
+<p><i class="fa fa-rocket fa-2"></i> Over to you to complete the <code>TODO</code> items below. You&apos;ll also need to import <code>Illuminate\Support\Facades\App</code> in order to use the <code>App</code> facade to get the <code>Pusher</code> instance from the service container (see <a href="../getting-started/laravel-pusher-bridge.html">Laravel Pusher Bridge</a>).</p>
 <pre><code class="lang-php"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">postNotify</span><span class="hljs-params">(Request <span class="hljs-variable">$request</span>)</span>
 </span>{
   <span class="hljs-variable">$notifyText</span> = e(<span class="hljs-variable">$request</span>-&gt;input(<span class="hljs-string">&apos;notify_text&apos;</span>));
@@ -658,7 +707,7 @@ $(notifyInit);
   <span class="hljs-comment">// <span class="hljs-doctag"><span class="hljs-keyword">TODO</span></span>: Trigger `new-notification` event on `notifications` channel</span>
 }
 </code></pre>
-<p>Remember that you can use the Pusher Debug Console to make sure that events are reaching Pusher. If you don&apos;t see the events there you can always look at the Laravel logs in <code>storage/logs/laravel.log</code>.</p>
+<p>Remember that you can use the Pusher Debug Console to make sure that events are reaching Pusher. If you don&apos;t see the events there you can always look at the Laravel logs in <code>storage/logs/laravel.log</code> (see <a href="server-debugging.html">server debugging</a>).</p>
 <h2 id="where-next">Where next?</h2>
 <p>Once you can see the event reaching the Pusher Debug Console we&apos;re good to start <a href="ui.html">adding the notifications UI</a>.</p>
 

@@ -38,7 +38,7 @@
     <body>
         
         
-    <div class="book" data-level="3.1" data-basepath=".." data-revision="Thu Aug 20 2015 13:03:48 GMT+0100 (BST)">
+    <div class="book" data-level="3.1" data-basepath=".." data-revision="Mon Aug 24 2015 22:35:42 GMT+0100 (CEST)">
     
 
 <div class="book-summary">
@@ -351,6 +351,21 @@
             
         </li>
     
+        <li class="chapter " data-level="3.4" data-path="notifications/learned.html">
+            
+                
+                    <a href="../notifications/learned.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                        What we&#39;ve learned
+                    </a>
+            
+            
+        </li>
+    
 
             </ul>
             
@@ -402,6 +417,21 @@
             
         </li>
     
+        <li class="chapter " data-level="4.3" data-path="activity-streams/learned.html">
+            
+                
+                    <a href="../activity-streams/learned.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.3.</b>
+                        
+                        What we&#39;ve learned
+                    </a>
+            
+            
+        </li>
+    
 
             </ul>
             
@@ -438,6 +468,21 @@
             
         </li>
     
+        <li class="chapter " data-level="5.2" data-path="chat/learned.html">
+            
+                
+                    <a href="../chat/learned.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.2.</b>
+                        
+                        What we&#39;ve learned
+                    </a>
+            
+            
+        </li>
+    
 
             </ul>
             
@@ -452,7 +497,7 @@
                         
                             <b>6.</b>
                         
-                        (WiP) What else can Pusher do?
+                        What else can Pusher do?
                     </a>
             
             
@@ -468,7 +513,7 @@
                         
                             <b>6.1.</b>
                         
-                        (WiP) Resources
+                        Resources
                     </a>
             
             
@@ -585,29 +630,42 @@
                     <section class="normal" id="section-">
                     
                         <h1 id="real-time-fundamentals-i-class-fa-fa-graduation-cap-fa-2-i">Real-Time Fundamentals <i class="fa fa-graduation-cap fa-2"></i></h1>
-<p>So we&apos;re going to build real-time notifications into a Laravel application by creating a controller dedicated to triggering notifications and a UI to allow users to create those notifications. </p>
+<p>So we&apos;re going to build real-time notifications into a Laravel application by creating a <a href="http://laravel.com/docs/5.1/controllers" target="_blank">controller</a> dedicated to triggering notifications and a <a href="http://laravel.com/docs/5.1/views" target="_blank">view</a> to allow users to create those notifications. </p>
 <p>But first, lets&apos; review some of the key Pusher concepts.</p>
 <h2 id="channels-events-event-data">Channels, Events &amp; Event Data</h2>
 <p>Three fundamental concepts in Pusher are: channels, events and event data.</p>
-<p><strong>Channels</strong> are used to identify the context of data within your application; this frequently maps to data being stored in a database. Since we&apos;re building a notification feature it&apos;ll make sense to name our channel <code>notifications</code>.</p>
-<p>If Channels identify the data then <strong>Events</strong> represent something happening to that data. If we think about databases this could be any CRUD (Create, Read, Update, Delete) event. In the context of notifications this could mean:</p>
+<p><a href="https://pusher.com/docs/channels" target="_blank">Channels</a> are used to identify the context of data within your application; this frequently maps to data being stored in a database. Since we&apos;re building a notification feature it&apos;ll make sense to name our channel <code>notifications</code>.</p>
+<p>If Channels identify the data then <a href="https://pusher.com/docs/client_api_guide/client_events" target="_blank">Events</a> represent something happening to that data. If we think about databases this could be any CRUD (Create, Read, Update, Delete) event. In the context of notifications this could mean:</p>
 <ul>
 <li>A new notification has been created</li>
 <li>A notification has been read</li>
 <li>An existing notification has been updated (modified)</li>
-<li>An existing notification has been deleted (or maybe marked as no longer relevant and simply archived)</li>
+<li>An existing notification has been deleted/destroyed (or maybe marked as no longer relevant and simply archived)</li>
 </ul>
 <p>For our feature let&apos;s give the event a name of <code>new-notification</code>. We&apos;ll use this instead of <code>created</code> as it provides better semantics.</p>
 <p>Each event has an <strong>Event Data</strong> payload. In our simple use case we&apos;re going to supply just the text for the notification. But in a more real world use case you would also likely provide information that can be used to allow the user to perform some sort of action on the notification e.g. click through to view more detailed information.</p>
 <p>So, our data may look like:</p>
 <pre><code class="lang-php"><span class="hljs-variable">$data</span> = <span class="hljs-keyword">array</span>(<span class="hljs-string">&apos;text&apos;</span> =&gt; <span class="hljs-string">&apos;this is a notification&apos;</span>);
 </code></pre>
-<p>The Pusher PHP library (and all other libraries) will handles serialising and deserialising data. The JSON representation of the above event data will look as follows:</p>
+<p>Or even:</p>
+<pre><code class="lang-php"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Notification</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-variable">$text</span>;
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__construct</span><span class="hljs-params">(<span class="hljs-variable">$text</span>)</span>
+    </span>{
+        <span class="hljs-variable">$this</span>-&gt;text = <span class="hljs-variable">$text</span>;
+    }
+}
+
+<span class="hljs-variable">$data</span> = <span class="hljs-keyword">new</span> Notification(<span class="hljs-string">&apos;this is a notification&apos;</span>);
+</code></pre>
+<p>The Pusher PHP library (and all other libraries) will handles serialising and deserialising data. In both cases above, triggering an event with the <code>$data</code> event payload will result in the same information being sent through Pusher and received by the client. The JSON representation of the above event data will look as follows:</p>
 <pre><code>{&quot;text&quot;: &quot;this is a notification&quot;}
 </code></pre><p>Now that you&apos;ve an overview of channels, events and event data the following code will make much more sense to you:</p>
 <pre><code class="lang-php"><span class="hljs-variable">$pusher</span>-&gt;trigger(<span class="hljs-string">&apos;notifications&apos;</span>, 
                  <span class="hljs-string">&apos;new-notification&apos;</span>, 
-                 <span class="hljs-keyword">array</span>(<span class="hljs-string">&apos;text&apos;</span> =&gt; <span class="hljs-string">&apos;this is a notification&apos;</span>));
+                 [<span class="hljs-string">&apos;text&apos;</span> =&gt; <span class="hljs-string">&apos;this is a notification&apos;</span>]);
 </code></pre>
 <h2 id="where-next">Where next?</h2>
 <p>It&apos;s time to <a href="trigger-event.md">trigger a notification events</a>.</p>

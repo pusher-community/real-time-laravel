@@ -27,7 +27,7 @@
         
     
     
-    <link rel="next" href="../activity-streams/index.html" />
+    <link rel="next" href="../notifications/learned.html" />
     
     
     <link rel="prev" href="../notifications/trigger.html" />
@@ -38,7 +38,7 @@
     <body>
         
         
-    <div class="book" data-level="3.3" data-basepath=".." data-revision="Thu Aug 20 2015 13:03:48 GMT+0100 (BST)">
+    <div class="book" data-level="3.3" data-basepath=".." data-revision="Mon Aug 24 2015 22:35:42 GMT+0100 (CEST)">
     
 
 <div class="book-summary">
@@ -351,6 +351,21 @@
             
         </li>
     
+        <li class="chapter " data-level="3.4" data-path="notifications/learned.html">
+            
+                
+                    <a href="../notifications/learned.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                        What we&#39;ve learned
+                    </a>
+            
+            
+        </li>
+    
 
             </ul>
             
@@ -402,6 +417,21 @@
             
         </li>
     
+        <li class="chapter " data-level="4.3" data-path="activity-streams/learned.html">
+            
+                
+                    <a href="../activity-streams/learned.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.3.</b>
+                        
+                        What we&#39;ve learned
+                    </a>
+            
+            
+        </li>
+    
 
             </ul>
             
@@ -438,6 +468,21 @@
             
         </li>
     
+        <li class="chapter " data-level="5.2" data-path="chat/learned.html">
+            
+                
+                    <a href="../chat/learned.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.2.</b>
+                        
+                        What we&#39;ve learned
+                    </a>
+            
+            
+        </li>
+    
 
             </ul>
             
@@ -452,7 +497,7 @@
                         
                             <b>6.</b>
                         
-                        (WiP) What else can Pusher do?
+                        What else can Pusher do?
                     </a>
             
             
@@ -468,7 +513,7 @@
                         
                             <b>6.1.</b>
                         
-                        (WiP) Resources
+                        Resources
                     </a>
             
             
@@ -585,11 +630,11 @@
                     <section class="normal" id="section-">
                     
                         <h1 id="adding-notifications-to-the-ui">Adding Notifications to the UI</h1>
-<p>We know that our back-end application is successfully triggering events. Now let&apos;s look at how we can receive those events within our client application. Pusher has WebSocket-powered (with fallback) client libraries for JavaScript, Android and iOS.</p>
+<p>We know that our back-end application is successfully triggering events. Now let&apos;s look at how we can receive those events within our client application. Pusher has WebSocket-powered client libraries for JavaScript, Android and iOS.</p>
 <p>In this section we&apos;re going to use the Pusher JavaScript library to receive the notification from the server and use the <a href="https://github.com/CodeSeven/toastr" target="_blank">toastr</a> library to show the notifications. </p>
 <p>We briefly looked at the Pusher JavaScript library previously, but let&apos;s start by looking at some of the conventions in a bit more detail.</p>
 <h2 id="channels-events">Channels &amp; Events</h2>
-<p>We trigger events on channels from the back-end. On the front-end we <strong>subscribe</strong> to channels and bind to <strong>events</strong> on those channels. Whenever an event occurs on a channel we can define a <code>function</code> to be called to handle that event and any associated event data payload.</p>
+<p>We trigger events on channels from the back-end. On the front-end we <a href="https://pusher.com/docs/client_api_guide/client_public_channels#subscribe" target="_blank">subscribe</a> to channels and bind to <a href="https://pusher.com/docs/client_api_guide/client_events" target="_blank">events</a> on those channels. Whenever an event occurs on a channel we can define a <code>function</code> to be called to handle that event and any associated event data payload.</p>
 <pre><code class="lang-js"><span class="hljs-keyword">var</span> pusher = <span class="hljs-keyword">new</span> Pusher(<span class="hljs-string">&apos;{{env(&quot;PUSHER_KEY&quot;)}}&apos;</span>);
 <span class="hljs-keyword">var</span> channel = pusher.subscribe(<span class="hljs-string">&apos;channel-name&apos;</span>);
 channel.bind(<span class="hljs-string">&apos;event-name&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>) </span>{
@@ -597,19 +642,25 @@ channel.bind(<span class="hljs-string">&apos;event-name&apos;</span>, <span clas
 });
 </code></pre>
 <h2 id="showing-the-notifications">Showing the Notifications</h2>
-<p>The Pusher JavaScript library and the toastr notification library has already been included in the <a href="#">template</a> we copied earlier. So, all we need to do is subscribe to the <code>notifications</code> channel, bind to the <code>new-notification</code> event and use the toastr library to show the notification.</p>
+<p>The Pusher JavaScript library and the toastr notification library has already been included in the <a href="../assets/laravel_app/notifiation.blade.php">template</a> we copied earlier. So, all we need to do is subscribe to the <code>notifications</code> channel, bind to the <code>new-notification</code> event and use the toastr library to show the notification.</p>
 <p><i class="fa fa-rocket fa-2"></i> Use the following code outline to implement the notification functionality:</p>
 <pre><code class="lang-js">  $(notifyInit);
 
-  <span class="hljs-keyword">var</span> pusher = <span class="hljs-keyword">new</span> Pusher(<span class="hljs-string">&apos;{{env(&quot;PUSHER_KEY&quot;)}}&apos;</span>);
+  // Use toastr to show the notification
+  function showNotification(data) {
+      // TODO: get the text from the event data
 
-  <span class="hljs-comment">// Subscribe to the channel</span>
-  <span class="hljs-keyword">var</span> channel = pusher.subscribe(<span class="hljs-string">&apos;notifications&apos;</span>);
+      // TODO: use the text in the notification
+      //toastr.success(text, null, {&quot;positionClass&quot;: &quot;toast-bottom-left&quot;});
+  }
 
-  <span class="hljs-comment">// Bind to the event and pass in the notification handler</span>
-  channel.bind(<span class="hljs-string">&apos;new-notification&apos;</span>, showNotification);
-<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
-</span></code></pre>
+  var pusher = new Pusher(&apos;{{env(&quot;PUSHER_KEY&quot;)}}&apos;);
+
+  // TODO: Subscribe to the channel
+
+  // TODO: Bind to the event and pass in the notification handler
+&lt;/script&gt;
+</code></pre>
 <div class="alert alert-info">
   <p>You can test the notification functionality without a back-end in two ways:</p>
   <ol>
@@ -625,12 +676,12 @@ channel.bind(<span class="hljs-string">&apos;event-name&apos;</span>, <span clas
 </div>
 
 <h2 id="extras">Extras</h2>
-<p>A few things to try if you&apos;ve time.</p>
+<p>If you get everything else done and you&apos;ve still some time left. Why not try...</p>
 <h3 id="excluding-the-triggerer">Excluding the Triggerer</h3>
 <p>It&apos;s possible to stop the user who triggered the event also receiving the event by Pusher. To do this you need to pass a unique connection identifier called the <code>socket_id</code> to the <code>$pusher-&gt;trigger</code> function call.</p>
 <p><i class="fa fa-rocket fa-2"></i> You can get the <code>socket_id</code> on the client in JavaScript using <code>pusher.connection.socket_id</code> and pass it to the back-end <code>notifications/notify</code> endpoint in the <code>POST</code> data. Then you can use it to exclude that user from getting their own event using <code>$pusher-&gt;trigger($channelName, $eventName,  $eventData, $socketId)</code>.</p>
 <h2 id="where-next">Where next?</h2>
-<p>Notifications demonstrates the easiest use case for real-time technology and Pusher. The next most common use case - which is really just an extension of notifications - is activity streams. So, let&apos;s look at <a href="../activity-streams">adding activity stream functionality to the Laravel app</a>.</p>
+<p>Let&apos;s have a look a <a href="learned.html">what we&apos;ve learned</a> in this chapter.</p>
 
                     
                     </section>
@@ -644,7 +695,7 @@ channel.bind(<span class="hljs-string">&apos;event-name&apos;</span>, <span clas
         <a href="../notifications/trigger.html" class="navigation navigation-prev " aria-label="Previous page: Trigger a Notification Event"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../activity-streams/index.html" class="navigation navigation-next " aria-label="Next page: Activity Streams"><i class="fa fa-angle-right"></i></a>
+        <a href="../notifications/learned.html" class="navigation navigation-next " aria-label="Next page: What we&#39;ve learned"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

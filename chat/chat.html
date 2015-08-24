@@ -27,7 +27,7 @@
         
     
     
-    <link rel="next" href="../where-next/index.html" />
+    <link rel="next" href="../chat/learned.html" />
     
     
     <link rel="prev" href="../chat/index.html" />
@@ -38,7 +38,7 @@
     <body>
         
         
-    <div class="book" data-level="5.1" data-basepath=".." data-revision="Thu Aug 20 2015 13:03:48 GMT+0100 (BST)">
+    <div class="book" data-level="5.1" data-basepath=".." data-revision="Mon Aug 24 2015 22:35:42 GMT+0100 (CEST)">
     
 
 <div class="book-summary">
@@ -351,6 +351,21 @@
             
         </li>
     
+        <li class="chapter " data-level="3.4" data-path="notifications/learned.html">
+            
+                
+                    <a href="../notifications/learned.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                        What we&#39;ve learned
+                    </a>
+            
+            
+        </li>
+    
 
             </ul>
             
@@ -402,6 +417,21 @@
             
         </li>
     
+        <li class="chapter " data-level="4.3" data-path="activity-streams/learned.html">
+            
+                
+                    <a href="../activity-streams/learned.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.3.</b>
+                        
+                        What we&#39;ve learned
+                    </a>
+            
+            
+        </li>
+    
 
             </ul>
             
@@ -438,6 +468,21 @@
             
         </li>
     
+        <li class="chapter " data-level="5.2" data-path="chat/learned.html">
+            
+                
+                    <a href="../chat/learned.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.2.</b>
+                        
+                        What we&#39;ve learned
+                    </a>
+            
+            
+        </li>
+    
 
             </ul>
             
@@ -452,7 +497,7 @@
                         
                             <b>6.</b>
                         
-                        (WiP) What else can Pusher do?
+                        What else can Pusher do?
                     </a>
             
             
@@ -468,7 +513,7 @@
                         
                             <b>6.1.</b>
                         
-                        (WiP) Resources
+                        Resources
                     </a>
             
             
@@ -585,20 +630,20 @@
                     <section class="normal" id="section-">
                     
                         <h1 id="authenticated-real-time-chat">Authenticated Real-Time Chat</h1>
-<p>Let&apos;s quickly build up a chat solution from a number of templates. Then we&apos;ll look at adding authentication and restricting who can subscribe to the real-time stream of chat messages.</p>
+<p>Let&apos;s quickly build up a chat solution from a number of templates. Then we&apos;ll look at adding <a href="https://pusher.com/docs/authenticating_users" target="_blank">authentication</a> and restricting who can subscribe to the real-time stream of chat messages.</p>
 <h2 id="basic-chat">Basic Chat</h2>
 <p>As mentioned in the chat introduction, a lot of the activity streams functionality that we&apos;ve built could be ported to support chat functionality. Instead, let&apos;s take a number of templates to give us all we need for some basic chat functionality.</p>
 <h3 id="chatcontroller">ChatController</h3>
-<p><i class="fa fa-rocket fa-2"></i> Take the contents of <a href="#">ChatController.php</a> and add it to <code>app/Http/Controllers/ChatController.php</code>.</p>
+<p><i class="fa fa-rocket fa-2"></i> Take the contents of the <a href="#">ChatController.php template</a> and add it to <code>app/Http/Controllers/ChatController.php</code>.</p>
 <p>This controller makes sure the user is logged in via GitHub when the <code>/chat</code> (the <code>getIndex()</code> function) is accessed.</p>
-<p>The <code>postMessage(Request $request)</code> function is used to handle an AJAX request from the view and trigger a <code>new-message</code> event on a channel named <code>chat</code>. The event payload consists of the text supplied by the user, their user name, their avatar URL, and the timestamp (milliseconds since the epoch) when the message was received.</p>
+<p>The <code>postMessage(Request $request)</code> function is used to handle an AJAX request from the view and trigger a <code>new-message</code> event on a channel named <code>chat</code>. The event payload consists of the text supplied by the user, their username, their avatar URL, and the timestamp (milliseconds since the epoch) when the message was received.</p>
 <p><i class="fa fa-rocket fa-2"></i> Add the new controller to <code>app/Http/routes.php</code>:</p>
 <pre><code class="lang-php">Route::controller(<span class="hljs-string">&apos;chat&apos;</span>, <span class="hljs-string">&apos;ChatController&apos;</span>);
 </code></pre>
 <h3 id="chat-view">Chat View</h3>
-<p><i class="fa fa-rocket fa-2"></i> Take the contents of <a href="#">chat.blade.php</a> and put that into <code>resources/views/chat.blade.php</code>.</p>
+<p><i class="fa fa-rocket fa-2"></i> Take the contents of the <a href="../assets/laravel_app/chat.blade.php">chat.blade.php template</a> and put that into <code>resources/views/chat.blade.php</code>.</p>
 <p>Whenever a message is to be sent to the server the <code>sendMessage()</code> function is called - triggered either by a button being clicked or the user pressing <code>enter</code>.</p>
-<p>The <code>chat</code> channel is subscribed to and the <code>new-message</code> bound to with a <code>addMessage</code> callback handler.</p>
+<p>The <code>chat</code> channel is subscribed to, and the <code>new-message</code> bound to with a <code>addMessage</code> callback handler.</p>
 <p>The <code>addMessage</code> function builds a message element, taking all the values from the <code>data</code> event payload` and adds it to the UI.</p>
 <h3 id="try-out-the-chat-app">Try out the Chat app</h3>
 <p><i class="fa fa-rocket fa-2"></i> Navigate to <a href="http://localhost:8000/chat" target="_blank">http://localhost:8000/chat</a> to see the chat application in action.</p>
@@ -610,13 +655,16 @@
 
 <h2 id="adding-authentication">Adding Authentication</h2>
 <p>Pusher has been built with integration in mind; in this case to make it as easy as possible to integrate with existing technologies and framework mechanisms. In our app we have a very basic - albeit, a bit hacky - authentication mechanism. That is, does a <code>user</code> exist in the <code>Session</code>.</p>
-<p>By demonstrating how to use this to authenticate mechanism with Pusher it should be easy to see how you can integrate other, less hacky, solutions.</p>
+<p>By demonstrating how to use this to authenticate mechanism with Pusher it should be easy to see how you can integrate other &quot;less hacky&quot; solutions.</p>
 <h3 id="private-channels">Private Channels</h3>
-<p>Pusher provides type of channel called a <a href="https://pusher.com/docs/private_channels" target="_blank">private channel</a> that require authentication in order for a subscription to that channel to be allowed. Private channels are identified by a simple <code>private-</code> naming prefix e.g. <code>private-chat</code>. When the Pusher JavaScript library sees that a subscription is made to a channel with a <code>private-</code> prefix it will make a <code>POST</code> request to an authentication endpoint on your own application server. By default this is <code>/pusher/auth</code>, but it can be configured.</p>
-<p><i class="fa fa-rocket fa-2"></i> To see this in action, navigate to <a href="http://localhost:8000:/chat" target="_blank">http://localhost:8000:/chat</a>, open up the developer tools in your browser and go to the network tab. Next, chat the name of the channel that&apos;s we&apos;re subscribing to - change it to <code>private-chat</code>. This is configured for both the controller (for event triggering) and the view (for subscribing) in <code>app/Http/ChatController::DEFAULT_CHAT_CHANNEL</code> <code>resources/views/chat.blade.php</code> from <code>chat</code> to <code>private-chat</code> and refresh the app in the browser.</p>
+<p>Pusher provides a type of channel called a <a href="https://pusher.com/docs/private_channels" target="_blank">private channel</a> that require authentication in order for a subscription to that channel to be allowed.</p>
+<p>Private channels are identified by a simple <code>private-</code> naming prefix e.g. <code>private-chat</code>. When the Pusher JavaScript library sees that a subscription is made to a channel with a <code>private-</code> prefix the library itself will make a <code>POST</code> request to an authentication endpoint on the server the app is served from. This will be your own application server. By default this endpoint will be <code>/pusher/auth</code>, but it can be configured.</p>
+<p><i class="fa fa-rocket fa-2"></i> To see this in action, navigate to <a href="http://localhost:8000/chat" target="_blank">http://localhost:8000/chat</a>, open up the developer tools in your browser and go to the network tab.</p>
+<p><i class="fa fa-rocket fa-2"></i> Next, change the name of the channel that&apos;s we&apos;re subscribing to. Change it from <code>chat</code> to <code>private-chat</code>. This is configured for both the controller (for event triggering) and the view (for subscribing) in <code>app/Http/ChatController::DEFAULT_CHAT_CHANNEL</code>.</p>
 <p><i class="fa fa-rocket fa-2"></i> In the developer tools network tab you&apos;ll see a <code>POST</code> request to <a href="http://localhost:8000/pusher/auth" target="_blank">http://localhost:8000/pusher/auth</a>. Not only do we not have a route set up for this, but upon closer inspection you&apos;ll also see that the response is a <code>500</code> error complaining about a <code>TokenMismatchException</code>.</p>
 <p>This exception is being caused by Laravel&apos;s <a href="http://laravel.com/docs/master/routing#csrf-protection" target="_blank">CSRF (Cross Site Resource Forger) protection</a>. Those eagle-eyed amongst you may have already seen <code>$.ajaxSetup</code> being called at the top of our views in order to send a <code>X-CSRF-TOKEN</code> header which fixes this for jQuery AJAX calls.</p>
-<p><i class="fa fa-rocket fa-2"></i> Let&apos;s do the same for Pusher authentication. Update the line that instantiates a Pusher instance to pass <code>auth</code> configuration:</p>
+<p><i class="fa fa-rocket fa-2"></i> Let&apos;s also send the <code>X-CSRF-TOKEN</code> header with the Pusher authentication AJAX requests. The second parameter to the <code>Pusher</code> constructor is for options in the form of an object literal.</p>
+<p>Update the line that instantiates a Pusher instance to pass <code>auth</code> configuration:</p>
 <pre><code class="lang-js"><span class="hljs-keyword">var</span> pusher = <span class="hljs-keyword">new</span> Pusher(<span class="hljs-string">&apos;{{env(&quot;PUSHER_KEY&quot;)}}&apos;</span>, {
     auth: {
         headers: {
@@ -625,8 +673,8 @@
     }
 });
 </code></pre>
-<p>The <code>X-CSRF-TOKEN</code> value is being retrieved from a <code>&lt;meta&gt;</code> tag defined in the header.</p>
-<p><i class="fa fa-rocket fa-2"></i> Now try refreshing the chat application. We&apos;ll now get a <code>404</code> error. This means the CSRF problem has been fixed, but we still don&apos;t have the auth endpoint.</p>
+<p>The <code>X-CSRF-TOKEN</code> value is being retrieved from a <code>&lt;meta&gt;</code> tag defined in the header in the same way as is used in the <code>$.ajaxSetup</code>.</p>
+<p><i class="fa fa-rocket fa-2"></i> Now try refreshing the chat application. We&apos;ll now get a <code>404</code> error for the request to <code>/pusher/auth</code>. This means the CSRF problem has been fixed, but we still don&apos;t have the auth endpoint - <code>/pusher/auth</code> isn&apos;t defined an a route anywhere in our app!</p>
 <p>Let&apos;s make sure the Pusher JavaScript library is going to authenticate against a valid route.</p>
 <p><i class="fa fa-rocket fa-2"></i> Add the following function to <code>app/Http/Controllers/ChatController.php</code>:</p>
 <pre><code class="lang-php"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">postAuth</span><span class="hljs-params">(Request <span class="hljs-variable">$request</span>)</span>
@@ -643,28 +691,27 @@
     }
 });
 </code></pre>
-<p><i class="fa fa-rocket fa-2"></i> Refresh the page and this time you&apos;ll see a <code>POST</code> request to <code>/chat/auth</code> which succeeds. But if you check browser console you&apos;ll see a log message saying <code>Pusher : No callbacks on private-chat for pusher:subscription_error</code>.</p>
-<p>This is because the authentication endpoint needs to return a signature that can then be used as part of the subscription with the Pusher service. If when Pusher fails to validate the signature the subscription will be disallowed. In this case out endpoint isn&apos;t returning any data so the subscription is obviously going to fail.</p>
-<p>If you look at the parameters passed in the <code>POST</code> request to <code>/chat/auth</code> you&apos;ll see a <code>socket_id</code> and a <code>channel_name</code>. The <code>socket_id</code> is a unique ID for the connection to Pusher and the <code>channel_name</code> is the name of the channel that the client is attempting to subscribe to.</p>
+<p><i class="fa fa-rocket fa-2"></i> Refresh the page and this time you&apos;ll see a <code>POST</code> request to <code>/chat/auth</code> which succeeds. But if you check the browser console you&apos;ll see a log message saying <code>Pusher : No callbacks on private-chat for pusher:subscription_error</code>.</p>
+<p>This is because the authentication endpoint (<code>/pusher/auth</code>) needs to return a signature that can then be used by the Pusher JavaScript library as part of the subscription with the Pusher service. If the Pusher service fails to validate the signature the subscription will be disallowed. In this case our endpoint isn&apos;t returning any data so the subscription is obviously going to fail.</p>
+<p><i class="fa fa-rocket fa-2"></i> If you look at the parameters passed in the <code>POST</code> request to <code>/chat/auth</code> you&apos;ll see a <code>socket_id</code> and a <code>channel_name</code>. The <code>socket_id</code> is a unique ID for the connection to Pusher and the <code>channel_name</code> is the name of the channel that the client is attempting to subscribe to.</p>
 <p><img src="../assets/img/network-auth-post.png" alt=""></p>
 <p>We use these values to create a signature using the Pusher PHP library - after we&apos;ve written our own logic to determine if we want the current user to be able to subscribe to the channel.</p>
 <p><i class="fa fa-rocket fa-2"></i> Update <code>ChatController::postAuth</code> with the following authentication logic:</p>
 <ul>
 <li>Check if a user exists.</li>
 <li>if we have a user we&apos;re going to allow the subscription to succeed.<ul>
-<li>fetch the <code>socket_id</code> and <code>channel_name</code> values from the <code>$request</code></li>
-<li>create a signature using <code>$auth = $this-&gt;pusher-&gt;socket_auth($channel_name, $socket_id)</code> (<a href="https://github.com/pusher/pusher-http-php#authenticating-private-channels" target="_blank">docs</a>)</li>
+<li>fetch the <code>socket_id</code> and <code>channel_name</code> values from the <code>$request</code> e.g. <code>$channelName = $request-&gt;input(&apos;channel_name&apos;);</code></li>
+<li>create a signature using <code>$auth = $this-&gt;pusher-&gt;socket_auth($channelName, $socketId)</code> (<a href="https://github.com/pusher/pusher-http-php#authenticating-private-channels" target="_blank">docs</a>)</li>
 <li>respond to the request with that signature</li>
 </ul>
 </li>
 <li>If there is no user then we&apos;ll respond with a <code>401 Unauthorized</code>.</li>
 </ul>
-<p><i class="fa fa-rocket fa-2"></i> Once you&apos;ve got the logic in place use the Pusher Debug Console and the Pusher JavaScript logging output to the browser console to verify the <code>private-chat</code> channel is being used.</p>
+<p><i class="fa fa-rocket fa-2"></i> Once you&apos;ve got the logic in place use the Pusher Debug Console and the <a href="https://pusher.com/docs/debugging#pusher_logging" target="_blank">Pusher JavaScript logging</a> to verify the <code>private-chat</code> channel is being used.</p>
 <p><strong>You now have an authenticated real-time chat application</strong>.</p>
-<p>Although Pusher channel authentication can take a little bit of work to get your head around, once you understand it you can easily see how it will integrate with most authentication mechanism - either by using sessions or by passing values down with the authentication request as we did with the CSRF value.</p>
+<p>Although Pusher channel authentication can take a little bit of work to get your head around, once you understand it you can easily see how it will integrate with most authentication mechanisms - either by using sessions or by passing values down with the authentication request as we did with the CSRF value.</p>
 <h2 id="what-s-next">What&apos;s next?</h2>
-<p>That&apos;s all the exercises complete. Congratulations!</p>
-<p>Pusher offers more features than we could cramb into a 2 hour workshop. So, let&apos;s finish off by having <a href="../where-next">a quick run-though of those additional features</a>.</p>
+<p>Let&apos;s briefly cover <a href="learned.html">what we&apos;ve learned</a> in this section.</p>
 
                     
                     </section>
@@ -678,7 +725,7 @@
         <a href="../chat/index.html" class="navigation navigation-prev " aria-label="Previous page: Chat"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../where-next/index.html" class="navigation navigation-next " aria-label="Next page: (WiP) What else can Pusher do?"><i class="fa fa-angle-right"></i></a>
+        <a href="../chat/learned.html" class="navigation navigation-next " aria-label="Next page: What we&#39;ve learned"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

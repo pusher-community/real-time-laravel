@@ -27,7 +27,7 @@
         
     
     
-    <link rel="next" href="../chat/index.html" />
+    <link rel="next" href="../activity-streams/learned.html" />
     
     
     <link rel="prev" href="../activity-streams/simple-auth.html" />
@@ -38,7 +38,7 @@
     <body>
         
         
-    <div class="book" data-level="4.2" data-basepath=".." data-revision="Thu Aug 20 2015 13:03:48 GMT+0100 (BST)">
+    <div class="book" data-level="4.2" data-basepath=".." data-revision="Mon Aug 24 2015 22:35:42 GMT+0100 (CEST)">
     
 
 <div class="book-summary">
@@ -351,6 +351,21 @@
             
         </li>
     
+        <li class="chapter " data-level="3.4" data-path="notifications/learned.html">
+            
+                
+                    <a href="../notifications/learned.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                        What we&#39;ve learned
+                    </a>
+            
+            
+        </li>
+    
 
             </ul>
             
@@ -402,6 +417,21 @@
             
         </li>
     
+        <li class="chapter " data-level="4.3" data-path="activity-streams/learned.html">
+            
+                
+                    <a href="../activity-streams/learned.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.3.</b>
+                        
+                        What we&#39;ve learned
+                    </a>
+            
+            
+        </li>
+    
 
             </ul>
             
@@ -438,6 +468,21 @@
             
         </li>
     
+        <li class="chapter " data-level="5.2" data-path="chat/learned.html">
+            
+                
+                    <a href="../chat/learned.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.2.</b>
+                        
+                        What we&#39;ve learned
+                    </a>
+            
+            
+        </li>
+    
 
             </ul>
             
@@ -452,7 +497,7 @@
                         
                             <b>6.</b>
                         
-                        (WiP) What else can Pusher do?
+                        What else can Pusher do?
                     </a>
             
             
@@ -468,7 +513,7 @@
                         
                             <b>6.1.</b>
                         
-                        (WiP) Resources
+                        Resources
                     </a>
             
             
@@ -587,7 +632,7 @@
                         <h2 id="triggering-activity-events">Triggering Activity Events</h2>
 <p>We clearly don&apos;t have time to build a full social network. But we can support a few simple activities in order to demonstrate how events can be used to represent each activity type.</p>
 <h2 id="create-the-controller-and-view">Create the Controller and View</h2>
-<p><i class="fa fa-rocket fa-2"></i> Let&apos;s start by creating a plain controller:</p>
+<p><i class="fa fa-rocket fa-2"></i> Let&apos;s start by creating a plain controller called <code>ActivityController</code>:</p>
 <pre><code>&#x203A; php artisan make:controller ActivityController --plain
 </code></pre><p><i class="fa fa-rocket fa-2"></i> Update the controller using the code below:</p>
 <pre><code class="lang-php"><span class="hljs-keyword">namespace</span> <span class="hljs-title">App</span>\<span class="hljs-title">Http</span>\<span class="hljs-title">Controllers</span>;
@@ -612,6 +657,7 @@
      */</span>
     <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getIndex</span><span class="hljs-params">()</span>
     </span>{
+        <span class="hljs-comment">// If there is no user, redirect to GitHub login</span>
         <span class="hljs-keyword">if</span>(!<span class="hljs-variable">$this</span>-&gt;user)
         {
             <span class="hljs-keyword">return</span> redirect(<span class="hljs-string">&apos;auth/github?redirect=/activities&apos;</span>);
@@ -626,6 +672,7 @@
         ];
 
         <span class="hljs-comment">// <span class="hljs-doctag"><span class="hljs-keyword">TODO</span></span>: trigger event</span>
+
         <span class="hljs-keyword">return</span> view(<span class="hljs-string">&apos;activities&apos;</span>);
     }
 
@@ -639,7 +686,7 @@
     }
 
     <span class="hljs-comment">/**
-     * Like an activity
+     * Like an exiting activity
      * <span class="hljs-doctag">@param</span> $id The ID of the activity that has been liked
      */</span>
     <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">postLike</span><span class="hljs-params">(<span class="hljs-variable">$id</span>)</span>
@@ -649,7 +696,7 @@
 }
 </code></pre>
 <p>In the code above you&apos;ll notice that the <code>__construct()</code> attempts to grab the user from the <code>Session</code> and in <code>getIndex()</code> the value of <code>$this-&gt;user</code> is checked. If there isn&apos;t a logged in user the app redirects in order for the user to log in. By having a user we can identify who has triggered an activity event. There&apos;s an example in the code above of getting both the <code>username</code> and <code>avatar</code>. This can then be used when we trigger events via Pusher, and ultimately display that information in our user interface.</p>
-<p><i class="fa fa-rocket fa-2"></i> The <code>ActivityController</code> reliease on an <code>activities</code> view so let&apos;s create that. Create a <code>resources/views/activities.blade.php</code> file and copy &amp; paste the contents of <a href="../assets/laravel_app/activities.blade.php">activities.blade.php</a> into it (or just copy over the file).</p>
+<p><i class="fa fa-rocket fa-2"></i> The <code>ActivityController</code> relies on an <code>activities</code> view so let&apos;s create that. Create a <code>resources/views/activities.blade.php</code> file and copy &amp; paste the contents of <a href="../assets/laravel_app/activities.blade.php">activities.blade.php</a> into it (or just copy over the file).</p>
 <p><i class="fa fa-rocket fa-2"></i> Finally, add an entry to your <code>app/Http/routes.php</code>:</p>
 <pre><code class="lang-php">Route::controller(<span class="hljs-string">&apos;activities&apos;</span>, <span class="hljs-string">&apos;ActivityController&apos;</span>);
 </code></pre>
@@ -670,6 +717,12 @@
 ];
 </code></pre>
 <p><i class="fa fa-rocket fa-2"></i> For the event that&apos;s triggered in the <code>postLike($id)</code> action also send the ID of the activity that the user liked on a <code>likedActivityId</code> property using the <code>$id</code> value.</p>
+<pre><code class="lang-php"><span class="hljs-variable">$activity</span> = [
+    <span class="hljs-comment">// Other properties...</span>
+
+    <span class="hljs-string">&apos;likedActivityId&apos;</span> =&gt; <span class="hljs-variable">$id</span>
+];
+</code></pre>
 <h2 id="building-the-activitystream-ui">Building the ActivityStream UI</h2>
 <p>The view, defined in <code>resources/views/activities.blade.php</code>, already has some functionality, but you still need to hook up Pusher and the real-time events.</p>
 <h3 id="user-visited">User Visited</h3>
@@ -697,7 +750,7 @@
 <p>Once complete it should look at little bit like this:</p>
 <p><img src="../assets/img/activity-streams-screenshot.png" alt="Activity Streams workshop example"></p>
 <h2 id="what-s-next">What&apos;s next?</h2>
-<p>We&apos;ve built real-time notification and activity streams. Next, it&apos;s the 101 or real-time technology where we can take everything we&apos;ve learned and <a href="../chat">build real-time chat</a>.</p>
+<p>Let&apos;s go over <a href="learned.html">what we&apos;ve covered in this section</a>.</p>
 
                     
                     </section>
@@ -711,7 +764,7 @@
         <a href="../activity-streams/simple-auth.html" class="navigation navigation-prev " aria-label="Previous page: Super Simple Social Auth"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../chat/index.html" class="navigation navigation-next " aria-label="Next page: Chat"><i class="fa fa-angle-right"></i></a>
+        <a href="../activity-streams/learned.html" class="navigation navigation-next " aria-label="Next page: What we&#39;ve learned"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

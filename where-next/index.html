@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>(WiP) What else can Pusher do? | Building Real-Time Laravel Apps with Pusher</title>
+        <title>What else can Pusher do? | Building Real-Time Laravel Apps with Pusher</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.2.0">
@@ -30,7 +30,7 @@
     <link rel="next" href="../where-next/resources.html" />
     
     
-    <link rel="prev" href="../chat/chat.html" />
+    <link rel="prev" href="../chat/learned.html" />
     
 
         
@@ -38,7 +38,7 @@
     <body>
         
         
-    <div class="book" data-level="6" data-basepath=".." data-revision="Thu Aug 20 2015 13:03:48 GMT+0100 (BST)">
+    <div class="book" data-level="6" data-basepath=".." data-revision="Mon Aug 24 2015 22:35:42 GMT+0100 (CEST)">
     
 
 <div class="book-summary">
@@ -351,6 +351,21 @@
             
         </li>
     
+        <li class="chapter " data-level="3.4" data-path="notifications/learned.html">
+            
+                
+                    <a href="../notifications/learned.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                        What we&#39;ve learned
+                    </a>
+            
+            
+        </li>
+    
 
             </ul>
             
@@ -402,6 +417,21 @@
             
         </li>
     
+        <li class="chapter " data-level="4.3" data-path="activity-streams/learned.html">
+            
+                
+                    <a href="../activity-streams/learned.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.3.</b>
+                        
+                        What we&#39;ve learned
+                    </a>
+            
+            
+        </li>
+    
 
             </ul>
             
@@ -438,6 +468,21 @@
             
         </li>
     
+        <li class="chapter " data-level="5.2" data-path="chat/learned.html">
+            
+                
+                    <a href="../chat/learned.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.2.</b>
+                        
+                        What we&#39;ve learned
+                    </a>
+            
+            
+        </li>
+    
 
             </ul>
             
@@ -452,7 +497,7 @@
                         
                             <b>6.</b>
                         
-                        (WiP) What else can Pusher do?
+                        What else can Pusher do?
                     </a>
             
             
@@ -468,7 +513,7 @@
                         
                             <b>6.1.</b>
                         
-                        (WiP) Resources
+                        Resources
                     </a>
             
             
@@ -584,16 +629,42 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="where-next">Where next?</h1>
-<h2 id="pusher-features">Pusher Features</h2>
+                        <h1 id="pusher-features">Pusher Features</h1>
 <p>We&apos;ve just scratched the surface of what Pusher can do and focused on showing how they can help you build notifications, activity streams and chat. But what else can Pusher do and what else can you build? That&apos;s the whole point of this section!</p>
-<h3 id="multi-channel-publishing">Multi-Channel Publishing</h3>
-<h3 id="authenticated-channels">Authenticated Channels</h3>
-<h3 id="live-user-lists-presence">Live User Lists (Presence)</h3>
-<h3 id="channel-queries">Channel Queries</h3>
-<h3 id="webhooks">WebHooks</h3>
+<h2 id="multi-channel-publishing">Multi-Channel Publishing</h2>
+<p>Pusher provides a way of triggering the same event on multiple channels.</p>
+<p>This can be useful in applications where your channel information architecture requires users to subscribe to unique channels, but where you still want those users to recieve the same events.</p>
+<p>For example, if each user subscribes to their own authenticated notifications channel (e.g. <code>private-username-notifications</code>). If a user called <code>leggetter</code> and a user called <code>olga</code> were interested in a notification, Pusher&apos;s Multi-Channel Publishing functionality let&apos;s you trigger the same event on the notifications channel for both of these users:</p>
+<pre><code class="lang-php"><span class="hljs-variable">$channels</span> = [
+    <span class="hljs-string">&apos;private-leggetter-notifications&apos;</span>,
+    `<span class="hljs-keyword">private</span>-olga-notifications`
+];
+
+<span class="hljs-variable">$pusher</span>-&gt;trigger(<span class="hljs-variable">$channels</span>, <span class="hljs-string">&apos;new-notifications&apos;</span>, [<span class="hljs-string">&apos;text&apos;</span> =&gt; <span class="hljs-string">&apos;...&apos;</span>]);
+</code></pre>
+<h2 id="live-user-lists-presence">Live User Lists (Presence)</h2>
+<p>Pusher provides special channels called <a href="https://pusher.com/docs/presence_channels" target="_blank">Presence channels</a> that allow you to build live user lists such as the ones you see in many chat applications.</p>
+<p>Presence channels require authentication. As part of that authentication process your authentication endpoint can also provide information about the current user that is then distributed to clients to allow you to add UI logic to show who is online. In addition, special <code>pusher:member_added</code> and <code>pusher:member_removed</code> events are triggered on presence channels to let you update your UI to show users coming online and going offline.</p>
+<p>For more information see <a href="https://pusher.com/docs/presence_channels" target="_blank">Presence channels</a> and <a href="https://pusher.com/docs/authenticating_users" target="_blank">Authenticating Users</a>.</p>
+<h2 id="client-events">Client Events</h2>
+<p>As well as being able to trigger events via Pusher from the server via the HTTP API, authenticated users can also trigger events from the client on Private and Presence channels.</p>
+<p>Take a look at the <a href="https://pusher.com/docs/client_events" target="_blank">client events docs</a> for more information.</p>
+<h2 id="channel-queries">Channel Queries</h2>
+<p>The Pusher HTTP API also provides a way of querying for information on channels. This includes:</p>
+<ul>
+<li>which channels have subscribers at any given point</li>
+<li>specific information about channels e.g. how many subscribers does a channel have or which users are subscribed to a presence channnel</li>
+</ul>
+<p>For more information see the <a href="https://pusher.com/docs/server_api_guide/interact_rest_api#querying-application-state" target="_blank">querying application state docs</a>.</p>
+<h2 id="webhooks">WebHooks</h2>
+<p>When you use a hosted service, that service tends to know information about what&apos;s going on within parts application that isn&apos;t available to your application server. <a href="https://pusher.com/docs/webhooks" target="_blank">Pusher WebHooks</a> provide a mechanism for your application server to receive HTTP <code>POST</code> requests when certain events happen within your Pusher application:</p>
+<ul>
+<li>A channel becomes occupied or is vacated</li>
+<li>A user joins or leaves a Presence channel</li>
+</ul>
+<p>For more information see the <a href="https://pusher.com/docs/webhooks" target="_blank">WebHooks docs</a>.</p>
 <h2 id="where-next">Where next?</h2>
-<p><a href="fin.md">That&apos;s all folks!</a></p>
+<p>That&apos;s all folks! Finally, you can head to a (list of resources)[./resources.md] related to everything we&apos;ve covered in this workshop.</p>
 
                     
                     </section>
@@ -604,10 +675,10 @@
         </div>
 
         
-        <a href="../chat/chat.html" class="navigation navigation-prev " aria-label="Previous page: Building Authenticated Real-Time Chat"><i class="fa fa-angle-left"></i></a>
+        <a href="../chat/learned.html" class="navigation navigation-prev " aria-label="Previous page: What we&#39;ve learned"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../where-next/resources.html" class="navigation navigation-next " aria-label="Next page: (WiP) Resources"><i class="fa fa-angle-right"></i></a>
+        <a href="../where-next/resources.html" class="navigation navigation-next " aria-label="Next page: Resources"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
