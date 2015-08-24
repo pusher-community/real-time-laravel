@@ -128,6 +128,4 @@ Although Pusher channel authentication can take a little bit of work to get your
 
 ## What's next?
 
-That's all the exercises complete. Congratulations!
-
-Pusher offers more features than we could cramb into a 2 hour workshop. So, let's finish off by having [a quick run-though of those additional features](../where-next/).
+Let's briefly cover [what we've learned](./learned.md) in this section.
