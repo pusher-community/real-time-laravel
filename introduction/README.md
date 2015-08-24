@@ -30,7 +30,7 @@ When undertaking the workshop with only the GitBook text the idea would be to re
 
 If a section is instructor-lead then it'll be flagged with a <i class="fa fa-graduation-cap fa-2"></i> and you don't need to read all the text in that section.
 
-## GitBook Source
+## GitBook Workshop Source
 
 The workshop text has been built using [GitBook](https://github.com/GitbookIO/gitbook). The source of this workshop can be found here:
 <https://github.com/pusher-community/real-time-laravel>
