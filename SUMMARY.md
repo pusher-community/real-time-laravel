@@ -24,5 +24,5 @@
 * [Chat](chat/README.md)
   * [Building Authenticated Real-Time Chat](chat/chat.md)
   * [What we've learned](chat/learned.md)
-* [(WiP) What else can Pusher do?](where-next/README.md)
-  * [(WiP) Resources](where-next/resources.md)
+* [What else can Pusher do?](where-next/README.md)
+  * [Resources](where-next/resources.md)
