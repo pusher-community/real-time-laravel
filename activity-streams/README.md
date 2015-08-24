@@ -2,7 +2,7 @@
 
 Activity Streams are just an extension of Notifications from a technology point of view. But they offer a very different experience. They're provide a list of activities that have taken place, some of which could be a notification, but also new activities as they take place. Twitter, Facebook, Google+ and many other social and news sites and apps have adopted the idea of activity streams as core to their user experience. 
 
-So, in this section of the workshop we're going to expand on our knowledge of Pusher and use different events to identify types of activity and build an activity stream.
+So, in this section of the workshop we're going to expand on our knowledge of Pusher and use different events to identify types of activity and build an activity stream. This is a really nice mechanism; not only for identifying what's happening to the activity data, but also for splitting out our client-side application logic when handling incoming events.
 
 However, to start off with we're going to build some *very simple* social authentication into our application. Doing so means we can have a user associated with each activity e.g. Olga liked the status update.
 

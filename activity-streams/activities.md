@@ -158,4 +158,4 @@ Once complete it should look at little bit like this:
 
 ## What's next?
 
-We've built real-time notification and activity streams. Next, it's the 101 or real-time technology where we can take everything we've learned and [build real-time chat](../chat).
+Let's go over [what we've covered in this section](./learned.md).
