@@ -38,7 +38,7 @@
     <body>
         
         
-    <div class="book" data-level="5.1" data-basepath=".." data-revision="Tue Aug 25 2015 14:23:30 GMT+0200 (CEST)">
+    <div class="book" data-level="5.1" data-basepath=".." data-revision="Tue Aug 25 2015 19:41:22 GMT+0200 (CEST)">
     
 
 <div class="book-summary">
@@ -634,7 +634,7 @@
 <h2 id="basic-chat">Basic Chat</h2>
 <p>As mentioned in the chat introduction, a lot of the activity streams functionality that we&apos;ve built could be ported to support chat functionality. Instead, let&apos;s take a number of templates to give us all we need for some basic chat functionality.</p>
 <h3 id="chatcontroller">ChatController</h3>
-<p><i class="fa fa-rocket fa-2"></i> Take the contents of the <a href="#">ChatController.php template</a> and add it to <code>app/Http/Controllers/ChatController.php</code>.</p>
+<p><i class="fa fa-rocket fa-2"></i> Save the <a href="../assets/laravel_app/ChatController.php">ChatController.php template</a> and add it to <code>app/Http/Controllers/ChatController.php</code>.</p>
 <p>This controller makes sure the user is logged in via GitHub when the <code>/chat</code> (the <code>getIndex()</code> function) is accessed.</p>
 <p>The <code>postMessage(Request $request)</code> function is used to handle an AJAX request from the view and trigger a <code>new-message</code> event on a channel named <code>chat</code>. The event payload consists of the text supplied by the user, their username, their avatar URL, and the timestamp (milliseconds since the epoch) when the message was received.</p>
 <p><i class="fa fa-rocket fa-2"></i> Add the new controller to <code>app/Http/routes.php</code>:</p>

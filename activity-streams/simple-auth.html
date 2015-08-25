@@ -38,7 +38,7 @@
     <body>
         
         
-    <div class="book" data-level="4.1" data-basepath=".." data-revision="Tue Aug 25 2015 14:23:30 GMT+0200 (CEST)">
+    <div class="book" data-level="4.1" data-basepath=".." data-revision="Tue Aug 25 2015 19:41:22 GMT+0200 (CEST)">
     
 
 <div class="book-summary">
@@ -657,8 +657,8 @@
 <h2 id="get-github-credentials">Get GitHub Credentials</h2>
 <p>In order to use GitHub social login your application needs to be registered with GitHub.</p>
 <h3 id="instructor-lead-workshop-i-class-fa-fa-graduation-cap-fa-2-i">Instructor-lead Workshop <i class="fa fa-graduation-cap fa-2"></i></h3>
-<p><i class="fa fa-rocket fa-2"></i> <strong>If you&apos;re in an instructor-lead workshop they&apos;ll provide you with some credentials that you can use.</strong></p>
-<h3 id="self-taught-workshop">Self Taught Workshop</h3>
+<p><i class="fa fa-rocket fa-2"></i> If you&apos;re in an instructor-lead workshop <em>*and you are running your app from <code>http://localhost:8000</code> then they&apos;ll provide you with some credentials that you can use. If your app isn&apos;t running from <code>localhost:8000</code> then you&apos;ll need to </em>Create your own GitHub App*.</p>
+<h3 id="self-taught-workshop-create-your-own-github-app">Self Taught Workshop / Create your own GitHub App</h3>
 <p><i class="fa fa-rocket fa-2"></i> If you&apos;d like to register your own application or you&apos;re going through this without an instructor then you&apos;ll need to create an application. The steps are:</p>
 <ol>
 <li>Login to <a href="https://github.com" target="_blank">GitHub</a></li>
@@ -666,7 +666,11 @@
 <li>Select <strong>Applications</strong> from the menu</li>
 <li>Select the <strong>Developer applications</strong> tab</li>
 <li>Click <strong>Register new application</strong></li>
-<li>Enter a name, <code>http://localhost:8000</code> as the home page, and <code>http://localhost:8000/auth/github/callback</code> as the <strong>Authorization callback URL</strong>.</li>
+<li>Enter a name, If using <code>localhost:8000</code>:<ul>
+<li>Use <code>http://localhost:8000</code> as the home page</li>
+<li><code>http://localhost:8000/auth/github/callback</code> as the <strong>Authorization callback URL</strong></li>
+</ul>
+</li>
 <li>Click <strong>Register application</strong></li>
 </ol>
 <h2 id="store-github-credentials">Store GitHub Credentials</h2>
@@ -674,8 +678,9 @@
 <p><i class="fa fa-rocket fa-2"></i> Now, open up the <code>.env</code> file in your Laravel application and take the values from the GitHub application settings and put them into the <code>.env</code> file.</p>
 <pre><code>GITHUB_CLIENT_ID=YOUR_CLIENT_ID
 GITHUB_CLIENT_SECRET=YOUR_CLIENT_SECRET
-GITHUB_CALLBACK_URL=http://localhost:8000/auth/github/callback
-</code></pre><p>We now need to tell Socialite about these configuration values. To do that open up <code>config/services.php</code> and add a <code>github</code> entry:</p>
+GITHUB_CALLBACK_URL=YOUR_GITHUB_CALLBACK_URL
+</code></pre><p>If you&apos;re running on <code>localhost:8000</code> this will be <code>http://localhost:8000/auth/github/callback</code>.</p>
+<p>We now need to tell Socialite about these configuration values. To do that open up <code>config/services.php</code> and add a <code>github</code> entry:</p>
 <pre><code class="lang-php"><span class="hljs-keyword">return</span> [
     <span class="hljs-comment">// Other service config</span>
 
@@ -749,6 +754,18 @@ Route::get(<span class="hljs-string">&apos;auth/github/callback&apos;</span>, <s
 <h2 id="testing-github-social-auth">Testing GitHub Social Auth</h2>
 <p>We&apos;re finally in a position to test that our GitHub social login is working.</p>
 <p><i class="fa fa-rocket fa-2"></i> Navigate to <a href="http://localhost:8000/auth/github" target="_blank">http://localhost:8000/auth/github</a> and you should be redirected to GitHub to login. Once you allow the application to access your basic information you should be redirected back to <code>http://localhost:8000/auth/github/callback?code=...&amp;redirect=&amp;state=...</code>. If you get the <code>GitHub auth successful</code> text it means things are working!</p>
+<div class="alert alert-warning">
+  <p><strong>cURL error 60: SSL certificate problem: unable to get local issuer certificate</strong></p>
+  <p>If you see this issue then you&apos;re likely running Windows. The fix to this is:</p>
+  <ul>
+    <li>Download file: <a href="http://curl.haxx.se/ca/cacert.pem" target="_blank">curl.haxx.se/ca/cacert.pem</a></li>
+    <li>Update your `php.ini` to include the following:<br>
+      <code>curl.cainfo = &quot;[path_to_location]\cacert.pem&quot;</code>
+    </li>
+    <li>Restart your web server</li>
+  </ul>
+</div>
+
 <p>We now have access to the GitHub user information via <code>Session::get(&apos;user&apos;)</code> and we&apos;ll make use of that shortly.</p>
 <h2 id="where-next">Where next?</h2>
 <p>It&apos;s now time to <a href="activities.html">Trigger Activity Events</a>.</p>

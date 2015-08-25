@@ -38,7 +38,7 @@
     <body>
         
         
-    <div class="book" data-level="2.4" data-basepath=".." data-revision="Tue Aug 25 2015 14:23:30 GMT+0200 (CEST)">
+    <div class="book" data-level="2.4" data-basepath=".." data-revision="Tue Aug 25 2015 19:41:22 GMT+0200 (CEST)">
     
 
 <div class="book-summary">
@@ -651,6 +651,13 @@
         <span class="hljs-string">&apos;timeout&apos;</span> =&gt; <span class="hljs-keyword">null</span>,
     ],
 </code></pre>
+<div class="alert alert-warn">
+  <strong><code>config/pusher.php</code> Gotcha!</strong>
+  <p>
+  Make sure you&apos;ve updated <code>config/pusher.php</code> and <strong>not</strong> <code>vendor/vinkla/pusher/config/pusher.php</code>.
+  </p>
+</div>
+
 <p>Once that&apos;s set up we can get access to a <code>Pusher</code> instance directly using the <a href="http://laravel.com/docs/5.1/container" target="_blank">Service Container</a> or indirectly via <a href="http://laravel.com/docs/5.1/controllers#dependency-injection-and-controllers" target="_blank">Dependency Injection</a>.</p>
 <p><i class="fa fa-rocket fa-2"></i> To quickly test this, open <code>app/Http/routes.php</code> and add:</p>
 <pre><code class="lang-php"><span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Support</span>\<span class="hljs-title">Facades</span>\<span class="hljs-title">App</span>;

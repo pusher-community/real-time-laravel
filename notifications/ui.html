@@ -38,7 +38,7 @@
     <body>
         
         
-    <div class="book" data-level="3.3" data-basepath=".." data-revision="Tue Aug 25 2015 14:23:30 GMT+0200 (CEST)">
+    <div class="book" data-level="3.3" data-basepath=".." data-revision="Tue Aug 25 2015 19:41:22 GMT+0200 (CEST)">
     
 
 <div class="book-summary">
@@ -644,22 +644,21 @@ channel.bind(<span class="hljs-string">&apos;event-name&apos;</span>, <span clas
 <h2 id="showing-the-notifications">Showing the Notifications</h2>
 <p>The Pusher JavaScript library and the toastr notification library has already been included in the <a href="../assets/laravel_app/notifiation.blade.php">template</a> we copied earlier. So, all we need to do is subscribe to the <code>notifications</code> channel, bind to the <code>new-notification</code> event and use the toastr library to show the notification.</p>
 <p><i class="fa fa-rocket fa-2"></i> Use the following code outline to implement the notification functionality:</p>
-<pre><code class="lang-js">  $(notifyInit);
+<pre><code class="lang-js">$(notifyInit); <span class="hljs-comment">// Existing functionality</span>
 
-  // Use toastr to show the notification
-  function showNotification(data) {
-      // TODO: get the text from the event data
+<span class="hljs-comment">// Use toastr to show the notification</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">showNotification</span>(<span class="hljs-params">data</span>) </span>{
+    <span class="hljs-comment">// <span class="hljs-doctag">TODO</span>: get the text from the event data</span>
 
-      // TODO: use the text in the notification
-      //toastr.success(text, null, {&quot;positionClass&quot;: &quot;toast-bottom-left&quot;});
-  }
+    <span class="hljs-comment">// <span class="hljs-doctag">TODO</span>: use the text in the notification</span>
+    <span class="hljs-comment">//toastr.success(text, null, {&quot;positionClass&quot;: &quot;toast-bottom-left&quot;});</span>
+}
 
-  var pusher = new Pusher(&apos;{{env(&quot;PUSHER_KEY&quot;)}}&apos;);
+<span class="hljs-keyword">var</span> pusher = <span class="hljs-keyword">new</span> Pusher(<span class="hljs-string">&apos;{{env(&quot;PUSHER_KEY&quot;)}}&apos;</span>);
 
-  // TODO: Subscribe to the channel
+<span class="hljs-comment">// <span class="hljs-doctag">TODO</span>: Subscribe to the channel</span>
 
-  // TODO: Bind to the event and pass in the notification handler
-&lt;/script&gt;
+<span class="hljs-comment">// <span class="hljs-doctag">TODO</span>: Bind to the event and pass in the notification handler</span>
 </code></pre>
 <div class="alert alert-info">
   <p>You can test the notification functionality without a back-end in two ways:</p>
