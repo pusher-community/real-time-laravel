@@ -69,7 +69,7 @@ Yep, we only have two hours. Here's how we plan to achieve this:
 4. Activity Streams - 30 minutes
 5. Chat - 30 minutes
 
-That's 1 hour and 10 minutes, leaving a whole 10 minutes to spare.
+That's 1 hour and 50 minutes. 10 minutes to spare!
 
 *Fingers crossed!*
 

@@ -13,7 +13,7 @@ For example, if each user subscribes to their own authenticated notifications ch
 ```php
 $channels = [
     'private-leggetter-notifications',
-    `private-olga-notifications`
+    'private-olga-notifications'
 ];
 
 $pusher->trigger($channels, 'new-notifications', ['text' => '...']);

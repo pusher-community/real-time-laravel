@@ -49,9 +49,7 @@
     </div>
 </section>
 
-<script>
-    // Add your script here!
-</script>
+<!-- Add your script here! -->
 
 </body>
 </html>

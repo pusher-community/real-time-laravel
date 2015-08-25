@@ -6,7 +6,18 @@ There are a few Laravel bridges/wrappers for the Pusher PHP library that allow y
 
 ```
 › composer require vinkla/pusher
-  php artisan vendor:publish
+```
+
+<i class="fa fa-rocket fa-2"></i> Next let's add the vinkla/pusher package service provider to the `providers` array in `config/app.php`:
+
+```php
+Vinkla\Pusher\PusherServiceProvider::class,
+```
+
+And then publish so the Pusher configuration file is copied to the `config` directory:
+
+```
+› php artisan vendor:publish
 ```
 
 <i class="fa fa-rocket fa-2"></i> Then set up the the vinkla/pusher vendor configuration in `config/pusher.php` to use the environment variables. Update the `auth_key`, `secret` and `app_id` values of the `main` connection as follows:
@@ -18,23 +29,18 @@ There are a few Laravel bridges/wrappers for the Pusher PHP library that allow y
         'auth_key' => env('PUSHER_KEY'),
         'secret' => env('PUSHER_SECRET'),
         'app_id' => env('PUSHER_APP_ID'),
-        ...
+        'options' => [],
+        'host' => null,
+        'port' => null,
+        'timeout' => null,
     ],
-```
-
-<i class="fa fa-rocket fa-2"></i> Next let's add the vinkla/pusher package service provider to the `providers` array in `config/app.php`:
-
-```php
-Vinkla\Pusher\PusherServiceProvider::class,
 ```
 
 Once that's set up we can get access to a `Pusher` instance directly using the [Service Container](http://laravel.com/docs/5.1/container) or indirectly via [Dependency Injection](http://laravel.com/docs/5.1/controllers#dependency-injection-and-controllers).
 
-<i class="fa fa-rocket fa-2"></i> To quickly test this, open `app/Http/routes.php` and replace the contents with:
+<i class="fa fa-rocket fa-2"></i> To quickly test this, open `app/Http/routes.php` and add:
 
 ```php
-<?php
-
 use Illuminate\Support\Facades\App;
 
 get('/bridge', function() {
@@ -53,7 +59,7 @@ We'll cover the details of this in a later exercise.
 <i class="fa fa-rocket fa-2"></i> Next we want to test that this is working. To do this:
 
 1. Open up the Pusher Debug Console for your Pusher application
-2. Run your Laravel application using `php artisan serve`
+2. Run your Laravel application using `php artisan serve` (if it's not already running)
 3. In a new browser tab or window navigate to the route we've just defined in the Laravel app, http://localhost:8000/bridge
 
 You'll now see the event appear in the Pusher Debug Console. It's working!

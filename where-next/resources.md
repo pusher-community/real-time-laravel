@@ -31,10 +31,10 @@ If you find any errors or have any suggested improvements, please [raise an issu
 
 You main source of Laravel information.
 
-<laravel.com/docs>
+<http://laravel.com/docs>
 
 ## Laracasts
 
 Awesome screencasts showing you all sorts of Laravel goodies, including some on how to use Pusher.
 
-<laracasts.com>
+<http://laracasts.com>

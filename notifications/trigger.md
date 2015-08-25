@@ -98,7 +98,10 @@ public function postNotify(Request $request)
 
   // TODO: Get Pusher instance from service container
 
-  // TODO: Trigger `new-notification` event on `notifications` channel
+  // TODO: The notification event data should have a property named 'text'
+  
+  // TODO: On the 'notifications' channel trigger a 'new-notification' event
+  
 }
 ```
 
