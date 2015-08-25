@@ -38,7 +38,7 @@
     <body>
         
         
-    <div class="book" data-level="6" data-basepath=".." data-revision="Mon Aug 24 2015 22:35:42 GMT+0100 (CEST)">
+    <div class="book" data-level="6" data-basepath=".." data-revision="Tue Aug 25 2015 11:23:48 GMT+0100 (CEST)">
     
 
 <div class="book-summary">
@@ -637,7 +637,7 @@
 <p>For example, if each user subscribes to their own authenticated notifications channel (e.g. <code>private-username-notifications</code>). If a user called <code>leggetter</code> and a user called <code>olga</code> were interested in a notification, Pusher&apos;s Multi-Channel Publishing functionality let&apos;s you trigger the same event on the notifications channel for both of these users:</p>
 <pre><code class="lang-php"><span class="hljs-variable">$channels</span> = [
     <span class="hljs-string">&apos;private-leggetter-notifications&apos;</span>,
-    `<span class="hljs-keyword">private</span>-olga-notifications`
+    <span class="hljs-string">&apos;private-olga-notifications&apos;</span>
 ];
 
 <span class="hljs-variable">$pusher</span>-&gt;trigger(<span class="hljs-variable">$channels</span>, <span class="hljs-string">&apos;new-notifications&apos;</span>, [<span class="hljs-string">&apos;text&apos;</span> =&gt; <span class="hljs-string">&apos;...&apos;</span>]);

@@ -38,7 +38,7 @@
     <body>
         
         
-    <div class="book" data-level="3.2" data-basepath=".." data-revision="Mon Aug 24 2015 22:35:42 GMT+0100 (CEST)">
+    <div class="book" data-level="3.2" data-basepath=".." data-revision="Tue Aug 25 2015 11:23:48 GMT+0100 (CEST)">
     
 
 <div class="book-summary">
@@ -704,7 +704,10 @@ $(notifyInit);
 
   <span class="hljs-comment">// <span class="hljs-doctag"><span class="hljs-keyword">TODO</span></span>: Get Pusher instance from service container</span>
 
-  <span class="hljs-comment">// <span class="hljs-doctag"><span class="hljs-keyword">TODO</span></span>: Trigger `new-notification` event on `notifications` channel</span>
+  <span class="hljs-comment">// <span class="hljs-doctag"><span class="hljs-keyword">TODO</span></span>: The notification event data should have a property named &apos;text&apos;</span>
+
+  <span class="hljs-comment">// <span class="hljs-doctag"><span class="hljs-keyword">TODO</span></span>: On the &apos;notifications&apos; channel trigger a &apos;new-notification&apos; event</span>
+
 }
 </code></pre>
 <p>Remember that you can use the Pusher Debug Console to make sure that events are reaching Pusher. If you don&apos;t see the events there you can always look at the Laravel logs in <code>storage/logs/laravel.log</code> (see <a href="server-debugging.html">server debugging</a>).</p>
