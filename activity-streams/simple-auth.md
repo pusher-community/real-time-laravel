@@ -44,9 +44,9 @@ In order to use GitHub social login your application needs to be registered with
 
 ### Instructor-lead Workshop <i class="fa fa-graduation-cap fa-2"></i>
 
-<i class="fa fa-rocket fa-2"></i> **If you're in an instructor-lead workshop they'll provide you with some credentials that you can use.**
+<i class="fa fa-rocket fa-2"></i> If you're in an instructor-lead workshop **and you are running your app from `http://localhost:8000` then they'll provide you with some credentials that you can use. If your app isn't running from `localhost:8000` then you'll need to *Create your own GitHub App*.
 
-### Self Taught Workshop 
+### Self Taught Workshop / Create your own GitHub App
 
 <i class="fa fa-rocket fa-2"></i> If you'd like to register your own application or you're going through this without an instructor then you'll need to create an application. The steps are:
 
@@ -55,7 +55,9 @@ In order to use GitHub social login your application needs to be registered with
 3. Select **Applications** from the menu
 4. Select the **Developer applications** tab
 5. Click **Register new application**
-6. Enter a name, `http://localhost:8000` as the home page, and `http://localhost:8000/auth/github/callback` as the **Authorization callback URL**.
+6. Enter a name, If using `localhost:8000`:
+  * Use `http://localhost:8000` as the home page
+  * `http://localhost:8000/auth/github/callback` as the **Authorization callback URL**
 7. Click **Register application**
 
 ## Store GitHub Credentials
@@ -67,8 +69,10 @@ In order to use GitHub social login your application needs to be registered with
 ```
 GITHUB_CLIENT_ID=YOUR_CLIENT_ID
 GITHUB_CLIENT_SECRET=YOUR_CLIENT_SECRET
-GITHUB_CALLBACK_URL=http://localhost:8000/auth/github/callback
+GITHUB_CALLBACK_URL=YOUR_GITHUB_CALLBACK_URL
 ```
+
+If you're running on `localhost:8000` this will be `http://localhost:8000/auth/github/callback`.
 
 We now need to tell Socialite about these configuration values. To do that open up `config/services.php` and add a `github` entry:
 
@@ -159,6 +163,18 @@ There are a few steps here. But hopefully you managed to get it done quite quick
 We're finally in a position to test that our GitHub social login is working.
 
 <i class="fa fa-rocket fa-2"></i> Navigate to http://localhost:8000/auth/github and you should be redirected to GitHub to login. Once you allow the application to access your basic information you should be redirected back to `http://localhost:8000/auth/github/callback?code=...&redirect=&state=...`. If you get the `GitHub auth successful` text it means things are working!
+
+<div class="alert alert-warning">
+  <p><strong>cURL error 60: SSL certificate problem: unable to get local issuer certificate</strong></p>
+  <p>If you see this issue then you're likely running Windows. The fix to this is:</p>
+  <ul>
+    <li>Download file: <a href="http://curl.haxx.se/ca/cacert.pem" target="_blank">curl.haxx.se/ca/cacert.pem</a></li>
+    <li>Update your `php.ini` to include the following:<br />
+      <code>curl.cainfo = "[path_to_location]\cacert.pem"</code>
+    </li>
+    <li>Restart your web server</li>
+  </ul>
+</div>
 
 We now have access to the GitHub user information via `Session::get('user')` and we'll make use of that shortly.
 

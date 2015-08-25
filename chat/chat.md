@@ -8,7 +8,7 @@ As mentioned in the chat introduction, a lot of the activity streams functionali
 
 ### ChatController
 
-<i class="fa fa-rocket fa-2"></i> Take the contents of the [ChatController.php template](#) and add it to `app/Http/Controllers/ChatController.php`.
+<i class="fa fa-rocket fa-2"></i> Save the [ChatController.php template](../assets/laravel_app/ChatController.php) and add it to `app/Http/Controllers/ChatController.php`.
 
 This controller makes sure the user is logged in via GitHub when the `/chat` (the `getIndex()` function) is accessed.
 

@@ -36,6 +36,13 @@ And then publish so the Pusher configuration file is copied to the `config` dire
     ],
 ```
 
+<div class="alert alert-warn">
+  <strong><code>config/pusher.php</code> Gotcha!</strong>
+  <p>
+  Make sure you've updated <code>config/pusher.php</code> and <strong>not</strong> <code>vendor/vinkla/pusher/config/pusher.php</code>.
+  </p>
+</div>
+
 Once that's set up we can get access to a `Pusher` instance directly using the [Service Container](http://laravel.com/docs/5.1/container) or indirectly via [Dependency Injection](http://laravel.com/docs/5.1/controllers#dependency-injection-and-controllers).
 
 <i class="fa fa-rocket fa-2"></i> To quickly test this, open `app/Http/routes.php` and add:

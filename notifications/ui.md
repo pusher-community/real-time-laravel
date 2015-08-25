@@ -25,22 +25,21 @@ The Pusher JavaScript library and the toastr notification library has already be
 <i class="fa fa-rocket fa-2"></i> Use the following code outline to implement the notification functionality:
 
 ```js
-  $(notifyInit);
-  
-  // Use toastr to show the notification
-  function showNotification(data) {
-      // TODO: get the text from the event data
-      
-      // TODO: use the text in the notification
-      //toastr.success(text, null, {"positionClass": "toast-bottom-left"});
-  }
+$(notifyInit); // Existing functionality
 
-  var pusher = new Pusher('{{env("PUSHER_KEY")}}');
+// Use toastr to show the notification
+function showNotification(data) {
+    // TODO: get the text from the event data
+    
+    // TODO: use the text in the notification
+    //toastr.success(text, null, {"positionClass": "toast-bottom-left"});
+}
 
-  // TODO: Subscribe to the channel
+var pusher = new Pusher('{{env("PUSHER_KEY")}}');
 
-  // TODO: Bind to the event and pass in the notification handler
-</script>
+// TODO: Subscribe to the channel
+
+// TODO: Bind to the event and pass in the notification handler
 ```
 
 <div class="alert alert-info">

@@ -4,79 +4,21 @@ We clearly don't have time to build a full social network. But we can support a 
 
 ## Create the Controller and View
 
-<i class="fa fa-rocket fa-2"></i> Let's start by creating a plain controller called `ActivityController`:
+<i class="fa fa-rocket fa-2"></i> Save the [ActivityController.php template](../assets/laravel_app/ActivityController.php) to `app/Http/Controllers/ActivityController.php`.
 
-```
-› php artisan make:controller ActivityController --plain
-```
+Here's the code in full followed by some explanation:
 
-<i class="fa fa-rocket fa-2"></i> Update the controller using the code below:
+<pre>
+<code class="lang-php">
+{% include "../assets/laravel_app/ActivityController.php" %}
+</code>
+</pre>
 
-```php
-namespace App\Http\Controllers;
+In the code above you'll notice that the `__construct()` attempts to grab the user from the `Session` and in `getIndex()` the value of `$this->user` is checked. If there isn't a logged in user the app redirects in order for the user to log in. 
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Session;
+By having a user we can identify who has triggered an activity event. There's an example in the code above of getting both the `username` and `avatar`. This can then be used when we trigger events via Pusher, and ultimately display that information in our user interface.
 
-class ActivityController extends Controller
-{
-    var $pusher;
-    var $user;
-
-    public function __construct()
-    {
-        $this->pusher = App::make('pusher');
-        $this->user = Session::get('user');
-    }
-
-    /**
-     * Serve the example activities view
-     */
-    public function getIndex()
-    {
-        // If there is no user, redirect to GitHub login
-        if(!$this->user)
-        {
-            return redirect('auth/github?redirect=/activities');
-        }
-        
-        // TODO: provide some useful text
-        $activity = [
-            'text' => '...',
-            'username' => $this->user->getNickname(),
-            'avatar' => $this->user->getAvatar(),
-            'id' => str_random()
-        ];
-
-        // TODO: trigger event
-        
-        return view('activities');
-    }
-
-    /**
-     * A new status update has been posted
-     * @param Request $request
-     */
-    public function postStatusUpdate(Request $request)
-    {
-        // TODO: trigger event
-    }
-
-    /**
-     * Like an exiting activity
-     * @param $id The ID of the activity that has been liked
-     */
-    public function postLike($id)
-    {
-        // TODO: trigger event
-    }
-}
-```
-
-In the code above you'll notice that the `__construct()` attempts to grab the user from the `Session` and in `getIndex()` the value of `$this->user` is checked. If there isn't a logged in user the app redirects in order for the user to log in. By having a user we can identify who has triggered an activity event. There's an example in the code above of getting both the `username` and `avatar`. This can then be used when we trigger events via Pusher, and ultimately display that information in our user interface.
-
-<i class="fa fa-rocket fa-2"></i> The `ActivityController` relies on an `activities` view so let's create that. Create a `resources/views/activities.blade.php` file and copy & paste the contents of [activities.blade.php](../assets/laravel_app/activities.blade.php) into it (or just copy over the file).
+<i class="fa fa-rocket fa-2"></i> The `ActivityController` relies on an `activities` view so let's create that. Save the [activities.blade.php template](../assets/laravel_app/activities.blade.php) to `resources/views/activities.blade.php`.
 
 <i class="fa fa-rocket fa-2"></i> Finally, add an entry to your `app/Http/routes.php`:
 
@@ -90,11 +32,11 @@ Now we want to trigger activity events.
 
 There are three potential types of activity in our `ActivityController`:
 
-1. A user visits the Activities page
-2. A new status update has been posted
-3. A status update has been "liked"
+1. A user visits the Activities page: `user-visit`
+2. A new status update has been posted: `new-status-update`
+3. A status update has been "liked": `status-update-liked`
 
-<i class="fa fa-rocket fa-2"></i> For each event (`user-visit`, `new-status-update` and `status-update-liked`) trigger an event on a `activities` channel. Each event should contain some `text` to display about the event, a `username` and an `avatar` to identify who triggered the event, and a unique `id`. Since we're not going to be using a database let's just use `str_random()` to generate a unique ID.
+<i class="fa fa-rocket fa-2"></i> For each event trigger an event on a `activities` channel. Each event should contain some `text` to display about the event, a `username` and an `avatar` to identify who triggered the event, and a unique `id`. Since we're not going to be using a database let's just use `str_random()` to generate a unique ID.
 
 ```php
 $activity = [
@@ -131,7 +73,9 @@ Whenever the `/activities` endpoint (`getIndex()` action) is access a `user-visi
 
 Next we should handle the status updates that users can post from the view.
 
-<i class="fa fa-rocket fa-2"></i> Navigate to http://localhost:8000/activities and make sure that entering some text into the "What's your status?" input and pressing `enter` results in your `/activites/status-update` endpoint (`postStatusUpdate(Request $request)` action) being called. You can check this in two ways:
+<i class="fa fa-rocket fa-2"></i> Navigate to http://localhost:8000/activities and make sure that entering some text into the "What's your status?" input and pressing `enter` results in your `/activites/status-update` endpoint (`postStatusUpdate(Request $request)` action) being called.
+
+You can check this in two ways:
 
 1. using the browser developer tools network tab
 2. via the Pusher Debug Console
