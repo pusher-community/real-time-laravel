@@ -38,7 +38,7 @@
     <body>
         
         
-    <div class="book" data-level="3.2" data-basepath=".." data-revision="Tue Aug 25 2015 19:41:22 GMT+0200 (CEST)">
+    <div class="book" data-level="3.2" data-basepath=".." data-revision="Wed Aug 26 2015 11:15:58 GMT+0200 (CEST)">
     
 
 <div class="book-summary">
@@ -635,22 +635,13 @@
 <li><code>getIndex</code> to show a view that lets a user send a notification</li>
 <li><code>postNotify</code> to handle a notification request and trigger the notification event</li>
 </ol>
-<p><i class="fa fa-rocket fa-2"></i> Create an empty controller with the following command:</p>
-<pre><code>&#x203A; php artisan make:controller NotificationController --plain
-</code></pre><p><i class="fa fa-rocket fa-2"></i> Open up the newly created <code>app/Http/Controllers/NotificationController.php</code> and add <code>getIndex</code> and <code>postNotify</code> actions as follows:</p>
-<pre><code class="lang-php"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NotificationController</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Controller</span>
-</span>{
-    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getIndex</span><span class="hljs-params">()</span>
-    </span>{
-      <span class="hljs-keyword">return</span> view(<span class="hljs-string">&apos;notification&apos;</span>);
-    }
-
-    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">postNotify</span><span class="hljs-params">(Request <span class="hljs-variable">$request</span>)</span>
-    </span>{
-    }
-}
-</code></pre>
-<p><i class="fa fa-rocket fa-2"></i> And ensure the new controller is listed in <code>app/Http/routes.php</code>:</p>
+<p><i class="fa fa-rocket fa-2"></i> Download the <a href="../assets/laravel_app/NotificationController.php">NotificationController.php template</a> to <code>app/Http/Controllers/NotificationController.php</code></p>
+<p><i class="fa fa-rocket fa-2"></i> Open <code>app/Http/Controllers/NotificationController.php</code> it contains two routes:</p>
+<ol>
+<li><code>getIndex</code> to serve a notifications view</li>
+<li><code>postNotify</code> to handle notification <code>POST</code> requests</li>
+</ol>
+<p><i class="fa fa-rocket fa-2"></i> Next, ensure the new controller is listed in <code>app/Http/routes.php</code>:</p>
 <pre><code class="lang-php">Route::controller(<span class="hljs-string">&apos;notifications&apos;</span>, <span class="hljs-string">&apos;NotificationController&apos;</span>);
 </code></pre>
 <p><i class="fa fa-rocket fa-2"></i> Navigate to <code>http://localhost:8000/notifications</code> and you should see a <code>View [notification] not found</code> error. That&apos;s fine since we haven&apos;t created our view file yet.</p>
@@ -660,44 +651,14 @@
 <li>Enter some text to be shown in a notification</li>
 <li>Submit a form indicating the notification should be triggered</li>
 </ul>
-<p><i class="fa fa-rocket fa-2"></i> Create <code>resources/views/notification.blade.php</code> and copy &amp; paste the contents of this <a href="../assets/laravel_app/notification.blade.php" target="_blank">notification.blade.php template</a> into it (or simply copy over the file). It contains a number of <code>&lt;script&gt;</code> and CSS references including the Pusher JavaScript library and jQuery from a CDN, as well as a basic HTML structure for our notifications demo.</p>
+<p><i class="fa fa-rocket fa-2"></i> Download the <a href="../assets/laravel_app/notification.blade.php">notification.blade.php template</a> to <code>resources/views/notification.blade.php</code>. It contains a number of <code>&lt;script&gt;</code> and CSS references including the Pusher JavaScript library and jQuery from a CDN, as well as a basic HTML structure for our notifications demo.</p>
 <p><i class="fa fa-rocket fa-2"></i> Next, take a look at the <code>&lt;form id=&quot;notify_form&quot;&gt;</code> in the HTML. It will be used to capture the user input and eventually make a <code>POST</code> AJAX request to our <code>notifications/notify</code> route.</p>
 <h2 id="submit-the-notification-text">Submit the Notification Text</h2>
-<p><i class="fa fa-rocket fa-2"></i> Let&apos;s add the AJAX code now. Towards the bottom of the template you&apos;ll find an empty <code>&lt;script&gt;</code> tag. Update it with the following content.</p>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">script</span>&gt;</span><span class="javascript">
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">notifyInit</span>(<span class="hljs-params"></span>) </span>{
-  <span class="hljs-comment">// set up form submission handling</span>
-  $(<span class="hljs-string">&apos;#notify_form&apos;</span>).submit(notifySubmit);
-}
-
-<span class="hljs-comment">// Handle the form submission</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">notifySubmit</span>(<span class="hljs-params"></span>) </span>{
-  <span class="hljs-keyword">var</span> notifyText = $(<span class="hljs-string">&apos;#notify_text&apos;</span>).val();
-  <span class="hljs-keyword">if</span>(notifyText.length &lt; <span class="hljs-number">3</span>) {
-    <span class="hljs-keyword">return</span>;
-  }
-
-  <span class="hljs-comment">// Build POST data and make AJAX request</span>
-  <span class="hljs-keyword">var</span> data = {notify_text: notifyText};
-  $.post(<span class="hljs-string">&apos;/notifications/notify&apos;</span>, data).success(notifySuccess);
-
-  <span class="hljs-comment">// Ensure the normal browser event doesn&apos;t take place</span>
-  <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
-}
-
-<span class="hljs-comment">// Handle the success callback</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">notifySuccess</span>(<span class="hljs-params"></span>) </span>{
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;notification submitted&apos;</span>);
-}
-
-$(notifyInit);
-</span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
-</code></pre>
-<p>As per the code comments this sets things up so that the <code>form</code> submission is handled by JavaScript and makes a <code>POST</code> to the server with the notification text. </p>
+<p><i class="fa fa-rocket fa-2"></i> Let&apos;s take a look at the JavaScript code within the <code>&lt;script&gt;</code> tag at the end of the <code>&lt;/body&gt;</code>. As per the code comments this sets things up so that the <code>form</code> submission is handled by JavaScript and makes a <code>POST</code> to the server with the notification text. </p>
 <p><i class="fa fa-rocket fa-2"></i> Open <a href="http://localhost:8000/notifications" target="_blank">http://localhost:8000/notifications</a>, enter some text and hit <em>enter</em> to submit the form. You should see <code>notification submitted</code> logged to the browser console.</p>
 <h2 id="trigger-the-event-via-pusher">Trigger the Event via Pusher</h2>
 <p>In the <code>postNotify</code> function of our <code>NotificationController</code> we want to get the submitted text, do some basic sanitisation and trigger the event via Pusher.</p>
-<p><i class="fa fa-rocket fa-2"></i> Over to you to complete the <code>TODO</code> items below. You&apos;ll also need to import <code>Illuminate\Support\Facades\App</code> in order to use the <code>App</code> facade to get the <code>Pusher</code> instance from the service container (see <a href="../getting-started/laravel-pusher-bridge.html">Laravel Pusher Bridge</a>).</p>
+<p><i class="fa fa-rocket fa-2"></i> Over to you to complete the <code>TODO</code> items below (see <a href="../getting-started/laravel-pusher-bridge.html">Laravel Pusher Bridge</a> for some code examples).</p>
 <pre><code class="lang-php"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">postNotify</span><span class="hljs-params">(Request <span class="hljs-variable">$request</span>)</span>
 </span>{
   <span class="hljs-variable">$notifyText</span> = e(<span class="hljs-variable">$request</span>-&gt;input(<span class="hljs-string">&apos;notify_text&apos;</span>));

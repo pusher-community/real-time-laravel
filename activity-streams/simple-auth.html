@@ -38,7 +38,7 @@
     <body>
         
         
-    <div class="book" data-level="4.1" data-basepath=".." data-revision="Tue Aug 25 2015 19:41:22 GMT+0200 (CEST)">
+    <div class="book" data-level="4.1" data-basepath=".." data-revision="Wed Aug 26 2015 11:15:58 GMT+0200 (CEST)">
     
 
 <div class="book-summary">
@@ -657,7 +657,7 @@
 <h2 id="get-github-credentials">Get GitHub Credentials</h2>
 <p>In order to use GitHub social login your application needs to be registered with GitHub.</p>
 <h3 id="instructor-lead-workshop-i-class-fa-fa-graduation-cap-fa-2-i">Instructor-lead Workshop <i class="fa fa-graduation-cap fa-2"></i></h3>
-<p><i class="fa fa-rocket fa-2"></i> If you&apos;re in an instructor-lead workshop <em>*and you are running your app from <code>http://localhost:8000</code> then they&apos;ll provide you with some credentials that you can use. If your app isn&apos;t running from <code>localhost:8000</code> then you&apos;ll need to </em>Create your own GitHub App*.</p>
+<p><i class="fa fa-rocket fa-2"></i> If you&apos;re in an instructor-lead workshop and you are running your app from <code>http://localhost:8000</code> then they&apos;ll provide you with some credentials that you can use. <strong>If your app isn&apos;t running from <code>localhost:8000</code></strong> then you&apos;ll need to <em>Create your own GitHub App</em>.</p>
 <h3 id="self-taught-workshop-create-your-own-github-app">Self Taught Workshop / Create your own GitHub App</h3>
 <p><i class="fa fa-rocket fa-2"></i> If you&apos;d like to register your own application or you&apos;re going through this without an instructor then you&apos;ll need to create an application. The steps are:</p>
 <ol>
@@ -694,7 +694,7 @@ GITHUB_CALLBACK_URL=YOUR_GITHUB_CALLBACK_URL
 </code></pre>
 <h2 id="add-login-functionality">Add Login Functionality</h2>
 <p>After setting up the Socialite provider and Alias we need to set up an <code>AuthController</code> and some routes.</p>
-<p><i class="fa fa-rocket fa-2"></i> Open up <code>app/Http/Controllers/Auth/AuthController.php</code> and replace the contents with the following:</p>
+<p><i class="fa fa-rocket fa-2"></i> Overwrite <code>app/Http/Controllers/Auth/AuthController.php</code> with the contents of the <a href="../assets/laravel_app/AuthController.php">AuthController.php template</a>.</p>
 <pre><code class="lang-php"><span class="hljs-preprocessor">&lt;?php</span>
 <span class="hljs-keyword">namespace</span> <span class="hljs-title">App</span>\<span class="hljs-title">Http</span>\<span class="hljs-title">Controllers</span>\<span class="hljs-title">Auth</span>;
 
@@ -764,6 +764,11 @@ Route::get(<span class="hljs-string">&apos;auth/github/callback&apos;</span>, <s
     </li>
     <li>Restart your web server</li>
   </ul>
+</div>
+
+<div class="alert alert-warning">
+  <p><strong>404 on GitHub during login</strong></p>
+  <p>If you see a 404 on GitHub it&apos;s likely that your credentaisl such as `GITHUB_CLIENT_ID` haven&apos;t been set up correctly.</p>
 </div>
 
 <p>We now have access to the GitHub user information via <code>Session::get(&apos;user&apos;)</code> and we&apos;ll make use of that shortly.</p>

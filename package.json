@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/pusher-community/real-time-laravel",
   "dependencies": {
-    "gitbook-plugin-ga": "^0.2.1"
+    "gitbook-plugin-ga": "^0.2.1",
+    "gitbook-plugin-include-highlight": "^0.1.0"
   }
 }
