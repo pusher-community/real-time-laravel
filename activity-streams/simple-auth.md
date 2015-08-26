@@ -44,7 +44,7 @@ In order to use GitHub social login your application needs to be registered with
 
 ### Instructor-lead Workshop <i class="fa fa-graduation-cap fa-2"></i>
 
-<i class="fa fa-rocket fa-2"></i> If you're in an instructor-lead workshop **and you are running your app from `http://localhost:8000` then they'll provide you with some credentials that you can use. If your app isn't running from `localhost:8000` then you'll need to *Create your own GitHub App*.
+<i class="fa fa-rocket fa-2"></i> If you're in an instructor-lead workshop and you are running your app from `http://localhost:8000` then they'll provide you with some credentials that you can use. **If your app isn't running from `localhost:8000`** then you'll need to *Create your own GitHub App*.
 
 ### Self Taught Workshop / Create your own GitHub App
 
@@ -93,59 +93,9 @@ return [
 
 After setting up the Socialite provider and Alias we need to set up an `AuthController` and some routes.
 
-<i class="fa fa-rocket fa-2"></i> Open up `app/Http/Controllers/Auth/AuthController.php` and replace the contents with the following:
+<i class="fa fa-rocket fa-2"></i> Overwrite `app/Http/Controllers/Auth/AuthController.php` with the contents of the [AuthController.php template](../assets/laravel_app/AuthController.php).
 
-```php
-<?php
-namespace App\Http\Controllers\Auth;
-
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Routing\Controller;
-
-use Socialite;
-
-class AuthController extends Controller
-{
-    /**
-     * Redirect the user to the GitHub authentication page.
-     * Also passes a `redirect` query param that can be used
-     * in the handleProviderCallback to send the user back to
-     * the page they were originally at.
-     *
-     * @param Request $request
-     * @return Response
-     */
-    public function redirectToProvider(Request $request)
-    {
-        return Socialite::driver('github')
-            ->with(['redirect_uri' => env('GITHUB_CALLBACK_URL' ) . '?redirect=' . $request->input('redirect')])
-            ->redirect();
-    }
-
-    /**
-     * Obtain the user information from GitHub.
-     * If a "redirect" query string is present, redirect
-     * the user back to that page.
-     *
-     * @param Request $request
-     * @return Response
-     */
-    public function handleProviderCallback(Request $request)
-    {
-        $user = Socialite::driver('github')->user();
-
-        Session::put('user', $user);
-
-        $redirect = $request->input('redirect');
-        if($redirect)
-        {
-            return redirect($redirect);
-        }
-        return 'GitHub auth successful. Now navigate to a demo.';
-    }
-}
-```
+!CODEFILE "../assets/laravel_app/AuthController.php"
 
 You'll noticed that `redirectToProvider` redirects to GitHub social login and `handleProviderCallback` handles the auth callback from GitHub and adds the user to the `Session`.
 
@@ -174,6 +124,11 @@ We're finally in a position to test that our GitHub social login is working.
     </li>
     <li>Restart your web server</li>
   </ul>
+</div>
+
+<div class="alert alert-warning">
+  <p><strong>404 on GitHub during login</strong></p>
+  <p>If you see a 404 on GitHub it's likely that your credentaisl such as `GITHUB_CLIENT_ID` haven't been set up correctly.</p>
 </div>
 
 We now have access to the GitHub user information via `Session::get('user')` and we'll make use of that shortly.

@@ -36,7 +36,7 @@ And then publish so the Pusher configuration file is copied to the `config` dire
     ],
 ```
 
-<div class="alert alert-warn">
+<div class="alert alert-warning">
   <strong><code>config/pusher.php</code> Gotcha!</strong>
   <p>
   Make sure you've updated <code>config/pusher.php</code> and <strong>not</strong> <code>vendor/vinkla/pusher/config/pusher.php</code>.

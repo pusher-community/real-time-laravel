@@ -8,11 +8,7 @@ We clearly don't have time to build a full social network. But we can support a 
 
 Here's the code in full followed by some explanation:
 
-<pre>
-<code class="lang-php">
-{% include "../assets/laravel_app/ActivityController.php" %}
-</code>
-</pre>
+!CODEFILE "../assets/laravel_app/ActivityController.php"
 
 In the code above you'll notice that the `__construct()` attempts to grab the user from the `Session` and in `getIndex()` the value of `$this->user` is checked. If there isn't a logged in user the app redirects in order for the user to log in. 
 
@@ -36,16 +32,24 @@ There are three potential types of activity in our `ActivityController`:
 2. A new status update has been posted: `new-status-update`
 3. A status update has been "liked": `status-update-liked`
 
-<i class="fa fa-rocket fa-2"></i> For each event trigger an event on a `activities` channel. Each event should contain some `text` to display about the event, a `username` and an `avatar` to identify who triggered the event, and a unique `id`. Since we're not going to be using a database let's just use `str_random()` to generate a unique ID.
+<i class="fa fa-rocket fa-2"></i> For each event trigger an event on an `activities` channel. Each event should contain some `text` to display about the event, a `username` and an `avatar` to identify who triggered the event, and a unique `id`. Since we're not going to be using a database let's just use `str_random()` to generate a unique ID.
+
+For example:
 
 ```php
 $activity = [
-    'text' => '...',
+    'text' => $this->user->getNickname() . ' has visited the page',
     'username' => $this->user->getNickname(),
     'avatar' => $this->user->getAvatar(),
     'id' => str_random()
 ];
+
+$this->pusher->trigger('activities', 'user-visit', $activity);
 ```
+
+<div class="alert alert-info">
+  It's a little trickier to test that some of these events can be triggered. But you can at least test the <code>user-visit</code> event is being triggered in the <strong>Pusher Debug Console</strong>.
+</div>
 
 <i class="fa fa-rocket fa-2"></i> For the event that's triggered in the `postLike($id)` action also send the ID of the activity that the user liked on a `likedActivityId` property using the `$id` value.
 
@@ -67,7 +71,11 @@ Whenever the `/activities` endpoint (`getIndex()` action) is access a `user-visi
 
 <i class="fa fa-rocket fa-2"></i> If you haven't already done so, navigate to http://localhost:8000/activities endpoint in the browser and make sure the event is triggered by checking the Pusher Debug Console.
 
-<i class="fa fa-rocket fa-2"></i> Once you're sure the event is being triggered you can subscribe to the `activites` channel on the client and bind to the event. There's already a `addUserVisit` that can be used to handle the event and add an activity to the stream UI.
+<i class="fa fa-rocket fa-2"></i> Once you're sure the event is being triggered you can add JavaScript to the view to `subscribe` to the `activites` channel on the client and `bind` to the `user-visit` event. There's already a `addUserVisit` that can be used to handle the event and add an activity to the stream UI.
+
+<div class="alert alert-info">
+  You can test out functionality such as user page visit events by having two browser windows side-by-side.
+</div>
 
 ### Status Updates
 

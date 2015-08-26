@@ -1,3 +1,4 @@
+<?php
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -45,6 +46,8 @@ class ActivityController extends Controller
      */
     public function postStatusUpdate(Request $request)
     {
+        $statusText = e($request->input('status_text'));
+      
         // TODO: trigger event
     }
 

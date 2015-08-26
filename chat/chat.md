@@ -8,7 +8,9 @@ As mentioned in the chat introduction, a lot of the activity streams functionali
 
 ### ChatController
 
-<i class="fa fa-rocket fa-2"></i> Save the [ChatController.php template](../assets/laravel_app/ChatController.php) and add it to `app/Http/Controllers/ChatController.php`.
+<i class="fa fa-rocket fa-2"></i> Save the [ChatController.php template](../assets/laravel_app/ChatController.php) to `app/Http/Controllers/ChatController.php`.
+
+!CODEFILE "../assets/laravel_app/ChatController.php"
 
 This controller makes sure the user is logged in via GitHub when the `/chat` (the `getIndex()` function) is accessed.
 
@@ -22,7 +24,7 @@ Route::controller('chat', 'ChatController');
 
 ### Chat View
 
-<i class="fa fa-rocket fa-2"></i> Take the contents of the [chat.blade.php template](../assets/laravel_app/chat.blade.php) and put that into `resources/views/chat.blade.php`.
+<i class="fa fa-rocket fa-2"></i> Save the [chat.blade.php template](../assets/laravel_app/chat.blade.php) to `resources/views/chat.blade.php`.
 
 Whenever a message is to be sent to the server the `sendMessage()` function is called - triggered either by a button being clicked or the user pressing `enter`.
 
@@ -103,7 +105,7 @@ var pusher = new Pusher('{{env("PUSHER_KEY")}}', {
 
 <i class="fa fa-rocket fa-2"></i> Refresh the page and this time you'll see a `POST` request to `/chat/auth` which succeeds. But if you check the browser console you'll see a log message saying `Pusher : No callbacks on private-chat for pusher:subscription_error`.
 
-This is because the authentication endpoint (`/pusher/auth`) needs to return a signature that can then be used by the Pusher JavaScript library as part of the subscription with the Pusher service. If the Pusher service fails to validate the signature the subscription will be disallowed. In this case our endpoint isn't returning any data so the subscription is obviously going to fail.
+This is because the authentication endpoint (`/chat/auth`) needs to return a signature that can then be used by the Pusher JavaScript library as part of the subscription with the Pusher service. If the Pusher service fails to validate the signature the subscription will be disallowed. In this case our endpoint isn't returning any data so the subscription is obviously going to fail.
 
 <i class="fa fa-rocket fa-2"></i> If you look at the parameters passed in the `POST` request to `/chat/auth` you'll see a `socket_id` and a `channel_name`. The `socket_id` is a unique ID for the connection to Pusher and the `channel_name` is the name of the channel that the client is attempting to subscribe to.
 

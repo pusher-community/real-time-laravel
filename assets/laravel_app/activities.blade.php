@@ -158,8 +158,9 @@
 
     // TODO: bind to each event on the channel
     // and assign the appropriate handler
+    // e.g. 'user-visit' and 'addUserVisit'
     
-    // TODO: bind to the status-update-liked event,
+    // TODO: bind to the 'status-update-liked' event,
     // and pass in a callback handler that adds an
     // activitiy to the UI using they
     // addActivity(type, data) function
