@@ -1,6 +1,6 @@
 # Debugging your client-side integration with Pusher
 
-The [Pusher Debug Console](https://pusher.com/docs/debugging#pusher_debug_console) is great for understand how the Pusher JavaScript library is interacting with Pusher.
+The [Pusher Debug Console](https://pusher.com/docs/debugging#pusher_debug_console) is great for understanding how the Pusher JavaScript library is interacting with Pusher.
 
 ![The Pusher Debug Console](../assets/img/pusher-debug-console.png)
 
