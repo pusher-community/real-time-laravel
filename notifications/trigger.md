@@ -57,7 +57,7 @@ public function postNotify(Request $request)
 }
 ```
 
-Remember that you can use the Pusher Debug Console to make sure that events are reaching Pusher. If you don't see the events there you can always look at the Laravel logs in `storage/logs/laravel.log` (see [server debugging](server-debugging.html)).
+Remember that you can use the Pusher Debug Console to make sure that events are reaching Pusher. If you don't see the events there you can always look at the Laravel logs in `storage/logs/laravel.log` (see [server debugging](../getting-started/server-debugging.md)).
 
 ## Where next?
 
