@@ -11,7 +11,7 @@
   * [Debugging Server-Side Integration with Pusher](getting-started/server-debugging.md)
   * [Using the Pusher JavaScript library](getting-started/pusher-js-integration.md)
   * [Debugging with the Pusher JavaScript library](getting-started/pusher-js-debugging.md)
-  * [Getting Started - What we've learned](getting-started/learned.md)
+  * [What we've learned](getting-started/learned.md)
 * [Real-Time Notifications](notifications/README.md)
   * [Fundamentals](notifications/fundamentals.md)
   * [Trigger a Notification Event](notifications/trigger.md)
