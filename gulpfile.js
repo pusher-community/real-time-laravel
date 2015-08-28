@@ -8,7 +8,7 @@ gulp.task('deploy', function() {
 });
 
 gulp.task('gitbook-install', function(){
-    var book = new Book('.', {
+    var book = new Book('./src', {
       config: {
         output: './dist'
       }
@@ -19,7 +19,7 @@ gulp.task('gitbook-install', function(){
 });
 
 gulp.task('gitbook-generate', ['gitbook-install'], function(){
-    var book = new Book('.', {
+    var book = new Book('./src', {
       config: {
         output: './dist'
       }
