@@ -19,5 +19,10 @@
   "dependencies": {
     "gitbook-plugin-ga": "^0.2.1",
     "gitbook-plugin-include-highlight": "^0.1.0"
+  },
+  "devDependencies": {
+    "gitbook": "^2.2.0",
+    "gulp": "^3.9.0",
+    "gulp-gh-pages": "^0.5.2"
   }
 }
