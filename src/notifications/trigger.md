@@ -41,7 +41,7 @@ For our simple app notifications will be manually triggered. To do this we need 
 
 In the `postNotify` function of our `NotificationController` we want to get the submitted text, do some basic sanitisation and trigger the event via Pusher.
 
-<i class="fa fa-rocket fa-2"></i> Over to you to complete the `TODO` items below (see [Laravel Pusher Bridge](../getting-started/laravel-pusher-bridge.html) for some code examples).
+<i class="fa fa-rocket fa-2"></i> Over to you to complete the `TODO` items below (see [Laravel Pusher Bridge](../getting-started/laravel-pusher-bridge.md) for some code examples).
 
 ```php
 public function postNotify(Request $request)
@@ -57,7 +57,7 @@ public function postNotify(Request $request)
 }
 ```
 
-Remember that you can use the Pusher Debug Console to make sure that events are reaching Pusher. If you don't see the events there you can always look at the Laravel logs in `storage/logs/laravel.log` (see [server debugging](server-debugging.html)).
+Remember that you can use the Pusher Debug Console to make sure that events are reaching Pusher. If you don't see the events there you can always look at the Laravel logs in `storage/logs/laravel.log` (see [server debugging](../getting-started/server-debugging.md)).
 
 ## Where next?
 

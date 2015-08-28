@@ -56,7 +56,7 @@ Private channels are identified by a simple `private-` naming prefix e.g. `priva
 
 <i class="fa fa-rocket fa-2"></i> To see this in action, navigate to http://localhost:8000/chat, open up the developer tools in your browser and go to the network tab.
 
-<i class="fa fa-rocket fa-2"></i> Next, change the name of the channel that's we're subscribing to. Change it from `chat` to `private-chat`. This is configured for both the controller (for event triggering) and the view (for subscribing) in `app/Http/ChatController::DEFAULT_CHAT_CHANNEL`.
+<i class="fa fa-rocket fa-2"></i> Next, change the name of the channel that we're subscribing to. Change it from `chat` to `private-chat`. This is configured for both the controller (for event triggering) and the view (for subscribing) in `app/Http/ChatController::DEFAULT_CHAT_CHANNEL`.
 
 <i class="fa fa-rocket fa-2"></i> In the developer tools network tab you'll see a `POST` request to http://localhost:8000/pusher/auth. Not only do we not have a route set up for this, but upon closer inspection you'll also see that the response is a `500` error complaining about a `TokenMismatchException`.
 

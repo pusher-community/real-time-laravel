@@ -53,4 +53,4 @@ For more information see the [WebHooks docs](https://pusher.com/docs/webhooks).
 
 ## Where next?
 
-That's all folks! Finally, you can head to a (list of resources)[./resources.md] related to everything we've covered in this workshop.
+That's all folks! Finally, you can head to a [list of resources](./resources.md) related to everything we've covered in this workshop.

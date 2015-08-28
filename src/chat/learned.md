@@ -9,4 +9,4 @@ In this chapter we've:
 
 That's all the exercises complete. Congratulations!
 
-Pusher offers more features than we could cramb into a 2 hour workshop. So, let's finish off by having [a quick run-though of those additional features](../where-next/).
+Pusher offers more features than we could cram into a 2 hour workshop. So, let's finish off by having [a quick run-through of those additional features](../where-next/).

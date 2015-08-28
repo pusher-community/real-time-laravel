@@ -8,7 +8,7 @@ Make the best choice for your app.
 
 ## Which one will we use?
 
-To keep things simple, **we're going to be using the `vikla/pusher` Laravel Pusher Bridge for the rest of the workshop**.
+To keep things simple, **we're going to be using the `vinkla/pusher` Laravel Pusher Bridge for the rest of the workshop**.
 
 ## Where next?
 
