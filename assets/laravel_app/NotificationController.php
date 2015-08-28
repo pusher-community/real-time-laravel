@@ -17,9 +17,6 @@ class NotificationController extends Controller
 
     public function postNotify(Request $request)
     {
-
-    public function postNotify(Request $request)
-    {
         $notifyText = e($request->input('notify_text'));
 
         // TODO: Get Pusher instance from service container
