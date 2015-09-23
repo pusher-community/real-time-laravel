@@ -59,7 +59,7 @@ function notifyInit() {
 function notifySubmit() {
   var notifyText = $('#notify_text').val();
   if(notifyText.length < 3) {
-    return;
+    return false;
   }
 
   // Build POST data and make AJAX request

@@ -84,7 +84,7 @@
     function statusUpdateSubmit() {
         var statusText = $('#status_text').val();
         if(statusText.length < 3) {
-            return;
+            return false;
         }
 
         // Build POST data and make AJAX request
