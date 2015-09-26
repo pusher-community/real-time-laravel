@@ -50,7 +50,7 @@ var pusher = new Pusher('{{env("PUSHER_KEY")}}');
   </ol>
 </div>
 
-Once you've put those few pieces of code in place you've not got real-time notifications in your app. 
+Once you've put those few pieces of code in place you've now got real-time notifications in your app. 
 
 <i class="fa fa-rocket fa-2"></i> Open up a http://localhost:8000/notifications in a second browser window - even a different browser altogether - and test out the functionality.
 
