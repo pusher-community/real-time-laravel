@@ -43,7 +43,7 @@ class Notification
 $data = new Notification('this is a notification');
 ```
 
-The Pusher PHP library (and all other libraries) will handles serialising and deserialising data. In both cases above, triggering an event with the `$data` event payload will result in the same information being sent through Pusher and received by the client. The JSON representation of the above event data will look as follows:
+The Pusher PHP library (and all other libraries) will handle serializing and deserializing data. In both cases above, triggering an event with the `$data` event payload will result in the same information being sent through Pusher and received by the client. The JSON representation of the above event data will look as follows:
 
 ```
 {"text": "this is a notification"}
