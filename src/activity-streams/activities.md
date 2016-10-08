@@ -67,7 +67,7 @@ The view, defined in `resources/views/activities.blade.php`, already has some fu
 
 ### User Visited
 
-Whenever the `/activities` endpoint (`getIndex()` action) is access a `user-visit` event is triggered on the `activities` channel. 
+Whenever the `/activities` endpoint (`getIndex()` action) is accessed, a `user-visit` event is triggered on the `activities` channel. 
 
 <i class="fa fa-rocket fa-2"></i> If you haven't already done so, navigate to http://localhost:8000/activities endpoint in the browser and make sure the event is triggered by checking the Pusher Debug Console.
 

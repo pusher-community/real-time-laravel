@@ -2,7 +2,7 @@
 
 In this chapter we've:
 
-* Created a super-simple authentication mechanism tso we can give our events some user context
+* Created a super-simple authentication mechanism so we can give our events some user context
 * How we can trigger events with different names on the same channel in order to provide more context to events
 * How events simplify our client-side application logic by separating out event handlers
 

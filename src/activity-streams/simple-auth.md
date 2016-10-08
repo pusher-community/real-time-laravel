@@ -53,7 +53,7 @@ In order to use GitHub social login your application needs to be registered with
 1. Login to [GitHub](https://github.com)
 2. Go to your settings (top-right drop-down -> Settings)
 3. Select **Applications** from the menu
-4. Select the **Developer applications** tab
+4. Select the **OAuth applications** tab
 5. Click **Register new application**
 6. Enter a name, If using `localhost:8000`:
   * Use `http://localhost:8000` as the home page

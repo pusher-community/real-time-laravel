@@ -20,7 +20,7 @@ channel.bind('event-name', function(data) {
 
 ## Showing the Notifications
 
-The Pusher JavaScript library and the toastr notification library has already been included in the [template](../assets/laravel_app/notifiation.blade.php) we copied earlier. So, all we need to do is subscribe to the `notifications` channel, bind to the `new-notification` event and use the toastr library to show the notification.
+The Pusher JavaScript library and the toastr notification library have already been included in the [template](../assets/laravel_app/notifiation.blade.php) we copied earlier. So, all we need to do is subscribe to the `notifications` channel, bind to the `new-notification` event and use the toastr library to show the notification.
 
 <i class="fa fa-rocket fa-2"></i> Use the following code outline to implement the notification functionality:
 
