@@ -1,6 +1,6 @@
 # Pusher Use Cases <i class="fa fa-graduation-cap fa-2"></i>
 
-There are a number of common use case for real-time web technologies, and thus Pusher.
+There are a number of common use cases for real-time web technologies, and thus Pusher.
 
 This section will cover those use cases, but don't let it confine how *you* think about using Pusher.
 
